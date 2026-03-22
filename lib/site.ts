@@ -125,6 +125,10 @@ export const LABEL_DEFINITIONS: Record<string, LabelDefinition> = {
       "Jazz & Bass blends rolling liquid drum & bass grooves with jazz-soaked chords, warm basslines, and late-night swing. It’s built for listeners who want something smooth but energetic—perfect for drives, focus sessions, and chill club moments. For commercial/social usage, check licensing or contact our team for clearance.",
     socialLinks: [
       {
+        label: "Spotify",
+        href: "https://open.spotify.com/artist/5eAsn3hATbZmP69ZZAmfXk?si=r6X7VMdmROWc86NS-LSRjA",
+      },
+      {
         label: "YouTube",
         href: "https://www.youtube.com/channel/UCk3HfyyqI8Zwd326DIuaTHw/",
       },
