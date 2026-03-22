@@ -1,4 +1,4 @@
-# NJK Music (ncgm)
+# NJK Music
 
 Projekt pre web `njkmusic.com` – label kolektív + katalóg releasov a článkov. Projekt je postavený na Next.js (App Router) a obsah je primárne lokálny markdown v `content/`.
 
