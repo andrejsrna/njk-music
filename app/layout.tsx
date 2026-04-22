@@ -11,6 +11,7 @@ import { SITE_AUTHOR, SITE_DESCRIPTION, SITE_NAME } from "@/lib/site";
 const ogImage = `${SITE_URL}/og-image.jpg`;
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: SITE_NAME,
   description: SITE_DESCRIPTION,
   keywords: [

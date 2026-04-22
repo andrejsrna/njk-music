@@ -123,6 +123,7 @@ export const LABEL_DEFINITIONS: Record<string, LabelDefinition> = {
     tagline: "Funky liquid drum & bass with jazz-soaked grooves",
     description:
       "Jazz & Bass blends rolling liquid drum & bass grooves with jazz-soaked chords, warm basslines, and late-night swing. It’s built for listeners who want something smooth but energetic—perfect for drives, focus sessions, and chill club moments. For commercial/social usage, check licensing or contact our team for clearance.",
+    heroImage: "/images/music/berts-jazz-bar.jpg",
     socialLinks: [
       {
         label: "Spotify",
