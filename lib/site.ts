@@ -116,6 +116,66 @@ export const LABEL_DEFINITIONS: Record<string, LabelDefinition> = {
       { title: "Focus", detail: "Meditation, Wellness, Relaxation" },
     ],
   },
+  "ludovky-od-andreja": {
+    slug: "ludovky-od-andreja",
+    name: "Ľudovky od Andreja",
+    short: "LOA",
+    tagline: "Slovak bedtime stories and gentle folk-inspired audio",
+    description:
+      "Ľudovky od Andreja brings Slovak-language stories, gentle narration, and folk-inspired audio into the NJK Music catalog. The label is built for calm evening listening, children's bedtime routines, and warm family storytelling moments.",
+    seo: {
+      title: "Ľudovky od Andreja Label | Slovak Bedtime Stories",
+      description:
+        "Discover Ľudovky od Andreja releases—Slovak bedtime stories, gentle narrated audio, and folk-inspired listening for quiet evenings.",
+      keywords: [
+        "ludovky od andreja",
+        "slovak bedtime stories",
+        "rozpravka na dobru noc",
+        "slovenske rozpravky",
+        "children bedtime audio",
+      ],
+    },
+    highlights: [
+      "Slovak-language narrated releases shaped for bedtime and calm family listening",
+      "Gentle folk-inspired tone with warm storytelling rather than high-energy music cues",
+      "Short-form audio releases suitable for evening routines, quiet rooms, and mindful listening",
+    ],
+    callouts: [
+      { title: "Focus", detail: "Slovak stories, Bedtime, Folk-inspired audio" },
+      { title: "Language", detail: "Slovak" },
+      { title: "Mood", detail: "Gentle, calm, family-friendly" },
+    ],
+  },
+  "koldman": {
+    slug: "koldman",
+    name: "Koldman",
+    short: "KLD",
+    tagline: "Heavy electronic rap hybrids with wobble bass pressure",
+    description:
+      "Koldman pushes bass-heavy electronic rap, dubstep pressure, and rough-edged club energy into the NJK Music catalog. The label is built for listeners and creators who want louder hooks, distorted low-end movement, and attitude-driven tracks.",
+    seo: {
+      title: "Koldman Label | Bass Rap and Dubstep Energy",
+      description:
+        "Discover Koldman releases—bass-heavy rap hybrids, dubstep pressure, and high-energy electronic tracks for bold creator edits.",
+      keywords: [
+        "koldman",
+        "bass rap",
+        "dubstep rap",
+        "wobble bass music",
+        "electronic rap label",
+      ],
+    },
+    highlights: [
+      "Bass-forward tracks built around wobble movement, heavy drops, and rap attitude",
+      "High-energy cues for bold edits, gaming clips, shorts, and aggressive visual pacing",
+      "Electronic and hip-hop influences shaped for listeners who want louder, rougher release energy",
+    ],
+    callouts: [
+      { title: "Focus", detail: "Bass Rap, Dubstep, Electronic" },
+      { title: "Energy", detail: "Heavy, distorted, bold" },
+      { title: "Use", detail: "Edits, clips, high-impact moments" },
+    ],
+  },
   "jazz-and-bass": {
     slug: "jazz-and-bass",
     name: "Jazz & Bass",
