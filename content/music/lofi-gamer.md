@@ -18,7 +18,7 @@
   "Tidal": "https://tidal.com/browse/album/443652767?u",
   "iHeartRadio": "https://www.iheart.com/artist/no-copyright-gaming-music-40920862/albums/lofi-gamer-tape-335130104",
   "Boomplay": "https://www.boomplay.com/albums/112517392?from=search",
-  "Beatport": "https://www.beatport.com/release/lofi-gamer-tape/5144932",
+  "Beatport": "https://www.beatport.com/release/lofi-gamer-tape/5144932?a_aid=69dac828ced75",
   "Bandcamp": "https://nocopyrightgamingmusic.bandcamp.com/album/lofi-gamer-tape",
   "spotify_embed": "<iframe style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/album/0bSKREb212xFjPflLrgFtf?utm_source=generator\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>",
   "Cover": {

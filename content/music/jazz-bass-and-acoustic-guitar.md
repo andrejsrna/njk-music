@@ -24,7 +24,7 @@
   "Tidal": null,
   "iHeartRadio": null,
   "Boomplay": null,
-  "Beatport": "https://www.beatport.com/release/jazz-bass-and-acoustic-guitar/5128789",
+  "Beatport": "https://www.beatport.com/release/jazz-bass-and-acoustic-guitar/5128789?a_aid=69dac828ced75",
   "Bandcamp": null,
   "spotify_embed": null,
   "createdAt": "2025-06-20T00:00:00.000Z",

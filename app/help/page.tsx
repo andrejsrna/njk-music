@@ -8,6 +8,7 @@ import {
   FaFileContract,
   FaHeadset,
   FaPlay,
+  FaPlug,
   FaQuestionCircle,
   FaShieldAlt,
   FaTools,
@@ -102,6 +103,12 @@ const helpCategories: HelpCategory[] = [
         description: "Best practices for ad safe uploads and keeping your revenue flowing.",
         href: "/help/monetization",
         icon: FaHeadset,
+      },
+      {
+        title: "Recommended tools",
+        description: "Affiliate links for DJ stores, plugins, samples, and producer workflows.",
+        href: "/help/affiliate-links",
+        icon: FaPlug,
       },
       {
         title: "Usage guidelines",

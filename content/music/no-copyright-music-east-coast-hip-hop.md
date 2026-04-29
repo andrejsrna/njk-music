@@ -17,7 +17,7 @@
   "Deezer": "https://www.deezer.com/en/album/710339831",
   "Tidal": "https://tidal.com/browse/album/416879882?u",
   "Boomplay": "https://www.boomplay.com/albums/106251008?from=search",
-  "Beatport": "https://www.beatport.com/release/no-copyright-gaming-music-presents-east-coast-hip-hop/4932163",
+  "Beatport": "https://www.beatport.com/release/no-copyright-gaming-music-presents-east-coast-hip-hop/4932163?a_aid=69dac828ced75",
   "Bandcamp": "https://nocopyrightgamingmusic.bandcamp.com/album/no-copyright-gaming-music-presents-east-coast-hip-hop",
   "spotify_embed": "<iframe style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/album/59au8byrYClkSRfZTnUwGf?utm_source=generator\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>",
   "Cover": {

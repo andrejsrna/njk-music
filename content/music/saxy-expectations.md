@@ -21,7 +21,7 @@
   "Tidal": "https://tidal.com/album/433644708/u",
   "iHeartRadio": null,
   "Boomplay": null,
-  "Beatport": "https://www.beatport.com/release/saxy-expectations/5067684",
+  "Beatport": "https://www.beatport.com/release/saxy-expectations/5067684?a_aid=69dac828ced75",
   "Bandcamp": null,
   "spotify_embed": "<iframe data-testid=\"embed-iframe\" style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/album/6OPKzEVglgRCG76B7gF8Yo?utm_source=generator\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>",
   "createdAt": "2025-05-09T00:00:00.000Z",

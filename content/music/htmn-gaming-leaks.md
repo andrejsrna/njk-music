@@ -21,7 +21,7 @@
   "Tidal": "https://listen.tidal.com/search?q=HTMN%20%28Gaming%20Leaks%29%20No%20Copyright%20Gaming%20Music",
   "iHeartRadio": "https://www.iheart.com/search/?q=HTMN%20%28Gaming%20Leaks%29%20No%20Copyright%20Gaming%20Music",
   "Boomplay": "https://boomplay.com/search/default/HTMN%20%28Gaming%20Leaks%29%20No%20Copyright%20Gaming%20Music",
-  "Beatport": "https://www.beatport.com/search?q=HTMN%20Gaming%20Leaks",
+  "Beatport": "https://www.beatport.com/search?q=HTMN%20Gaming%20Leaks&a_aid=69dac828ced75",
   "Bandcamp": "https://bandcamp.com/search?q=HTMN%20%28Gaming%20Leaks%29%20No%20Copyright%20Gaming%20Music",
   "spotify_embed": "<iframe style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/album/3xb93rVxn1X4SiGGABexDs?utm_source=generator\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>",
   "youtube_embed": null,

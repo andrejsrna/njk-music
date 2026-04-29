@@ -21,7 +21,7 @@
   "Tidal": "https://tidal.com/album/462661069/u",
   "iHeartRadio": null,
   "Boomplay": null,
-  "Beatport": "https://www.beatport.com/release/liquid-dnb-is-not-dead/5349105",
+  "Beatport": "https://www.beatport.com/release/liquid-dnb-is-not-dead/5349105?a_aid=69dac828ced75",
   "Bandcamp": null,
   "spotify_embed": null,
   "Cover": {

@@ -21,7 +21,7 @@
   "Tidal": "https://tidal.com/album/479636541/u",
   "iHeartRadio": null,
   "Boomplay": null,
-  "Beatport": "https://beatport.com/pt/release/liquid-flow-smooth-drum-bass-journey/5582487",
+  "Beatport": "https://beatport.com/pt/release/liquid-flow-smooth-drum-bass-journey/5582487?a_aid=69dac828ced75",
   "Bandcamp": null,
   "spotify_embed": "<iframe data-testid=\"embed-iframe\" style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/album/3pi5UQl9a1SDJX5Sa3Sytf?utm_source=generator\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>",
   "youtube_embed": "https://www.youtube.com/playlist?list=PL7GJ82VTa15kGL7O-2FnGqs9iAvD7ebjx",

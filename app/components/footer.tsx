@@ -192,6 +192,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/help/affiliate-links" className={`transition ${isDarkRoute ? 'hover:text-white' : 'hover:text-slate-900'}`}>
+                  Recommended Tools
+                </Link>
+              </li>
+              <li>
                 <Link href="/contact" className={`transition ${isDarkRoute ? 'hover:text-white' : 'hover:text-slate-900'}`}>
                   Contact
                 </Link>

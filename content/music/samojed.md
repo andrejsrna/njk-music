@@ -21,7 +21,7 @@
   "Tidal": "https://listen.tidal.com/search?q=Samojed%20Jazz%20%26%20Bass",
   "iHeartRadio": "https://www.iheart.com/search/?q=Samojed%20Jazz%20%26%20Bass",
   "Boomplay": "https://boomplay.com/search/default/Samojed%20Jazz%20%26%20Bass",
-  "Beatport": "https://www.beatport.com/release/samojed/6801254",
+  "Beatport": "https://www.beatport.com/release/samojed/6801254?a_aid=69dac828ced75",
   "Bandcamp": "https://bandcamp.com/search?q=Samojed%20Jazz%20%26%20Bass",
   "spotify_embed": "<iframe style=\"border-radius: 12px\" width=\"100%\" height=\"352\" title=\"Spotify Embed: Samojed\" frameborder=\"0\" allowfullscreen allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\" src=\"https://open.spotify.com/embed/album/7MJpiFwCkigEGl7w7x70JJ?utm_source=oembed\"></iframe>",
   "youtube_embed": null,

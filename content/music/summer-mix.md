@@ -18,7 +18,7 @@
   "Tidal": "https://tidal.com/browse/album/433416797?u",
   "iHeartRadio": "https://www.iheart.com/artist/no-copyright-gaming-music-40920862/albums/summer-mix-326636028/",
   "Boomplay": "https://www.boomplay.com/albums/110122992?from=search",
-  "Beatport": "https://www.beatport.com/release/summer-mix/5067452",
+  "Beatport": "https://www.beatport.com/release/summer-mix/5067452?a_aid=69dac828ced75",
   "Bandcamp": "https://nocopyrightgamingmusic.bandcamp.com/album/summer-mix",
   "spotify_embed": "<iframe style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/album/0P0tqB8lkGdyLzezQugEwc?utm_source=generator\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>",
   "Cover": {

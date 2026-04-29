@@ -18,7 +18,7 @@
   "Tidal": "https://www.iheart.com/artist/id-40920862/albums/id-282568419",
   "iHeartRadio": "https://www.iheart.com/artist/id-40920862/albums/id-282568419",
   "Boomplay": "https://www.boomplay.com/albums/103986080?from=search&srModel=COPYLINK&srList=WEB",
-  "Beatport": "https://www.beatport.com/release/gaming-music-tape-vol-3/4932687",
+  "Beatport": "https://www.beatport.com/release/gaming-music-tape-vol-3/4932687?a_aid=69dac828ced75",
   "Bandcamp": "https://nocopyrightgamingmusic.bandcamp.com/album/gaming-music-tape-vol-3",
   "spotify_embed": "<iframe style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/album/2ej7QviXE77p2IwG8Xd8xb?utm_source=generator\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>",
   "Cover": {

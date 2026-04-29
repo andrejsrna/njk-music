@@ -15,6 +15,7 @@ const staticRoutes = [
   { path: "/about", priority: 0.6 },
   { path: "/contact", priority: 0.6 },
   { path: "/faq", priority: 0.6 },
+  { path: "/help/affiliate-links", priority: 0.6 },
   { path: "/help/attribution", priority: 0.6 },
   { path: "/help/content-id", priority: 0.6 },
   { path: "/help/copyright-claims", priority: 0.6 },

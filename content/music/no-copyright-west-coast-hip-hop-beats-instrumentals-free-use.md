@@ -18,7 +18,7 @@
   "Tidal": "https://tidal.com/album/461361935/u",
   "iHeartRadio": "https://www.iheart.com/artist/no-copyright-gaming-music-40920862/albums/no-copyright-west-coast-hip-hop-350780858/",
   "Boomplay": "https://www.boomplay.com/albums/116530209?from=search",
-  "Beatport": "https://www.beatport.com/release/no-copyright-west-coast-hip-hop-beats-instrumentals-free-use/5404466",
+  "Beatport": "https://www.beatport.com/release/no-copyright-west-coast-hip-hop-beats-instrumentals-free-use/5404466?a_aid=69dac828ced75",
   "Bandcamp": "https://nocopyrightgamingmusic.bandcamp.com/album/no-copyright-west-coast-hip-hop-beats-instrumentals-free-use",
   "spotify_embed": "<iframe data-testid=\"embed-iframe\" style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/album/3iKNTIcpptfyYXOnFYyAEe?utm_source=generator\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>",
   "Cover": {

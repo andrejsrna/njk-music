@@ -21,7 +21,7 @@
   "Tidal": "https://listen.tidal.com/search?q=Berts%20Jazz%20Bar%20Jazz%20%26%20Bass",
   "iHeartRadio": "https://www.iheart.com/search/?q=Berts%20Jazz%20Bar%20Jazz%20%26%20Bass",
   "Boomplay": "https://boomplay.com/search/default/Berts%20Jazz%20Bar%20Jazz%20%26%20Bass",
-  "Beatport": "https://www.beatport.com/release/berts-jazz-bar/5931732",
+  "Beatport": "https://www.beatport.com/release/berts-jazz-bar/5931732?a_aid=69dac828ced75",
   "Bandcamp": "https://bandcamp.com/search?q=Berts%20Jazz%20Bar%20Jazz%20%26%20Bass",
   "spotify_embed": "<iframe style=\"border-radius: 12px\" width=\"100%\" height=\"352\" title=\"Spotify Embed: Berts Jazz Bar\" frameborder=\"0\" allowfullscreen allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\" src=\"https://open.spotify.com/embed/album/2c5Fh2piD9elHXVdQAIA3M?utm_source=oembed\"></iframe>",
   "youtube_embed": null,
