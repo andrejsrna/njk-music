@@ -1,6 +1,15 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  async redirects() {
+    return [
+      {
+        source: "/music/meditation-journey-calm-healing-music",
+        destination: "/music/meditation-journey-calm-ambient-music",
+        permanent: true,
+      },
+    ];
+  },
   images: {
     remotePatterns: [
       { protocol: 'https', hostname: 'admin.nocopyrightgamingmusic.com', pathname: '**' },

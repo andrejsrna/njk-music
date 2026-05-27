@@ -32,4 +32,4 @@
 }
 ---
 
-`Aquatic Harmony` brings liquid drum & bass to the shoreline. Gentle mallets, airy flutes, and filtered subs give wellness creators and ocean-view storytellers a serene, rights-managed backdrop.
+`Aquatic Harmony` brings liquid drum & bass to the shoreline. Gentle mallets, airy flutes, and filtered subs give lifestyle creators and ocean-view storytellers a serene, rights-managed backdrop.

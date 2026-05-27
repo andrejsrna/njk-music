@@ -60,7 +60,7 @@ const timeline = [
     year: "2024",
     title: "Label Expansion",
     description:
-      "Creator feedback informs new wellness and jazz-driven labels to support a wider set of storytelling moments.",
+      "Creator feedback informs new ambient and jazz-driven labels to support a wider set of storytelling moments.",
   },
   {
     year: "Today",

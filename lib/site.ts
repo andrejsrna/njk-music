@@ -91,29 +91,29 @@ export const LABEL_DEFINITIONS: Record<string, LabelDefinition> = {
     slug: "calm-spirit-music",
     name: "Calm Spirit Music",
     short: "CSM",
-    tagline: "Mindful soundscapes for meditation, yoga, and deep focus",
+    tagline: "Calm soundscapes for focus, slow visuals, and relaxed listening",
     description:
-      "Calm Spirit Music delivers serene, restorative compositions for meditation guides, wellness studios, and creators who need soothing background scores. Each release balances ambient textures with gentle rhythms to help audiences disconnect from stress and reconnect with calm.",
+      "Calm Spirit Music delivers serene ambient compositions for creators, studios, and listeners who need soothing background scores. Each release balances soft textures with gentle rhythms for quiet playlists, reflective visuals, and low-pressure listening.",
     seo: {
       title: "Calm Spirit Music Label | NJK Music",
       description:
-        "Explore Calm Spirit Music releases—soothing, stream-safe ambient and meditation tracks for wellness creators, spas, and mindfulness apps.",
+        "Explore Calm Spirit Music releases—soothing, stream-safe ambient tracks for creators, calm playlists, lifestyle edits, and quiet listening.",
       keywords: [
         "calm spirit music",
-        "meditation music label",
         "relaxing ambient music",
-        "yoga background music",
-        "wellness soundtrack",
+        "calm background music",
+        "focus music label",
+        "stream safe ambient music",
       ],
     },
     highlights: [
-      "Guided-meditation ready beds crafted for wellness studios and mindfulness apps",
-      "Gentle ambient textures ideal for yoga flows, breathwork, and deep focus sessions",
-      "Stream-safe licensing for creators, therapists, and live wellness broadcasts",
+      "Ambient beds crafted for calm visuals, focus videos, and quiet creator backdrops",
+      "Gentle textures ideal for slow edits, study sessions, and deep focus playlists",
+      "Stream-safe licensing for creators, studios, and live broadcasts",
     ],
     callouts: [
-      { title: "Releases", detail: "1st healing drop" },
-      { title: "Focus", detail: "Meditation, Wellness, Relaxation" },
+      { title: "Releases", detail: "Ambient drops" },
+      { title: "Focus", detail: "Calm, Focus, Relaxation" },
     ],
   },
   "ludovky-od-andreja": {

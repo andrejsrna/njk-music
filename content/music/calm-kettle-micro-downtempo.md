@@ -61,7 +61,7 @@ For listeners and creators looking for **calm downtempo house** with clean textu
 ## Where it fits
 
 - Calm work sessions, journaling playlists, and late-night focus blocks
-- Spa, wellness, cafe, and lifestyle environments that need gentle rhythmic energy
+- Cafe, studio, retail, and lifestyle environments that need gentle rhythmic energy
 - Reflective visual edits, travel fragments, and low-pressure creator backdrops
 
 ## Licensing & usage

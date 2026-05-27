@@ -47,7 +47,7 @@ From sunrise-soaked intros to widescreen halftime breakdowns, these productions 
 ### Why Creators Love This Liquid DnB Release
 
 - Warm, analog-inspired mixdowns that sit under dialogue and voiceover
-- Emotional progressions ideal for travel, tech, and wellness content
+- Emotional progressions ideal for travel, tech, and lifestyle content
 - Rights-managed, sync-friendly stems available directly from Jazz & Bass
 
 Whether you are building a chill-out playlist, a late-night radio mix, or a polished brand spot, `Liquid DnB Is Not Dead` keeps jazzy liquid DnB alive with forward-thinking arrangements and timeless groove.

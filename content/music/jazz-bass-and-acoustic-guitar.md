@@ -44,7 +44,7 @@
 - **Upscale Outdoor Dining & Artisan Food Promotions:** Evoke authenticity, elegance, and a sense of refinement for restaurants, vineyards, or gourmet culinary brands.
 - **Artisan Branding & Lifestyle Marketing:** Complement visual storytelling for handmade, local, and premium products, connecting audiences through both nostalgia and modernity.
 - **Real Estate Showcases & Architectural Films:** Build inviting, aspirational ambiences that highlight interiors, open spaces, and creative design.
-- **YouTube Vlogs, Podcasts & Wellness Content:** Add distinctive, non-intrusive mood music to playlists, tutorials, and mindfulness audio productions.
+- **YouTube Vlogs, Podcasts & Lifestyle Content:** Add distinctive, non-intrusive mood music to playlists, tutorials, and thoughtful audio productions.
 
 ---
 
