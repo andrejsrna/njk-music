@@ -103,13 +103,24 @@ NJK Music has a catalog of releases for creator contexts. Review the [license pa
 
 ## 7. Recommended NJK Music for Coding Videos
 
-Start with these release directions based on your edit:
+Pick a release by edit type. Each title below opens its full NJK Music release page.
 
-- [Push That Code](/music/push-that-code) — fast drum and bass for devlogs, coding reels, Git workflows, and technical montages
-- [Late Night LoFi Study Sessions](/music/late-night-lofi-study-sessions) — soft lofi for tutorials, deep work, and calm screen recordings
-- [Lofi Gaming Tape](/music/lofi-gaming) — relaxed instrumental background for longer creator sessions
-- [No Copyright Gaming Music Presents Liquid DnB](/music/no-copyright-liquid-dnb) — smooth DnB movement for focused, late-night technical content
-- [Liquid DnB Is Not Dead](/music/liquid-dnb-is-not-dead) — warm rolling energy for design, coding, and productivity edits
+> ### [Push That Code](/music/push-that-code)
+> **Best for:** devlogs, coding reels, Git workflows, deployment edits, and technical montages. Fast drum and bass with developer-themed tracks including `Code Review` and `Git Commit, Git Push`.
+
+> ### [Late Night LoFi Study Sessions](/music/late-night-lofi-study-sessions)
+> **Best for:** narrated tutorials, deep work videos, calm screen recordings, and study-with-me streams. Soft lofi that leaves room for your voice.
+
+> ### [Lofi Gaming Tape](/music/lofi-gaming)
+> **Best for:** longer coding sessions, relaxed creator streams, and low-pressure background loops.
+
+> ### [No Copyright Gaming Music Presents Liquid DnB](/music/no-copyright-liquid-dnb)
+> **Best for:** focused late-night technical content, time lapses, and smooth programming montages with more movement than lofi.
+
+> ### [Liquid DnB Is Not Dead](/music/liquid-dnb-is-not-dead)
+> **Best for:** design work, coding, productivity edits, and warm rolling drum and bass energy.
+
+Browse all available tracks in the [NJK Music catalog](/music).
 
 ## FAQ
 
