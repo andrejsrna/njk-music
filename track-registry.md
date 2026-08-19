@@ -50,6 +50,7 @@ tracku/EP sem pridaj nový záznam predtým, než ho zverejníš.
 - Minmaxing, Ibiza, Let Me Through, Clearheaded, bb gn *(HTMN – Gaming Leaks)*
 - Power Surge *(Intense Gaming Music Vol. 1)*
 - Code Review, Git Commit Git Push, I am a Software Engineer, Rust On Satin, Shattered Amp *(Push That Code)*
+- Critical Hit *(single, Rock / Dubstep)*
 - Ostatné (bez konkrétneho tracklistu v md): Emo Drill Tape Vol. 1, Gaming Music Tape Vol. 2/3, LoFi Gamer Tape, Lofi Gaming Tape, Lofi Gaming Tape Vol. 2, No Copyright Gaming Music Presents Liquid DnB, No Copyright Gaming Music Presents East Coast Hip Hop, No Copyright Gaming Music Presents Hard Rock, No Copyright West Coast Hip Hop Beats & Instrumentals, Phonk Songs Ultimate, Summer Mix
 
 ## Koldman (rap)
@@ -73,7 +74,6 @@ tracku/EP sem pridaj nový záznam predtým, než ho zverejníš.
 
 ### No Copyright Gaming Music — nový single (návrh)
 - Overdrive
-- Critical Hit
 - Boss Fight Protocol
 - Adrenaline Rush
 - Final Stage
