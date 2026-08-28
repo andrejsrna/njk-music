@@ -4,9 +4,15 @@ Tento súbor slúži ako **centrálna evidencia všetkých názvov trackov** nap
 labelmi, aby sa mená neopakovali medzi releasmi. Pri každom novom
 tracku/EP sem pridaj nový záznam predtým, než ho zverejníš.
 
-> Zdroj dát: `content/music/*.md` (pole `Tracklist` alebo `Title` pri single
-> releasoch). Automaticky vygenerované pomocou `scripts/list_tracks.py`
-> (spusti znova po pridaní nových releasov, aby si skontroloval duplicity).
+> **Zdroj pravdy: `tracks.json`** — JSON databáza všetkých 250 releasnutých
+> trackov (53 releasov) vygenerovaná z `content/music/*.md` + Deezer API
+> (dopĺňa tracklisty releasov, ktoré ich nemajú v markdowne). Každý názov má
+> `normalized` SEO slug pre kontrolu kolízií.
+>
+> Príkazy:
+> - `python3 scripts/build_tracks_db.py` — pregeneruje `tracks.json`
+> - `python3 scripts/build_tracks_db.py --check` — exit 1 pri kolízii názvu
+> - tento markdown je len rýchly prehľad; mená kontroluj v `tracks.json`
 
 ## Jazz & Bass (liquidfunk DnB)
 
@@ -74,7 +80,7 @@ tracku/EP sem pridaj nový záznam predtým, než ho zverejníš.
 
 ### No Copyright Gaming Music — nový single (návrh)
 - Overdrive
-- Boss Fight Protocol
+- Boss Fight Protocol *(POZOR: SEO blízko "Final Boss Uprising" + "Warzone Protocol" z Intense Gaming Vol. 1 — môže kanibalizovať)*
 - Adrenaline Rush
 - Final Stage
 
