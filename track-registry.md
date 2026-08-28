@@ -78,11 +78,13 @@ tracku/EP sem pridaj nový záznam predtým, než ho zverejníš.
 
 ## Rozpracované / navrhované (zatiaľ nepoužité, čakajú na finálne rozhodnutie)
 
-### No Copyright Gaming Music — nový single (návrh)
+### No Copyright Gaming Music — nový single
+- **Combo Breaker** — *vybraný, pripravuje sa*
 - Overdrive
-- Boss Fight Protocol *(POZOR: SEO blízko "Final Boss Uprising" + "Warzone Protocol" z Intense Gaming Vol. 1 — môže kanibalizovať)*
+- Boss Fight Protocol *(POZOR: SEO blízko "Final Boss Uprising" + "Warzone Protocol" z Intense Gaming Vol. 1)*
 - Adrenaline Rush
 - Final Stage
+- ~~Rage Quit~~ *(už existuje — single z 2023, chýba na webe, viď tracks.json)*
 
 ### Calm Spirit Music — EP "Forest Walk" (5 trackov, navrhované SEO-friendly názvy)
 - Forest Walk – Morning Mist (Ambient Nature Sounds)

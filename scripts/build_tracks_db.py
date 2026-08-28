@@ -1,21 +1,27 @@
 #!/usr/bin/env python3
-"""Build tracks.json — a dedupe/SEO database of every released NJK Music track.
+"""Build tracks.json — the authoritative dedupe/SEO database of every released
+NJK Music track across all labels.
 
-Reads content/music/*.md for frontmatter (slug, title, genre, label, UPC, dates)
-and markdown tracklists. For releases that ship no tracklist in the markdown but
-have a Deezer URL, it pulls the authoritative tracklist (titles + ISRCs) from the
-Deezer API. Every track name is normalized to an SEO slug so collisions surface
-automatically.
+Two data sources are merged:
+
+  1. content/music/*.md  -> SEO metadata (slug, title, genre, label, UPC, dates,
+     DSP links) plus any markdown tracklists.
+  2. Deezer API          -> the *complete* discography per label (every album and
+     every track title + ISRC), including releases that have no markdown page yet.
+
+Each release is cross-referenced by Deezer album id (fallback: UPC). Any release
+found on Deezer but missing from the site is flagged `missing_from_site: true`.
+Every track name is normalized to an SEO slug so collisions surface automatically.
 
 Usage:
     python3 scripts/build_tracks_db.py            # rebuild tracks.json
-    python3 scripts/build_tracks_db.py --check    # exit 1 if any collision found
+    python3 scripts/build_tracks_db.py --check    # exit 1 if any collision
 """
 import glob
 import json
 import re
 import sys
-import urllib.parse
+import time
 import urllib.request
 from datetime import datetime, timezone
 
@@ -23,11 +29,26 @@ ROOT = "content/music"
 OUT = "tracks.json"
 CHECK = "--check" in sys.argv
 
+# label -> Deezer artist id (Koldman is unresolved on Deezer -> markdown only)
+ARTISTS = {
+    "No Copyright Gaming Music": "223452715",
+    "Jazz & Bass": "268831212",
+    "Chill Music Motif": "229270945",
+    "Calm Spirit Music": "349034881",
+    "Ľudovky od Andreja": "266009392",
+}
 
-def get(url, timeout=20):
+
+def get(url, timeout=25, tries=3):
     req = urllib.request.Request(url, headers={"User-Agent": "njk-tracks-db/1.0"})
-    with urllib.request.urlopen(req, timeout=timeout) as r:
-        return json.loads(r.read().decode("utf-8"))
+    for i in range(tries):
+        try:
+            with urllib.request.urlopen(req, timeout=timeout) as r:
+                return json.loads(r.read().decode("utf-8"))
+        except Exception as e:
+            if i == tries - 1:
+                return {"_error": f"{type(e).__name__}: {e}"}
+            time.sleep(1.0 * (i + 1))
 
 
 def deezer_id(url):
@@ -38,22 +59,18 @@ def deezer_id(url):
 
 
 def normalize(name):
-    """SEO-style slug: lowercase, strip punctuation/diacritics-ish, collapse ws."""
     s = name.lower().strip()
     s = s.replace("—", " ").replace("–", " ").replace("-", " ")
-    # fold common accented chars (Slovak) to ASCII for safe dedupe
     for a, b in [("á", "a"), ("ä", "a"), ("č", "c"), ("ď", "d"), ("é", "e"),
                  ("í", "i"), ("ĺ", "l"), ("ľ", "l"), ("ň", "n"), ("ó", "o"),
                  ("ô", "o"), ("ŕ", "r"), ("š", "s"), ("ť", "t"), ("ú", "u"),
                  ("ý", "y"), ("ž", "z")]:
         s = s.replace(a, b)
-    s = re.sub(r"[^a-z0-9]+", "-", s).strip("-")
-    return s
+    return re.sub(r"[^a-z0-9]+", "-", s).strip("-")
 
 
 def parse_md(path):
     txt = open(path, encoding="utf-8").read()
-    # frontmatter json
     fm = {}
     m = re.search(r"^---json\s*\n(.*?)\n---", txt, re.S)
     if m:
@@ -61,21 +78,17 @@ def parse_md(path):
             fm = json.loads(m.group(1))
         except Exception:
             fm = {}
-    # markdown tracklist: ## Tracklist or ### Tracklist
-    tracks = []
-    isrcs = {}
-    m = re.search(r"^#{2,3}\s*Tracklist\s*$.*?(?=^#{1,3}\s|\Z)", txt, re.S | re.M)
-    if m:
-        for line in m.group(0).splitlines():
+    tracks, isrcs = [], {}
+    mt = re.search(r"^#{2,3}\s*Tracklist\s*$.*?(?=^#{1,3}\s|\Z)", txt, re.S | re.M)
+    if mt:
+        for line in mt.group(0).splitlines():
             line = line.strip()
             if not line or line.startswith("#"):
                 continue
             num = re.match(r"^\d+\.\s*(.+)$", line)
             if num:
-                name = num.group(1)
-                name = re.sub(r"\*+", "", name)
+                name = re.sub(r"\*+", "", num.group(1))
                 name = re.split(r"\s*[—–]\s*", name)[0].strip()
-                # drop trailing "(feat. ...)" for dedupe? keep for now, strip parens version
                 tracks.append(name)
                 continue
             ism = re.match(r"^ISRC:\s*`?([A-Z0-9]+)`?", line)
@@ -84,67 +97,116 @@ def parse_md(path):
     return fm, tracks, isrcs
 
 
-releases = []
+# 1) markdown index
+md_releases = {}
 for path in sorted(glob.glob(f"{ROOT}/*.md")):
     fm, tracks, isrcs = parse_md(path)
-    title = fm.get("Title") or path
-    slug = fm.get("slug")
-    label = fm.get("label") or {}
-    deezer = fm.get("Deezer")
-
-    # fetch authoritative tracklist from Deezer when markdown lacks one
-    if not tracks and deezer:
-        aid = deezer_id(deezer)
-        if aid:
-            try:
-                data = get(f"https://api.deezer.com/album/{aid}")
-                if not label.get("name") and data.get("artist"):
-                    label = {"name": data["artist"].get("name"), "slug": None}
-                for tr in (data.get("tracks", {}).get("data", []) or []):
-                    tracks.append(tr.get("title"))
-                    isrcs[tr.get("title")] = tr.get("isrc")
-            except Exception as e:
-                print(f"[warn] Deezer fetch failed for {slug}: {e}", file=sys.stderr)
-    # single-release fallback
-    if not tracks:
-        tracks = [title]
-
-    track_objs = []
-    for i, t in enumerate(tracks):
-        track_objs.append({
-            "title": t,
-            "normalized": normalize(t),
-            "position": i + 1,
-            "isrc": isrcs.get(t),
-        })
-
-    releases.append({
-        "slug": slug,
-        "title": title,
-        "label": label.get("name") or None,
-        "label_slug": label.get("slug") or None,
-        "genre": (fm.get("genre") or {}).get("Genres") or None,
+    label = (fm.get("label") or {}).get("name")
+    did = deezer_id(fm.get("Deezer"))
+    rec = {
+        "slug": fm.get("slug"),
+        "title": fm.get("Title"),
+        "label": label,
+        "label_slug": (fm.get("label") or {}).get("slug"),
+        "genre": (fm.get("genre") or {}).get("Genres"),
         "upc": fm.get("upc"),
         "record_label": fm.get("recordLabel"),
         "release_date": (fm.get("pubDate") or fm.get("publishedAt") or "")[:10],
-        "tracks": track_objs,
-    })
+        "deezer_id": did,
+        "tracks": tracks,
+        "isrcs": isrcs,
+    }
+    # index by deezer id and by upc
+    if did:
+        md_releases.setdefault(("id", did), rec)
+    if fm.get("upc"):
+        md_releases.setdefault(("upc", fm["upc"]), rec)
 
-# collision detection on normalized names
+# 2) full Deezer discography
+releases = []       # merged release dicts
+seen_keys = set()   # to dedupe merges
+missing_from_site = []
+
+def add_release(rec, from_deezer):
+    key = rec["deezer_id"] or rec.get("upc") or rec["title"]
+    if key in seen_keys:
+        return
+    seen_keys.add(key)
+    rec["missing_from_site"] = from_deezer
+    if from_deezer:
+        missing_from_site.append(rec)
+    releases.append(rec)
+
+# pass 1: markdown-only releases that have no deezer id (keep as-is)
+for (ktyp, kval), rec in md_releases.items():
+    if ktyp == "upc":
+        # will merge below if a deezer release matches upc
+        continue
+
+# build deezer releases per label
+for label, artist_id in ARTISTS.items():
+    disc = get(f"https://api.deezer.com/artist/{artist_id}/albums?limit=300")
+    for album in disc.get("data", []) or []:
+        did = str(album["id"])
+        # merge with markdown metadata if we know this album
+        md = md_releases.get(("id", did))
+        tracks_data = []
+        td = get(f"https://api.deezer.com/album/{did}/tracks")
+        for tr in (td.get("data", []) or []):
+            tracks_data.append({"title": tr.get("title"), "isrc": tr.get("isrc")})
+        if md:
+            rec = dict(md)
+            # Deezer is authoritative for tracklist when markdown lacks it
+            if not rec["tracks"]:
+                rec["tracks"] = [t["title"] for t in tracks_data]
+                rec["isrcs"] = {t["title"]: t["isrc"] for t in tracks_data if t["isrc"]}
+            if not rec.get("upc"):
+                rec["upc"] = album.get("upc")
+            if not rec.get("release_date"):
+                rec["release_date"] = album.get("release_date", "")
+            add_release(rec, from_deezer=False)
+        else:
+            add_release({
+                "slug": None,
+                "title": album.get("title"),
+                "label": label,
+                "label_slug": None,
+                "genre": None,
+                "upc": album.get("upc"),
+                "record_label": album.get("label"),
+                "release_date": album.get("release_date", ""),
+                "deezer_id": did,
+                "tracks": [t["title"] for t in tracks_data],
+                "isrcs": {t["title"]: t["isrc"] for t in tracks_data if t["isrc"]},
+            }, from_deezer=True)
+        time.sleep(0.05)
+
+# pass 2: markdown releases that never matched a Deezer album (e.g. Koldman)
+for (ktyp, kval), rec in md_releases.items():
+    if ktyp != "id" and ktyp != "upc":
+        continue
+    key = rec["deezer_id"] or rec.get("upc") or rec["title"]
+    if key not in seen_keys:
+        if not rec["tracks"]:
+            rec["tracks"] = [rec["title"]]  # single-track fallback
+        rec.setdefault("deezer_id", None)
+        add_release(rec, from_deezer=False)
+
+# 3) collisions
 seen = {}
 collisions = []
 for rel in releases:
     for tr in rel["tracks"]:
-        key = tr["normalized"]
+        key = normalize(tr)
         if not key:
             continue
         if key in seen:
             collisions.append({
                 "normalized": key,
-                "tracks": [seen[key], {"release": rel["title"], "track": tr["title"]}],
+                "tracks": [seen[key], {"release": rel["title"], "track": tr}],
             })
         else:
-            seen[key] = {"release": rel["title"], "track": tr["title"]}
+            seen[key] = {"release": rel["title"], "track": tr}
 
 total_tracks = sum(len(r["tracks"]) for r in releases)
 out = {
@@ -152,9 +214,11 @@ out = {
     "summary": {
         "releases": len(releases),
         "tracks": total_tracks,
+        "missing_from_site": len(missing_from_site),
         "collisions": len(collisions),
     },
     "releases": releases,
+    "missing_from_site": [r["title"] for r in missing_from_site],
     "collisions": collisions,
 }
 
@@ -162,7 +226,7 @@ with open(OUT, "w", encoding="utf-8") as f:
     json.dump(out, f, ensure_ascii=False, indent=2)
 
 print(f"Wrote {OUT}: {len(releases)} releases, {total_tracks} tracks, "
-      f"{len(collisions)} collision(s).")
+      f"{len(missing_from_site)} missing from site, {len(collisions)} collision(s).")
 if collisions:
     print("\nCOLLISIONS:")
     for c in collisions:
