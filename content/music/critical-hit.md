@@ -12,8 +12,8 @@
     "short": "NCGM"
   },
   "Spotify": "https://open.spotify.com/album/3dSSlxImWtPsIqnClcDdZd",
-  "AppleMusic": "https://music.apple.com/us/search?term=Critical%20Hit%20No%20Copyright%20Gaming%20Music",
-  "iTunes": "https://music.apple.com/us/search?term=Critical%20Hit%20No%20Copyright%20Gaming%20Music",
+  "AppleMusic": "https://music.apple.com/us/album/critical-hit-single/6796161447?uo=4",
+  "iTunes": "https://music.apple.com/us/album/critical-hit-single/6796161447?uo=4",
   "YouTubeMusic": "https://music.youtube.com/search?q=Critical%20Hit%20No%20Copyright%20Gaming%20Music",
   "Amazon": "https://music.amazon.com/search/Critical%20Hit%20No%20Copyright%20Gaming%20Music",
   "Pandora": "https://www.pandora.com/search/Critical%20Hit%20No%20Copyright%20Gaming%20Music",
