@@ -79,8 +79,8 @@ tracku/EP sem pridaj nový záznam predtým, než ho zverejníš.
 ## Rozpracované / navrhované (zatiaľ nepoužité, čakajú na finálne rozhodnutie)
 
 ### No Copyright Gaming Music — nový single
-- **Combo Breaker** — *vybraný, pripravuje sa*
-- Overdrive
+- ~~Combo Breaker~~ *(vydané 2026-09-04)*
+- ~~Overdrive~~ *(vydané 2026-09-25)*
 - Boss Fight Protocol *(POZOR: SEO blízko "Final Boss Uprising" + "Warzone Protocol" z Intense Gaming Vol. 1)*
 - Adrenaline Rush
 - Final Stage
