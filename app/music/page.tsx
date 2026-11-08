@@ -4,7 +4,10 @@ import { getMusicData } from "@/app/hooks/useMusicQuery";
 import { SITE_URL, getCanonicalUrl } from "@/lib/env";
 import MusicBrowser from "@/app/music/MusicBrowser";
 import { slugify } from "@/lib/utils";
-import { PRIMARY_LABEL, SITE_NAME } from "@/lib/site";
+import { SITE_NAME } from "@/lib/site";
+import { getShopProducts } from "@/lib/shop/catalog";
+import FaqList from "@/app/components/home/FaqList";
+import NewsletterCta from "@/app/components/home/NewsletterCta";
 
 const pageTitle = `${SITE_NAME} Label Library`;
 const pageDescription =
@@ -120,45 +123,55 @@ export default async function MusicPage({ searchParams }: { searchParams: Promis
     })),
   };
 
+  const products = await getShopProducts(sortedMusic.map((t) => t.slug));
+  const productInfo = Object.fromEntries(
+    Object.entries(products).map(([k, v]) => [k, { priceCents: v.priceCents, currency: v.currency, previewUrl: v.previewUrl }]),
+  );
+  const labelCards = [...labels].sort((a, b) => b.count - a.count);
+  const h2 = { fontStretch: "125%" } as const;
+
   return (
-    <>
+    <div className="bg-[#050405] text-[#F4F1EC] [font-family:var(--font-archivo),system-ui,sans-serif]">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <div className="min-h-screen bg-transparent py-16 text-white">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <header className="mb-12 space-y-5 text-center">
-            <span className="mx-auto inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.35em] text-slate-200 backdrop-blur">
-              Music Library
-            </span>
-            <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-              NJK Music releases across our labels
-            </h1>
-            <p className="mx-auto max-w-3xl text-base text-slate-300 sm:text-lg">
-              Browse our multi-label catalog by mood, label, or genre.
-            </p>
-            <div className="flex justify-center">
-              <Link
-                href={`/labels/${PRIMARY_LABEL.slug}`}
-                className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-fuchsia-500 to-cyan-400 px-4 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-slate-950 transition hover:opacity-90"
-              >
-                Browse our music →
+      <MusicBrowser tracks={sortedMusic} genres={genres} labels={labels} products={productInfo} initialQuery={initialQuery} />
+
+      {/* BROWSE BY LABEL */}
+      <section className="bg-[#F4F1EC] text-[#050405]">
+        <div className="mx-auto flex w-full max-w-[1360px] flex-col gap-9 px-5 py-24 sm:px-8">
+          <div className="flex flex-wrap items-end justify-between gap-5">
+            <h2 className="m-0 text-[clamp(48px,7vw,104px)] font-black uppercase leading-[0.85] tracking-[-0.05em]" style={h2}>Not sure?<br />Start with a label</h2>
+            <p className="m-0 max-w-[380px] text-lg font-medium text-[#3A363E]">Each label is its own mood. Pick one and the whole catalogue fits your channel.</p>
+          </div>
+          <div className="grid grid-cols-[repeat(auto-fill,minmax(260px,1fr))] border-l-2 border-t-2 border-[#050405]">
+            {labelCards.map((l) => (
+              <Link key={l.slug} href={`/labels/${l.slug}`} className="flex min-h-[170px] flex-col justify-between gap-4 border-b-2 border-r-2 border-[#050405] bg-[#F4F1EC] p-[22px] text-[#050405] transition-colors hover:bg-[#050405] hover:text-[#F4F1EC]">
+                <span className="flex justify-between font-[family-name:var(--font-jetbrains)] text-xs font-bold tracking-[0.1em]"><span>{l.count} RELEASE{l.count === 1 ? "" : "S"}</span><span>↗</span></span>
+                <span className="text-[32px] font-black uppercase leading-[0.95] tracking-[-0.035em]" style={{ fontStretch: "118%" }}>{l.label}</span>
               </Link>
-            </div>
-          </header>
-
-          <MusicBrowser tracks={sortedMusic} genres={genres} labels={labels} initialQuery={initialQuery} />
-
-          <section className="mx-auto mt-16 grid gap-6 rounded-2xl border border-white/10 bg-white/5 p-6 text-left shadow-soft backdrop-blur sm:grid-cols-2">
-            {faqs.map((faq) => (
-              <div key={faq.question} className="space-y-2">
-                <h3 className="text-sm font-semibold uppercase tracking-[0.3em] text-slate-200">
-                  {faq.question}
-                </h3>
-                <p className="text-sm leading-relaxed text-slate-300 sm:text-base">{faq.answer}</p>
-              </div>
             ))}
-          </section>
+          </div>
         </div>
-      </div>
-    </>
+      </section>
+
+      {/* FAQ */}
+      <section className="mx-auto flex w-full max-w-[1360px] flex-wrap items-start gap-14 px-5 py-24 sm:px-8 sm:py-[104px]">
+        <div className="flex flex-[1_1_340px] flex-col gap-5">
+          <h2 className="m-0 text-[clamp(44px,5.5vw,80px)] font-black uppercase leading-[0.85] tracking-[-0.05em]" style={h2}>Quick<br />answers</h2>
+          <Link href="/help" className="inline-flex min-h-[52px] items-center self-start border-2 border-[#F4F1EC] px-6 text-sm font-extrabold uppercase hover:bg-[#F4F1EC] hover:text-[#050405]">Help centre</Link>
+        </div>
+        <FaqList items={faqs.map((f) => ({ q: f.question, a: f.answer }))} />
+      </section>
+
+      {/* CTA */}
+      <section className="border-t-2 border-[#050405] text-white" style={{ background: "#C62828" }}>
+        <div className="mx-auto flex w-full max-w-[1360px] flex-wrap items-end justify-between gap-12 px-5 py-20 sm:px-8 sm:py-[88px]">
+          <div className="flex min-w-0 flex-[999_1_520px] flex-col gap-4">
+            <h2 className="m-0 text-[clamp(48px,7vw,112px)] font-black uppercase leading-[0.8] tracking-[-0.055em]" style={h2}>Never miss<br />a drop</h2>
+            <p className="m-0 max-w-[480px] text-lg">One email when new releases land. No spam, unsubscribe anytime.</p>
+          </div>
+          <NewsletterCta variant="square" idPrefix="lib" cta="Subscribe" />
+        </div>
+      </section>
+    </div>
   );
 }
