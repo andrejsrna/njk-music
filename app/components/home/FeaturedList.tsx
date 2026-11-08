@@ -64,12 +64,12 @@ export default function FeaturedList({ items }: { items: FeaturedItem[] }) {
     setPlaying(t.slug);
   };
 
-  const pill = "inline-flex min-h-[44px] items-center gap-2 rounded-full px-4 text-sm font-semibold";
+  const pill = "inline-flex min-h-[48px] items-center gap-2 border-2 border-[#F4F1EC] px-[18px] text-[13px] font-extrabold uppercase";
 
   return (
-    <div className="flex flex-col gap-7">
+    <div className="flex flex-col gap-0">
       <audio ref={audioRef} preload="none" />
-      <div role="tablist" aria-label="Filter by genre" className="flex flex-wrap gap-2">
+      <div role="tablist" aria-label="Filter by genre" className="mb-6 flex flex-wrap gap-1.5">
         {genres.map((g) => {
           const sel = filter === g;
           return (
@@ -79,7 +79,7 @@ export default function FeaturedList({ items }: { items: FeaturedItem[] }) {
               role="tab"
               aria-selected={sel}
               onClick={() => setFilter(g)}
-              className={`min-h-[40px] cursor-pointer rounded-full border px-4 text-sm font-semibold ${sel ? "border-[#F4F1EC] bg-[#F4F1EC] text-[#0C0B0D]" : "border-[#2A272D] bg-transparent text-[#C9C4BD] hover:border-[#8C8781]"}`}
+              className={`${MONO} min-h-[44px] cursor-pointer border px-4 text-xs font-bold uppercase tracking-[0.08em] ${sel ? "border-[#F4F1EC] bg-[#F4F1EC] text-[#050405]" : "border-[#3A363E] bg-transparent text-[#F4F1EC] hover:bg-[#F4F1EC] hover:text-[#050405]"}`}
             >
               {g}
             </button>
@@ -87,18 +87,19 @@ export default function FeaturedList({ items }: { items: FeaturedItem[] }) {
         })}
       </div>
 
-      <div className="flex flex-col border-t border-[#242127]">
-        {visible.map((t) => {
+      <div className="flex flex-col border-t-2 border-[#F4F1EC]">
+        {visible.map((t, idx) => {
           const on = playing === t.slug;
           return (
-            <div key={t.slug} className="flex flex-wrap items-center gap-[18px] border-b border-[#242127] py-3.5">
+            <div key={t.slug} className="flex flex-wrap items-center gap-5 border-b border-[#2A272D] px-3 py-4 transition-colors hover:bg-[#110F12]">
+              <span className={`${MONO} w-7 flex-none text-[13px] font-bold text-[#8C8781] max-sm:hidden`}>{String(idx + 1).padStart(2, "0")}</span>
               {t.previewUrl ? (
                 <button
                   type="button"
                   onClick={() => toggle(t)}
                   aria-label={`${on ? "Pause" : "Play"} ${t.title}`}
-                  className="flex h-12 w-12 flex-none cursor-pointer items-center justify-center rounded-full border text-[#F4F1EC]"
-                  style={{ background: on ? ACCENT : "transparent", borderColor: on ? ACCENT : "#3A363E" }}
+                  className="flex h-[52px] w-[52px] flex-none cursor-pointer items-center justify-center border-2 text-[#F4F1EC]"
+                  style={{ background: on ? ACCENT : "transparent", borderColor: on ? ACCENT : "#F4F1EC" }}
                 >
                   {on ? (
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1" /><rect x="14" y="5" width="4" height="14" rx="1" /></svg>
@@ -107,30 +108,29 @@ export default function FeaturedList({ items }: { items: FeaturedItem[] }) {
                   )}
                 </button>
               ) : (
-                <Link href={`/music/${t.slug}`} aria-label={`Open ${t.title}`} className="flex h-12 w-12 flex-none items-center justify-center rounded-full border border-[#3A363E] text-[#8C8781] hover:border-[#8C8781] hover:text-white">
+                <Link href={`/music/${t.slug}`} aria-label={`Open ${t.title}`} className="flex h-[52px] w-[52px] flex-none items-center justify-center border-2 border-[#3A363E] text-[#8C8781] hover:border-[#F4F1EC] hover:text-white">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7" /></svg>
                 </Link>
               )}
-              <span className="relative h-14 w-14 flex-none overflow-hidden rounded border border-[#2A272D] bg-[#1B191E]">
+              <span className="relative h-[60px] w-[60px] flex-none overflow-hidden border border-[#2A272D] bg-[#1B191E]">
                 {t.cover && <Image src={t.cover} alt="" fill sizes="56px" className="object-cover" />}
               </span>
               <Link href={`/music/${t.slug}`} className="flex min-w-0 flex-[1_1_220px] flex-col">
-                <span className="truncate text-lg font-bold tracking-[-0.01em]">{t.title}</span>
-                <span className="text-sm text-[#8C8781]">{t.artist}</span>
+                <span className="truncate text-[22px] font-extrabold leading-[1.1] tracking-[-0.02em]">{t.title}</span>
+                <span className={`${MONO} text-xs uppercase tracking-[0.08em]`} style={{ color: "#FF6B5E" }}>{t.genre || t.artist}</span>
               </Link>
-              <span className={`${MONO} flex-[0_0_160px] text-xs uppercase tracking-[0.06em] text-[#A39E98] max-md:hidden`}>{t.genre}</span>
               <div aria-hidden="true" className="flex h-8 flex-[1_1_200px] items-center gap-0.5 max-md:hidden">
                 {wave[t.slug].map((h, i) => (
                   <span key={i} className="min-w-px flex-1 rounded-[1px]" style={{ height: `${h}%`, background: on && i / BARS < progress ? ACCENT : "#3A363E" }} />
                 ))}
               </div>
-              <div className="ml-auto flex min-w-[250px] flex-none justify-end gap-2 max-md:min-w-0">
+              <div className="ml-auto flex min-w-[250px] flex-none justify-end max-md:min-w-0">
                 {t.streamUrl && (
-                  <a href={t.streamUrl} target="_blank" rel="noopener noreferrer" className={`${pill} border border-[#3A363E] text-[#F4F1EC] hover:border-[#8C8781]`}>
+                  <a href={t.streamUrl} target="_blank" rel="noopener noreferrer" className={`${pill} text-[#F4F1EC] hover:bg-[#F4F1EC] hover:text-[#050405]`}>
                     Stream
                   </a>
                 )}
-                <Link href={`/music/${t.slug}`} className={`${pill} bg-[#F4F1EC] font-bold text-[#0C0B0D] hover:bg-white`}>
+                <Link href={`/music/${t.slug}`} className={`${pill} bg-[#F4F1EC] font-black text-[#050405] hover:bg-white`}>
                   {t.price ? `Buy WAV · ${t.price}` : "Details"}
                 </Link>
               </div>
