@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { inter, archivo, jetbrainsMono } from "@/lib/fonts";
 import Header from "@/app/components/Header";
-import QuickLinksBar from "@/app/components/QuickLinksBar";
 import Footer from "@/app/components/footer";
 import RouteBackdrop from "@/app/components/RouteBackdrop";
 import { SITE_URL } from "@/lib/env";
@@ -71,7 +70,6 @@ export default function RootLayout({
       >
         <RouteBackdrop />
         <Header />
-        <QuickLinksBar />
           {children}
         <Footer />
       </body>
