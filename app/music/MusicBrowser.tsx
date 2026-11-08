@@ -20,11 +20,13 @@ interface MusicBrowserProps {
   tracks: MusicData[];
   genres: GenreFilter[];
   labels: LabelFilter[];
+  initialQuery?: string;
 }
 
-export default function MusicBrowser({ tracks, genres, labels }: MusicBrowserProps) {
+export default function MusicBrowser({ tracks, genres, labels, initialQuery = "" }: MusicBrowserProps) {
   const [selectedGenre, setSelectedGenre] = useState<string>("all");
   const [selectedLabel, setSelectedLabel] = useState<string>("all");
+  const [query, setQuery] = useState(initialQuery);
   const [page, setPage] = useState(1);
   const perPage = 12;
 
@@ -37,9 +39,14 @@ export default function MusicBrowser({ tracks, genres, labels }: MusicBrowserPro
         track.label?.slug ?? (track.label?.name ? slugify(track.label.name) : "");
       const matchesLabel = selectedLabel === "all" || trackLabelSlug === selectedLabel;
 
-      return matchesGenre && matchesLabel;
+      const q = query.trim().toLowerCase();
+      const matchesQuery =
+        !q ||
+        [track.Title, track.label?.name, genreName, track.Description].some((v) => v?.toLowerCase().includes(q));
+
+      return matchesGenre && matchesLabel && matchesQuery;
     });
-  }, [selectedGenre, selectedLabel, tracks]);
+  }, [selectedGenre, selectedLabel, query, tracks]);
 
   const totalPages = Math.max(1, Math.ceil(filteredTracks.length / perPage));
   const currentPage = Math.min(page, totalPages);
@@ -52,6 +59,22 @@ export default function MusicBrowser({ tracks, genres, labels }: MusicBrowserPro
   return (
     <section className="space-y-10">
       <div className="rounded-2xl border border-white/10 bg-white/5 p-4 shadow-soft backdrop-blur">
+        <div className="mb-4 space-y-2">
+          <label htmlFor="music-q" className="block text-xs font-semibold uppercase tracking-[0.3em] text-slate-200">
+            Search
+          </label>
+          <input
+            id="music-q"
+            type="search"
+            value={query}
+            onChange={(event) => {
+              setQuery(event.target.value);
+              setPage(1);
+            }}
+            placeholder="Title, label or genre…"
+            className="w-full rounded-md border border-white/15 bg-slate-950/40 px-3 py-2 text-sm text-slate-200 outline-none transition focus:border-cyan-300/60 focus:ring-2 focus:ring-cyan-300/20"
+          />
+        </div>
         <div className="grid gap-4 sm:grid-cols-2">
           {labels.length > 0 && (
             <div className="space-y-2">

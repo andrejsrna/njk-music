@@ -18,7 +18,8 @@ export default function Footer() {
   const [email, setEmail] = useState('');
   const [accepted, setAccepted] = useState(false);
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
-  const showSignup = !/^\/music\/[^/]+/.test(usePathname());
+  const pathname = usePathname();
+  const showSignup = pathname !== '/' && !/^\/music\/[^/]+/.test(pathname);
   const [message, setMessage] = useState<string | null>(null);
 
   const handleSubmit = async (event: React.FormEvent) => {

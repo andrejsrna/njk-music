@@ -45,7 +45,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function MusicPage() {
+export default async function MusicPage({ searchParams }: { searchParams: Promise<{ q?: string | string[] }> }) {
+  const { q } = await searchParams;
+  const initialQuery = (Array.isArray(q) ? q[0] : q) ?? "";
   const music = await getMusicData();
 
   const sortedMusic = [...music].sort((a, b) => {
@@ -143,7 +145,7 @@ export default async function MusicPage() {
             </div>
           </header>
 
-          <MusicBrowser tracks={sortedMusic} genres={genres} labels={labels} />
+          <MusicBrowser tracks={sortedMusic} genres={genres} labels={labels} initialQuery={initialQuery} />
 
           <section className="mx-auto mt-16 grid gap-6 rounded-2xl border border-white/10 bg-white/5 p-6 text-left shadow-soft backdrop-blur sm:grid-cols-2">
             {faqs.map((faq) => (
