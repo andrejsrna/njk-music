@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 
 type Props = { slug: string; priceCents: number; currency: string; variant?: "hero" | "card"; label?: string };
 
@@ -15,6 +16,18 @@ export default function BuyButton({ slug, priceCents, currency, variant = "hero"
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const price = new Intl.NumberFormat("en-IE", { style: "currency", currency: currency.toUpperCase() }).format(priceCents / 100);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && !busy && setOpen(false);
+    document.addEventListener("keydown", onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prev;
+    };
+  }, [open, busy]);
 
   async function checkout() {
     setBusy(true);
@@ -39,7 +52,7 @@ export default function BuyButton({ slug, priceCents, currency, variant = "hero"
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        aria-expanded={open}
+        aria-haspopup="dialog"
         className={
           card
             ? "flex min-h-[52px] w-full items-center justify-center gap-2.5 rounded-xl bg-[#141216] text-[15px] font-bold text-[#F4F1EC] hover:bg-black"
@@ -49,23 +62,38 @@ export default function BuyButton({ slug, priceCents, currency, variant = "hero"
         <Icon />
         {label ?? "Buy WAV"} · {price}
       </button>
-      {open && (
-        <div className={card ? "mt-3 rounded-xl border border-[#D9D4CC] bg-white/60 p-4 text-sm text-[#3B3740]" : "mt-4 max-w-md rounded-xl border border-[#2A262E] bg-[#141216] p-4 text-sm text-[#A39E98]"}>
-          <label className="flex cursor-pointer items-start gap-3">
-            <input type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} className="mt-1 h-4 w-4 accent-[#B71C1C]" />
-            <span>I agree to immediate delivery of the digital file and acknowledge that I lose my right of withdrawal once delivery begins.</span>
-          </label>
-          <button
-            type="button"
-            disabled={!consent || busy}
-            onClick={checkout}
-            className={`mt-4 inline-flex min-h-[44px] items-center rounded-full px-6 text-sm font-bold disabled:cursor-not-allowed disabled:opacity-40 ${card ? "bg-[#B71C1C] text-white" : "bg-[#B71C1C] text-white hover:bg-[#d93434]"}`}
-          >
-            {busy ? "Redirecting…" : "Continue to secure payment"}
-          </button>
-          {error && <p role="alert" className="mt-3 text-[#b3261e]">{error}</p>}
-        </div>
-      )}
+      {open &&
+        createPortal(
+          <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm" onClick={() => !busy && setOpen(false)}>
+            <div
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby={`buy-${slug}`}
+              onClick={(e) => e.stopPropagation()}
+              className="relative w-full max-w-md rounded-2xl border border-[#2A262E] bg-[#141216] p-6 text-sm text-[#A39E98] shadow-2xl [font-family:var(--font-archivo),system-ui,sans-serif]"
+            >
+              <button type="button" onClick={() => setOpen(false)} disabled={busy} aria-label="Close" className="absolute right-3 top-3 flex h-10 w-10 items-center justify-center rounded-full text-[#A39E98] hover:bg-white/5 hover:text-white">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12" /></svg>
+              </button>
+              <h2 id={`buy-${slug}`} className="m-0 pr-10 text-xl font-extrabold tracking-[-0.02em] text-[#F4F1EC]">Buy WAV · {price}</h2>
+              <p className="mt-2 text-[#A39E98]">Lossless WAV master, download link sent by email right after payment. Invoice follows in a separate email.</p>
+              <label className="mt-5 flex cursor-pointer items-start gap-3">
+                <input type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} className="mt-1 h-4 w-4 accent-[#B71C1C]" />
+                <span>I agree to immediate delivery of the digital file and acknowledge that I lose my right of withdrawal once delivery begins.</span>
+              </label>
+              <button
+                type="button"
+                disabled={!consent || busy}
+                onClick={checkout}
+                className="mt-5 flex min-h-[48px] w-full items-center justify-center rounded-full bg-[#B71C1C] px-6 text-[15px] font-bold text-white hover:bg-[#d93434] disabled:cursor-not-allowed disabled:opacity-40"
+              >
+                {busy ? "Redirecting…" : "Continue to secure payment"}
+              </button>
+              {error && <p role="alert" className="mt-3 text-[#ff8a80]">{error}</p>}
+            </div>
+          </div>,
+          document.body,
+        )}
     </div>
   );
 }
