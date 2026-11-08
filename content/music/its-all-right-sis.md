@@ -21,7 +21,7 @@
   "Tidal": null,
   "iHeartRadio": null,
   "Boomplay": null,
-  "Beatport": null,
+  "Beatport": "https://www.beatport.com/release/its-all-right-sis/4875454",
   "Bandcamp": null,
   "spotify_embed": null,
   "Cover": null,

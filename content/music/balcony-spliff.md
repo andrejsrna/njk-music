@@ -21,7 +21,7 @@
   "Tidal": null,
   "iHeartRadio": null,
   "Boomplay": null,
-  "Beatport": null,
+  "Beatport": "https://www.beatport.com/release/balcony-spliff/4777664",
   "Bandcamp": null,
   "spotify_embed": null,
   "Cover": null,

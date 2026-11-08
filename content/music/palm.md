@@ -21,7 +21,7 @@
   "Tidal": null,
   "iHeartRadio": null,
   "Boomplay": null,
-  "Beatport": null,
+  "Beatport": "https://www.beatport.com/release/palm/4721465",
   "Bandcamp": null,
   "spotify_embed": null,
   "Cover": null,

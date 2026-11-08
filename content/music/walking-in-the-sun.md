@@ -21,7 +21,7 @@
   "Tidal": null,
   "iHeartRadio": null,
   "Boomplay": null,
-  "Beatport": null,
+  "Beatport": "https://www.beatport.com/release/walking-in-the-sun/4816288",
   "Bandcamp": null,
   "spotify_embed": null,
   "Cover": null,

@@ -21,7 +21,7 @@
   "Tidal": null,
   "iHeartRadio": null,
   "Boomplay": null,
-  "Beatport": null,
+  "Beatport": "https://www.beatport.com/release/liquid-smooth/4636414",
   "Bandcamp": null,
   "spotify_embed": null,
   "Cover": null,
