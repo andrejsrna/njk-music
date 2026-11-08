@@ -15,6 +15,7 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { marked } from "marked";
 import { PRIMARY_LABEL, SITE_NAME } from "@/lib/site";
+import { accentFor, isRightsManaged } from "@/app/music/[slug]/track-utils";
 import { getShopProduct } from "@/lib/shop/catalog";
 
 const notFoundMetadata = {
@@ -133,6 +134,16 @@ export default async function MusicDetailPage({
     limit: 6,
   });
 
+  const [accent, accentText] = accentFor(labelSlug);
+  const marquee = [
+    ...(genreName ? [genreName] : []),
+    isRightsManaged(labelSlug) ? "Licence required" : "Stream-safe",
+    "Lossless WAV",
+    "Twitch · YouTube · TikTok",
+    labelName,
+    "Creator-ready",
+  ];
+
   // Generate structured data (JSON-LD) for rich snippets
   const structuredData = {
     "@context": "https://schema.org",
@@ -201,14 +212,21 @@ export default async function MusicDetailPage({
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbData) }} />
 
-      <article className="bg-[#0C0B0D] text-[#F4F1EC] [font-family:var(--font-archivo),system-ui,sans-serif]">
+      <article className="overflow-x-clip bg-[#050405] text-[#F4F1EC] [font-family:var(--font-archivo),system-ui,sans-serif]">
         <TrackHero track={track} coverUrl={coverUrl} product={product} />
+        <div aria-hidden="true" className="overflow-hidden border-y-2 border-[#050405] text-white" style={{ background: accent }}>
+          <div className="label-marquee flex w-max whitespace-nowrap py-4 text-[30px] font-black uppercase tracking-[-0.02em]" style={{ fontStretch: "125%", animationDuration: "30s" }}>
+            {[...marquee, ...marquee, ...marquee, ...marquee].map((w, i) => (
+              <span key={i} className="inline-flex items-center gap-10 px-5">{w}<span className="h-3.5 w-3.5 bg-[#050405]" /></span>
+            ))}
+          </div>
+        </div>
         <SpecStrip track={track} />
         <AboutLicenseSection track={track} contentHtml={contentHtml} product={product} />
         <PlatformsSection track={track} />
         <YouTubeEmbedSection source={track.youtube_embed ?? ""} />
         <LabelInfoSection label={track.label} />
-        <RelatedTracksSection tracks={relatedTracks} />
+        <RelatedTracksSection tracks={relatedTracks} accentText={accentText} />
         <NewsletterCard />
       </article>
     </>

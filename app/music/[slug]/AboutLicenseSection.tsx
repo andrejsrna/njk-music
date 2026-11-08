@@ -3,7 +3,7 @@ import type { MusicData } from "@/app/hooks/useMusicQuery";
 import { PRIMARY_LABEL } from "@/lib/site";
 import BuyButton from "@/app/music/[slug]/BuyButton";
 import type { ShopProduct } from "@/lib/shop/catalog";
-import { EYEBROW, getMadeFor, isExactLink, isRightsManaged } from "@/app/music/[slug]/track-utils";
+import { MONO, accentFor, getMadeFor, isExactLink, isRightsManaged } from "@/app/music/[slug]/track-utils";
 
 // The page already shows tracklist, release facts, platform links and licensing elsewhere,
 // so "About the track" keeps only the narrative (story) sections of the markdown body.
@@ -22,7 +22,7 @@ function storyOnly(html: string, hasLead: boolean) {
 }
 
 const Check = () => (
-  <svg className="mt-0.5 flex-none" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#141216" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5" /></svg>
+  <svg className="mt-0.5 flex-none" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#050405" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5" /></svg>
 );
 
 export default function AboutLicenseSection({ track, contentHtml, product }: { track: MusicData; contentHtml: string; product?: ShopProduct | null }) {
@@ -31,6 +31,7 @@ export default function AboutLicenseSection({ track, contentHtml, product }: { t
   const story = storyOnly(contentHtml, Boolean(track.Description));
   const managed = isRightsManaged(labelSlug);
   const madeFor = getMadeFor(labelSlug);
+  const [accent, accentText] = accentFor(labelSlug);
   const buy = [track.Bandcamp, track.Beatport].find(isExactLink);
   const buyName = buy === track.Bandcamp ? "Bandcamp" : "Beatport";
 
@@ -53,11 +54,11 @@ export default function AboutLicenseSection({ track, contentHtml, product }: { t
     : [["Attribution guide", "/help/attribution"], ["Full licence", "/license"], ["Content ID help", "/help/content-id"]];
 
   return (
-    <section className="mx-auto flex max-w-[1280px] flex-wrap items-start gap-16 px-8 py-24 max-sm:px-5 max-sm:py-14">
+    <section className="mx-auto flex max-w-[1360px] flex-wrap items-start gap-14 px-5 py-24 sm:px-8 sm:py-28">
       <div className="flex min-w-0 flex-[999_1_520px] flex-col gap-7">
-        <span className={EYEBROW}>01 - About the track</span>
+        <span className={`${MONO} text-xs font-bold uppercase tracking-[0.14em]`} style={{ color: accentText }}>01 — About the track</span>
         {track.Description && (
-          <p className="m-0 text-[32px] font-medium leading-[1.25] tracking-[-0.02em] [text-wrap:pretty] max-sm:text-2xl">{track.Description}</p>
+          <p className="m-0 text-[clamp(28px,3.4vw,46px)] font-extrabold leading-[1.08] tracking-[-0.03em] [text-wrap:pretty]">{track.Description}</p>
         )}
         {story && (
           <div
@@ -66,41 +67,41 @@ export default function AboutLicenseSection({ track, contentHtml, product }: { t
           />
         )}
         <div className="flex flex-col gap-3.5 pt-2">
-          <span className={EYEBROW.replace("text-[12px]", "text-[11px]")}>Made for</span>
-          <div className="flex flex-wrap gap-2">
+          <span className={`${MONO} text-[11px] font-bold uppercase tracking-[0.12em] text-[#8C8781]`}>Made for</span>
+          <div className="flex flex-wrap gap-1.5">
             {madeFor.map((item) => (
-              <span key={item} className="rounded-full border border-[#2A272D] bg-[#17151A] px-4 py-2.5 text-sm">{item}</span>
+              <span key={item} className={`inline-flex min-h-[40px] items-center border border-[#F4F1EC] px-3.5 text-xs font-bold uppercase tracking-[0.08em] ${MONO}`}>{item}</span>
             ))}
           </div>
         </div>
       </div>
 
-      <aside className="flex min-w-0 flex-[1_1_380px] flex-col gap-[22px] rounded-[18px] bg-[#F4F1EC] p-8 text-[#141216] lg:sticky lg:top-24">
+      <aside className="flex min-w-0 flex-[1_1_400px] flex-col gap-6 border-2 border-[#F4F1EC] bg-[#F4F1EC] p-9 text-[#050405] lg:sticky lg:top-24" style={{ boxShadow: `14px 14px 0 ${accent}` }}>
         <div className="flex items-center justify-between gap-3">
-          <h2 className="m-0 text-[22px] font-extrabold tracking-[-0.02em]" style={{ fontStretch: "108%" }}>
+          <h2 className="m-0 text-[32px] font-black uppercase leading-[0.9] tracking-[-0.04em]" style={{ fontStretch: "120%" }}>
             {managed ? "Licensing & clearance" : "Licensing at a glance"}
           </h2>
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><path d="M9 12l2 2 4-4" /></svg>
         </div>
-        <ul className="m-0 flex list-none flex-col gap-3.5 p-0 text-[15px] leading-[1.45]">
+        <ul className="m-0 flex list-none flex-col border-t-2 border-[#050405] p-0 text-base font-semibold leading-[1.4]">
           {checklist.map((item) => (
-            <li key={item} className="flex gap-3"><Check /><span>{item}</span></li>
+            <li key={item} className="flex gap-3.5 border-b border-[#C9C4BD] py-3.5"><Check /><span>{item}</span></li>
           ))}
         </ul>
         {product ? (
           <BuyButton slug={product.slug} priceCents={product.priceCents} currency={product.currency} variant="card" label={managed ? "Get a licence (WAV)" : "Buy WAV"} />
         ) : buy && (
-          <a href={buy} target="_blank" rel="noopener noreferrer" className="flex min-h-[52px] items-center justify-center gap-2.5 rounded-xl bg-[#141216] text-[15px] font-bold text-[#F4F1EC]">
+          <a href={buy} target="_blank" rel="noopener noreferrer" className="flex min-h-[60px] items-center justify-center gap-2.5 bg-[#050405] text-[15px] font-black uppercase text-[#F4F1EC] hover:text-white">
             {managed ? `Get a licence on ${buyName}` : `Get it on ${buyName} - lossless`}
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10" /></svg>
           </a>
         )}
-        <div className="flex flex-wrap gap-x-[18px] gap-y-1.5 border-t border-[#D9D4CC] pt-[18px] text-[13px]">
+        <div className="flex flex-wrap gap-x-[18px] gap-y-1.5 pt-1 text-sm font-bold">
           {links.map(([label, href]) => (
-            <Link key={href} href={href} className="text-[#141216] underline underline-offset-[3px]">{label}</Link>
+            <Link key={href} href={href} className="text-[#050405] underline underline-offset-[3px]">{label}</Link>
           ))}
         </div>
-        <p className="m-0 text-xs text-[#5C5752]">Streaming access is not a download or a separate licence grant.</p>
+        <p className="m-0 text-xs text-[#4A4641]">Streaming access is not a download or a separate licence grant.</p>
       </aside>
     </section>
   );

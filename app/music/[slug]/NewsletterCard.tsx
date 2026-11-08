@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { EYEBROW } from "@/app/music/[slug]/track-utils";
+import { MONO } from "@/app/music/[slug]/track-utils";
 
 export default function NewsletterCard() {
   const [email, setEmail] = useState("");
@@ -25,33 +25,21 @@ export default function NewsletterCard() {
   };
 
   return (
-    <section className="mx-auto max-w-[1280px] px-8 pb-[104px]">
-      <div className="flex flex-wrap items-center justify-between gap-8 rounded-[22px] border border-[#242127] bg-[#141216] p-12 max-sm:p-6">
-        <div className="flex flex-[1_1_360px] flex-col gap-2.5">
-          <h2 className="m-0 text-[32px] font-extrabold tracking-[-0.025em]" style={{ fontStretch: "108%" }}>Stay in the loop</h2>
-          <p className="m-0 text-base text-[#A39E98]">New releases, label drops and creator tools, straight to your inbox.</p>
+    <section className="mx-auto max-w-[1360px] px-5 pb-24 sm:px-8 sm:pb-28">
+      <div className="flex flex-wrap items-end justify-between gap-10 border-2 border-[#F4F1EC] p-6 sm:p-14">
+        <div className="flex min-w-0 flex-[999_1_420px] flex-col gap-3">
+          <h2 className="m-0 text-[clamp(40px,5vw,72px)] font-black uppercase leading-[0.85] tracking-[-0.05em]" style={{ fontStretch: "125%" }}>Stay in<br />the loop</h2>
+          <p className="m-0 text-[17px] text-[#A39E98]">New releases and label drops, straight to your inbox.</p>
         </div>
-        <form onSubmit={submit} className="flex flex-[1_1_420px] flex-col gap-2.5">
-          <label htmlFor="track-nl-email" className={EYEBROW}>Email address</label>
-          <div className="flex flex-wrap gap-2.5">
-            <input
-              id="track-nl-email"
-              type="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="you@studio.com"
-              className="min-h-[52px] flex-[1_1_220px] rounded-xl border border-[#3A363E] bg-[#0C0B0D] px-[18px] text-[15px] text-[#F4F1EC] placeholder:text-[#6F6A64]"
-            />
-            <button
-              type="submit"
-              disabled={state === "loading"}
-              className="min-h-[52px] rounded-xl bg-[#F4F1EC] px-[26px] text-[15px] font-bold text-[#0C0B0D] disabled:opacity-60"
-            >
+        <form onSubmit={submit} className="flex flex-[1_1_400px] flex-col gap-2.5">
+          <label htmlFor="track-nl-email" className={`${MONO} text-[11px] font-bold uppercase tracking-[0.12em] text-[#A39E98]`}>Email address</label>
+          <div className="flex flex-wrap">
+            <input id="track-nl-email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@studio.com" className="min-h-[60px] min-w-0 flex-[1_1_200px] border-2 border-[#F4F1EC] bg-[#050405] px-[18px] text-base text-[#F4F1EC] placeholder:text-[#6F6A64]" />
+            <button type="submit" disabled={state === "loading"} className="min-h-[60px] cursor-pointer border-2 border-[#F4F1EC] bg-[#F4F1EC] px-7 text-[15px] font-black uppercase text-[#050405] disabled:opacity-60">
               {state === "loading" ? "Subscribing..." : "Subscribe"}
             </button>
           </div>
-          <span className="text-xs text-[#8C8781]" role="status">
+          <span className="text-[13px] text-[#8C8781]" role="status">
             {state === "done" ? "Thanks, you are subscribed." : state === "error" ? "Something went wrong, please try again." : (
               <>By subscribing you agree to our <Link href="/privacy" className="text-[#C9C4BD] underline">privacy policy</Link>.</>
             )}

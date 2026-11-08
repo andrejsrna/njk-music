@@ -1,5 +1,5 @@
 import type { MusicData } from "@/app/hooks/useMusicQuery";
-import { EYEBROW, isExactLink } from "@/app/music/[slug]/track-utils";
+import { MONO, isExactLink } from "@/app/music/[slug]/track-utils";
 
 export default function PlatformsSection({ track }: { track: MusicData }) {
   const all: { name: string; url?: string | null; note: string }[] = [
@@ -17,25 +17,19 @@ export default function PlatformsSection({ track }: { track: MusicData }) {
   if (!platforms.length) return null;
 
   return (
-    <section aria-labelledby="platforms" className="mx-auto flex max-w-[1280px] flex-col gap-7 px-8 pb-24 max-sm:px-5">
-      <div className="flex flex-wrap items-baseline justify-between gap-3">
-        <h2 id="platforms" className="m-0 text-[40px] font-extrabold tracking-[-0.03em] max-sm:text-3xl" style={{ fontStretch: "110%" }}>Listen everywhere</h2>
-        <span className={EYEBROW}>02 - Platforms</span>
-      </div>
-      <div className="grid grid-cols-[repeat(auto-fit,minmax(190px,1fr))] gap-3">
-        {platforms.map((p) => (
-          <a
-            key={p.name}
-            href={p.url as string}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex min-h-[92px] flex-col justify-between gap-3.5 rounded-[14px] border border-[#242127] bg-[#141216] px-[22px] py-5 transition hover:border-[#3A363E] hover:bg-[#1A181D]"
-          >
-            <span className="flex items-center justify-between text-[17px] font-bold">
-              {p.name}
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8C8781" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10" /></svg>
+    <section aria-labelledby="platforms" className="mx-auto flex max-w-[1360px] flex-col gap-8 px-5 pb-24 sm:px-8 sm:pb-28">
+      <h2 id="platforms" className="m-0 text-[clamp(48px,7vw,104px)] font-black uppercase leading-[0.85] tracking-[-0.05em]" style={{ fontStretch: "125%" }}>Listen<br />everywhere</h2>
+      <div className="flex flex-col border-t-2 border-[#F4F1EC]">
+        {platforms.map((p, i) => (
+          <a key={p.name} href={p.url as string} target="_blank" rel="noopener noreferrer" className="flex min-h-[84px] items-center justify-between gap-5 border-b border-[#2A272D] px-3 transition-colors hover:bg-[#110F12]">
+            <span className="flex items-baseline gap-6">
+              <span className={`${MONO} text-[13px] font-bold text-[#8C8781]`}>{String(i + 1).padStart(2, "0")}</span>
+              <span className="text-[clamp(26px,3vw,40px)] font-extrabold tracking-[-0.03em]" style={{ fontStretch: "115%" }}>{p.name}</span>
             </span>
-            <span className="font-[family-name:var(--font-jetbrains)] text-[11px] uppercase tracking-[0.08em] text-[#8C8781]">{p.note}</span>
+            <span className={`flex items-center gap-3.5 text-xs font-bold uppercase tracking-[0.1em] text-[#A39E98] ${MONO}`}>
+              {p.note}
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10" /></svg>
+            </span>
           </a>
         ))}
       </div>

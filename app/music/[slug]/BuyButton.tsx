@@ -55,8 +55,8 @@ export default function BuyButton({ slug, priceCents, currency, variant = "hero"
         aria-haspopup="dialog"
         className={
           card
-            ? "flex min-h-[52px] w-full items-center justify-center gap-2.5 rounded-xl bg-[#141216] text-[15px] font-bold text-[#F4F1EC] hover:bg-black"
-            : "inline-flex min-h-[52px] items-center gap-2.5 rounded-full border border-[#3A363E] px-[26px] text-[15px] font-semibold text-[#F4F1EC] hover:border-[#8C8781]"
+            ? "flex min-h-[60px] w-full cursor-pointer items-center justify-center gap-2.5 border-none bg-[#050405] text-[15px] font-black uppercase text-[#F4F1EC] hover:bg-black"
+            : "inline-flex min-h-[64px] cursor-pointer items-center gap-2.5 border-2 border-[#F4F1EC] bg-[#050405]/60 px-[30px] text-base font-black uppercase text-[#F4F1EC] hover:bg-[#F4F1EC] hover:text-[#050405]"
         }
       >
         <Icon />
@@ -70,9 +70,9 @@ export default function BuyButton({ slug, priceCents, currency, variant = "hero"
               aria-modal="true"
               aria-labelledby={`buy-${slug}`}
               onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-md rounded-2xl border border-[#2A262E] bg-[#141216] p-6 text-sm text-[#A39E98] shadow-2xl [font-family:var(--font-archivo),system-ui,sans-serif]"
+              className="relative w-full max-w-md border-2 border-[#F4F1EC] bg-[#141216] p-6 text-sm text-[#A39E98] shadow-2xl [font-family:var(--font-archivo),system-ui,sans-serif]"
             >
-              <button type="button" onClick={() => setOpen(false)} disabled={busy} aria-label="Close" className="absolute right-3 top-3 flex h-10 w-10 items-center justify-center rounded-full text-[#A39E98] hover:bg-white/5 hover:text-white">
+              <button type="button" onClick={() => setOpen(false)} disabled={busy} aria-label="Close" className="absolute right-3 top-3 flex h-10 w-10 items-center justify-center text-[#A39E98] hover:bg-white/5 hover:text-white">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12" /></svg>
               </button>
               <h2 id={`buy-${slug}`} className="m-0 pr-10 text-xl font-extrabold tracking-[-0.02em] text-[#F4F1EC]">Buy WAV · {price}</h2>
@@ -85,7 +85,7 @@ export default function BuyButton({ slug, priceCents, currency, variant = "hero"
                 type="button"
                 disabled={!consent || busy}
                 onClick={checkout}
-                className="mt-5 flex min-h-[48px] w-full items-center justify-center rounded-full bg-[#B71C1C] px-6 text-[15px] font-bold text-white hover:bg-[#d93434] disabled:cursor-not-allowed disabled:opacity-40"
+                className="mt-5 flex min-h-[48px] w-full items-center justify-center bg-[#C62828] px-6 text-[15px] font-black uppercase text-white hover:bg-[#d93434] disabled:cursor-not-allowed disabled:opacity-40"
               >
                 {busy ? "Redirecting…" : "Continue to secure payment"}
               </button>

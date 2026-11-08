@@ -61,3 +61,13 @@ export const formatReleaseDate = (iso?: string | null) =>
 export const ACCENT = "#C62828";
 export const MONO = "font-[family-name:var(--font-jetbrains)]";
 export const EYEBROW = `${MONO} text-[12px] uppercase tracking-[0.12em] text-[#8C8781]`;
+
+const LABEL_ACCENTS: Record<string, [string, string]> = {
+  "no-copyright-gaming-music": ["#C62828", "#FF6B5E"],
+  "chill-music-motif": ["#0E7490", "#5EE0F5"],
+  "calm-spirit-music": ["#7C3AED", "#B794F6"],
+  "jazz-and-bass": ["#C2410C", "#FF9A62"],
+  koldman: ["#C62828", "#FF6B5E"],
+  "ludovky-od-andreja": ["#C2410C", "#FF9A62"],
+};
+export const accentFor = (labelSlug?: string | null): [string, string] => LABEL_ACCENTS[labelSlug ?? ""] ?? LABEL_ACCENTS["no-copyright-gaming-music"];

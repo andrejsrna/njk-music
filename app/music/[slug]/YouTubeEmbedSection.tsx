@@ -5,8 +5,8 @@ export default function YouTubeEmbedSection({ source }: { source: string }) {
   if (!embedUrl) return null;
 
   return (
-    <section aria-label="Video" className="mx-auto max-w-[1280px] px-8 pb-28 max-sm:px-5">
-      <div className="relative aspect-video overflow-hidden rounded-[18px] border border-[#242127] bg-[#141216]">
+    <section aria-label="Video" className="mx-auto max-w-[1360px] px-5 pb-24 sm:px-8 sm:pb-28">
+      <div className="relative aspect-video overflow-hidden border-2 border-[#F4F1EC] bg-[#110F12]">
         <iframe
           className="absolute inset-0 h-full w-full"
           src={embedUrl}

@@ -25,7 +25,7 @@ export default function ShareButton({ title }: { title: string }) {
       type="button"
       onClick={share}
       aria-label={copied ? "Link copied" : "Share this track"}
-      className="inline-flex h-[52px] w-[52px] items-center justify-center rounded-full border border-[#3A363E] bg-transparent text-[#F4F1EC] transition hover:border-[#8C8781]"
+      className="inline-flex h-16 w-16 cursor-pointer items-center justify-center border-2 border-[#F4F1EC] bg-[#050405]/60 text-[#F4F1EC] transition hover:bg-[#F4F1EC] hover:text-[#050405]"
     >
       {copied ? (
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5" /></svg>

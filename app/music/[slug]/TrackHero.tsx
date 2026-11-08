@@ -6,7 +6,8 @@ import PreviewPlayer from "@/app/music/[slug]/PreviewPlayer";
 import ShareButton from "@/app/music/[slug]/ShareButton";
 import BuyButton from "@/app/music/[slug]/BuyButton";
 import type { ShopProduct } from "@/lib/shop/catalog";
-import { ACCENT, MONO, formatReleaseDate, getTrackFacts, isExactLink } from "@/app/music/[slug]/track-utils";
+import HeroStage from "@/app/music/[slug]/HeroStage";
+import { MONO, accentFor, formatReleaseDate, getTrackFacts, isExactLink } from "@/app/music/[slug]/track-utils";
 
 interface TrackHeroProps {
   track: MusicData;
@@ -41,62 +42,63 @@ export default function TrackHero({ track, coverUrl, product }: TrackHeroProps) 
   const [mainTitle, ...rest] = track.Title.split(/:\s+/);
   const subtitle = rest.join(": ");
 
-  return (
-    <section className="mx-auto max-w-[1280px] px-8 pb-14 pt-16 max-sm:px-5 max-sm:pt-10">
-      <div className="flex flex-wrap items-end gap-16 max-lg:gap-10">
-        <div className="relative aspect-square max-w-[520px] flex-[1_1_380px] overflow-hidden rounded-md border border-[#2A272D] bg-[#17151A] shadow-[0_40px_80px_-30px_rgba(0,0,0,0.8)]">
-          {coverUrl ? (
-            <Image src={coverUrl} alt={`${track.Title} cover art`} fill priority sizes="(min-width: 1024px) 520px, 100vw" className="object-cover" />
-          ) : (
-            <div className={`flex h-full items-center justify-center text-xs uppercase tracking-[0.08em] text-[#8C8781] ${MONO}`}>No artwork</div>
-          )}
-          <span className={`absolute bottom-4 left-4 rounded bg-black/55 px-2 py-1 text-[11px] tracking-[0.1em] text-[#C9C4BD] ${MONO}`}>
-            {labelShort} · {released?.slice(-4) ?? ""}
-          </span>
-        </div>
+  const [accent, accentText] = accentFor(labelSlug);
+  const words = mainTitle.split(/\s+/);
+  const lines: string[] = [];
+  for (let k = 0; k < words.length; ) {
+    const take = lines.length === 0 ? Math.min(2, words.length - k) : Math.min(3, words.length - k);
+    lines.push(words.slice(k, k + take).join(" "));
+    k += take;
+  }
+  const last = lines.length > 1 ? lines.pop()! : "";
 
-        <div className="flex min-w-0 flex-[999_1_520px] flex-col gap-7">
-          <div className={`flex flex-wrap items-center gap-2.5 text-xs uppercase tracking-[0.1em] ${MONO}`}>
-            <Link href={`/labels/${labelSlug}`} className="rounded px-2.5 py-1.5 font-medium text-white" style={{ background: ACCENT }}>
-              {labelShort} Label
-            </Link>
-            {track.genre?.Genres && (
-              <span className="rounded border border-[#2A272D] px-2.5 py-1.5 text-[#C9C4BD]">{track.genre.Genres}</span>
-            )}
-            <span className="text-[#8C8781]">{[facts.format, released].filter(Boolean).join(" · ")}</span>
-          </div>
-
-          <h1 className="m-0 text-[clamp(44px,6.2vw,92px)] font-extrabold leading-[0.92] tracking-[-0.035em] [text-wrap:balance]" style={{ fontStretch: "112%" }}>
-            {mainTitle}
-          </h1>
-          {subtitle && (
-            <p className="-mt-2 text-[22px] tracking-[-0.01em] text-[#A39E98]">
-              {subtitle} <span aria-hidden>·</span>{" "}
-              <Link href={`/labels/${labelSlug}`} className="font-semibold text-[#F4F1EC]">{labelName}</Link>
-            </p>
-          )}
-
-          {previewSrc ? <PreviewPlayer src={previewSrc} label={track.Title} /> : null}
-
-          <div className="flex flex-wrap items-start gap-3">
-            {stream && (
-              <a href={stream[1] as string} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[52px] items-center gap-2.5 rounded-full bg-[#F4F1EC] px-[26px] text-[15px] font-bold text-[#0C0B0D] hover:bg-white">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3 18v-6a9 9 0 0 1 18 0v6" /><path d="M21 19a2 2 0 0 1-2 2h-1v-6h3zM3 19a2 2 0 0 0 2 2h1v-6H3z" /></svg>
-                Stream on {stream[0]}
-              </a>
-            )}
-            {product ? (
-              <BuyButton slug={product.slug} priceCents={product.priceCents} currency={product.currency} variant="hero" />
-            ) : download ? (
-              <a href={download[1] as string} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[52px] items-center gap-2.5 rounded-full border border-[#3A363E] px-[26px] text-[15px] font-semibold text-[#F4F1EC] hover:border-[#8C8781]">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" /></svg>
-                Buy on {download[0]}
-              </a>
-            ) : null}
-            <ShareButton title={track.Title} />
-          </div>
-        </div>
+  const left = (
+    <>
+      <div className={`flex flex-wrap gap-2 text-xs font-bold uppercase tracking-[0.12em] ${MONO}`}>
+        <Link href={`/labels/${labelSlug}`} className="px-3 py-[7px] text-white hover:text-white" style={{ background: accent }}>{labelShort} Label</Link>
+        {track.genre?.Genres && <span className="bg-[#F4F1EC] px-3 py-[7px] text-[#050405]">{track.genre.Genres}</span>}
+        <span className="border border-[#F4F1EC] bg-[#050405]/60 px-3 py-[7px]">{[facts.format, released].filter(Boolean).join(" · ")}</span>
       </div>
-    </section>
+      <h1 className="m-0 text-[clamp(44px,7.4vw,124px)] font-black uppercase leading-[0.8] tracking-[-0.055em] [overflow-wrap:break-word] [text-shadow:0_0_50px_rgba(0,0,0,0.7)]" style={{ fontStretch: "125%" }}>
+        {lines.map((l, k) => (<span key={k}>{l}<br /></span>))}
+        {last && <span style={{ color: accentText }}>{last}</span>}
+      </h1>
+      {subtitle && (
+        <p className="m-0 self-start bg-[#050405]/80 px-3.5 py-2.5 text-xl font-semibold">
+          {subtitle} <span aria-hidden>—</span>{" "}
+          <Link href={`/labels/${labelSlug}`} className="underline underline-offset-4">{labelName}</Link>
+        </p>
+      )}
+
+      {previewSrc ? <PreviewPlayer src={previewSrc} label={track.Title} accent={accent} /> : null}
+
+      <div className="flex flex-wrap items-stretch">
+        {stream && (
+          <a href={stream[1] as string} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[64px] items-center gap-2.5 border-2 border-[#F4F1EC] bg-[#F4F1EC] px-[30px] text-base font-black uppercase text-[#050405] hover:bg-white hover:text-[#050405]">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3 18v-6a9 9 0 0 1 18 0v6" /><path d="M21 19a2 2 0 0 1-2 2h-1v-6h3zM3 19a2 2 0 0 0 2 2h1v-6H3z" /></svg>
+            Stream on {stream[0]}
+          </a>
+        )}
+        {product ? (
+          <BuyButton slug={product.slug} priceCents={product.priceCents} currency={product.currency} variant="hero" />
+        ) : download ? (
+          <a href={download[1] as string} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[64px] items-center gap-2.5 border-2 border-[#F4F1EC] bg-[#050405]/60 px-[30px] text-base font-black uppercase text-[#F4F1EC] hover:bg-[#F4F1EC] hover:text-[#050405]">
+            Buy on {download[0]}
+          </a>
+        ) : null}
+        <ShareButton title={track.Title} />
+      </div>
+    </>
   );
+
+  const cover = coverUrl ? (
+    <>
+      <Image src={coverUrl} alt={`${track.Title} cover art`} fill priority sizes="(min-width: 1024px) 400px, 100vw" className="object-cover" />
+      <span className={`absolute -bottom-0.5 -left-0.5 bg-[#F4F1EC] px-2.5 py-1.5 text-[11px] font-bold tracking-[0.1em] text-[#050405] ${MONO}`}>{labelShort} · {released?.slice(-4) ?? ""}</span>
+    </>
+  ) : (
+    <div className={`flex h-full items-center justify-center text-xs uppercase tracking-[0.08em] text-[#8C8781] ${MONO}`}>No artwork</div>
+  );
+
+  return <HeroStage accent={accent} left={left} cover={cover} />;
 }
