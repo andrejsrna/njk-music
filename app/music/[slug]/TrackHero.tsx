@@ -79,17 +79,18 @@ export default function TrackHero({ track, coverUrl, product }: TrackHeroProps) 
           {previewSrc ? <PreviewPlayer src={previewSrc} label={track.Title} /> : null}
 
           <div className="flex flex-wrap items-start gap-3">
-            {product ? (
-              <BuyButton slug={product.slug} priceCents={product.priceCents} currency={product.currency} variant="hero" />
-            ) : download ? (
-              <a href={download[1] as string} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[52px] items-center gap-2.5 rounded-full bg-[#F4F1EC] px-[26px] text-[15px] font-bold text-[#0C0B0D] hover:bg-white">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" /></svg>
-                Buy on {download[0]}
-              </a>
-            ) : stream ? (
+            {stream && (
               <a href={stream[1] as string} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[52px] items-center gap-2.5 rounded-full bg-[#F4F1EC] px-[26px] text-[15px] font-bold text-[#0C0B0D] hover:bg-white">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3 18v-6a9 9 0 0 1 18 0v6" /><path d="M21 19a2 2 0 0 1-2 2h-1v-6h3zM3 19a2 2 0 0 0 2 2h1v-6H3z" /></svg>
                 Stream on {stream[0]}
+              </a>
+            )}
+            {product ? (
+              <BuyButton slug={product.slug} priceCents={product.priceCents} currency={product.currency} variant="hero" />
+            ) : download ? (
+              <a href={download[1] as string} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[52px] items-center gap-2.5 rounded-full border border-[#3A363E] px-[26px] text-[15px] font-semibold text-[#F4F1EC] hover:border-[#8C8781]">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" /></svg>
+                Buy on {download[0]}
               </a>
             ) : null}
             <ShareButton title={track.Title} />

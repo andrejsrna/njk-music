@@ -56,7 +56,7 @@ export default function BuyButton({ slug, priceCents, currency, variant = "hero"
         className={
           card
             ? "flex min-h-[52px] w-full items-center justify-center gap-2.5 rounded-xl bg-[#141216] text-[15px] font-bold text-[#F4F1EC] hover:bg-black"
-            : "inline-flex min-h-[52px] items-center gap-2.5 rounded-full bg-[#F4F1EC] px-[26px] text-[15px] font-bold text-[#0C0B0D] hover:bg-white"
+            : "inline-flex min-h-[52px] items-center gap-2.5 rounded-full border border-[#3A363E] px-[26px] text-[15px] font-semibold text-[#F4F1EC] hover:border-[#8C8781]"
         }
       >
         <Icon />
