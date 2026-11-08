@@ -34,7 +34,7 @@
   "iHeartRadio": null,
   "Boomplay": null,
   "Beatport": null,
-  "Bandcamp": null,
+  "Bandcamp": "https://njk-music.bandcamp.com/track/unleash-your-inner-hero-fantasy-rpg-soundtrack",
   "createdAt": "2026-11-06T00:00:00.000Z",
   "updatedAt": "2026-11-06T00:00:00.000Z",
   "publishedAt": "2026-11-06T00:00:00.000Z",
@@ -68,6 +68,7 @@
 - [Amazon Music](https://music.amazon.com/albums/B0HNCGVRD2?trackAsin=B0HNC7C9DF)
 - [Amazon digital track](https://amazon.com/dp/B0HNC7C9DF)
 - [Tidal](https://listen.tidal.com/track/570665177)
+- [Bandcamp](https://njk-music.bandcamp.com/track/unleash-your-inner-hero-fantasy-rpg-soundtrack)
 
 ## Find music for your adventure edit
 
