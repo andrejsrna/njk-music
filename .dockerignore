@@ -2,5 +2,5 @@ node_modules
 .next
 .git
 .env*
-data
+data/newsletter-subscribers.json
 *.log
