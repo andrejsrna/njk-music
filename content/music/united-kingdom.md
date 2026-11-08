@@ -15,7 +15,7 @@
   "AppleMusic": "https://music.apple.com/us/album/united-kingdom-ep/6790748218?uo=4",
   "iTunes": "https://music.apple.com/us/album/united-kingdom-ep/6790748218?uo=4",
   "YouTubeMusic": "https://music.youtube.com/playlist?list=OLAK5uy_kO8SYGsIuOCLBS_SDLsMCZP8WCQArEB1U",
-  "Amazon": "https://music.amazon.com/search/United%20Kingdom%20Jazz%20%26%20Bass",
+  "Amazon": "https://music.amazon.com/albums/B0H8TCQS9T",
   "Pandora": "https://www.pandora.com/AL:68250153",
   "Deezer": "https://www.deezer.com/album/1028958652",
   "Tidal": "https://listen.tidal.com/album/543463502",

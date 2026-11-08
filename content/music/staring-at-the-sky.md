@@ -10,7 +10,7 @@
   "iTunes": "https://music.apple.com/us/album/staring-at-the-sky-single/6812785752?uo=4&app=itunes",
   "YouTubeMusic": "https://music.youtube.com/watch?v=b-vJfVaAHps",
   "Amazon": "https://music.amazon.com/albums/B0HK14J9DT?trackAsin=B0HJZZMFGY",
-  "Pandora": "https://www.pandora.com/search/Staring%20At%20The%20Sky%20Jazz%20%26%20Bass",
+  "Pandora": "https://www.pandora.com/TR:215232912",
   "Deezer": "https://www.deezer.com/album/1080199492",
   "Tidal": "https://listen.tidal.com/track/561767993",
   "iHeartRadio": "https://www.iheart.com/search/?q=Staring%20At%20The%20Sky%20Jazz%20%26%20Bass",

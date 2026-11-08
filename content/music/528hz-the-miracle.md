@@ -16,7 +16,7 @@
   "iTunes": "https://music.apple.com/us/album/528hz-the-miracle-single/1865968320?uo=4&app=itunes&at=1001lry3&ct=dashboard",
   "YouTubeMusic": "https://music.youtube.com/watch?v=3x7H1c-oi8Y&si=yBx2SZ5H8yqNI1nX",
   "Amazon": "https://amazon.com/music/player/albums/B0GDPHT9NM?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_C6tIiTtltWVaHnSEpFOKK6SAv",
-  "Pandora": null,
+  "Pandora": "https://www.pandora.com/TR:187162701",
   "Deezer": "https://link.deezer.com/s/32dTzQUjBicaXcqpeavow",
   "Tidal": "https://tidal.com/track/486389803/u",
   "iHeartRadio": null,

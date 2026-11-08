@@ -15,7 +15,7 @@
   "AppleMusic": "https://music.apple.com/us/album/push-that-code-ep/6780365490?uo=4",
   "iTunes": "https://music.apple.com/us/album/push-that-code-ep/6780365490?uo=4",
   "YouTubeMusic": "https://music.youtube.com/playlist?list=OLAK5uy_lvK2Y63YLGDZKY1CYMzFyAQATS14KqTg0",
-  "Amazon": "https://music.amazon.com/search/Push%20That%20Code%20No%20Copyright%20Gaming%20Music",
+  "Amazon": "https://music.amazon.com/albums/B0H59M5PWC",
   "Pandora": "https://www.pandora.com/search/Push%20That%20Code%20No%20Copyright%20Gaming%20Music",
   "Deezer": "https://www.deezer.com/album/1005715461",
   "Tidal": "https://listen.tidal.com/album/533472572",

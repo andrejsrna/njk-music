@@ -16,7 +16,7 @@
   "iTunes": "https://music.apple.com/sk/album/late-night-lofi-study-sessions/1855669096",
   "YouTubeMusic": "https://music.youtube.com/playlist?list=OLAK5uy_k-bUw6dL5jUIatDvTryBVnhQh3iXDEf94&si=EaXHE-tL8eQogFtm",
   "Amazon": "https://amazon.com/music/player/albums/B0G3JQXX9Z?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_GzHz0qaWP3d3nyWPEfOAlQgG2",
-  "Pandora": null,
+  "Pandora": "https://www.pandora.com/AL:56796767",
   "Deezer": "https://www.deezer.com/en/album/862058552",
   "Tidal": "https://tidal.com/album/476035362/u",
   "iHeartRadio": null,
