@@ -2,12 +2,11 @@ import { getMusicBySlug, getMusicData, type MusicData } from "@/app/hooks/useMus
 import { SITE_URL, getCanonicalUrl } from "@/lib/env";
 import { resolveStrapiImageUrl } from "@/lib/utils";
 import TrackHero from "@/app/music/[slug]/TrackHero";
-import LicensingInfoSection from "@/app/music/[slug]/LicensingInfoSection";
-import SpotifyEmbedSection from "@/app/music/[slug]/SpotifyEmbedSection";
+import AboutLicenseSection from "@/app/music/[slug]/AboutLicenseSection";
+import SpecStrip from "@/app/music/[slug]/SpecStrip";
+import NewsletterCard from "@/app/music/[slug]/NewsletterCard";
 import YouTubeEmbedSection from "@/app/music/[slug]/YouTubeEmbedSection";
-import ReleaseDescriptionSection from "@/app/music/[slug]/ReleaseDescriptionSection";
-import StreamingPlatformsSection from "@/app/music/[slug]/StreamingPlatformsSection";
-import DownloadSection from "@/app/music/[slug]/DownloadSection";
+import PlatformsSection from "@/app/music/[slug]/PlatformsSection";
 import LabelInfoSection from "@/app/music/[slug]/LabelInfoSection";
 import RelatedTracksSection, {
   type RelatedTrackItem,
@@ -200,22 +199,15 @@ export default async function MusicDetailPage({
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbData) }} />
 
-      <article className="bg-transparent py-16 text-white">
-        <div className="mx-auto max-w-6xl space-y-12 px-4 sm:px-6 lg:px-8">
-          <TrackHero track={track} coverUrl={coverUrl} />
-          <LabelInfoSection label={track.label} />
-          <StreamingPlatformsSection track={track} />
-          <DownloadSection track={track} />
-          <LicensingInfoSection
-            labelSlug={track.label?.slug}
-            labelName={labelName}
-            trackTitle={track.Title}
-          />
-          <SpotifyEmbedSection embedHtml={track.spotify_embed ?? ""} />
-          <YouTubeEmbedSection source={track.youtube_embed ?? ""} />
-          <ReleaseDescriptionSection contentHtml={contentHtml} />
-          <RelatedTracksSection tracks={relatedTracks} />
-        </div>
+      <article className="bg-[#0C0B0D] text-[#F4F1EC] [font-family:var(--font-archivo),system-ui,sans-serif]">
+        <TrackHero track={track} coverUrl={coverUrl} />
+        <SpecStrip track={track} />
+        <AboutLicenseSection track={track} contentHtml={contentHtml} />
+        <PlatformsSection track={track} />
+        <YouTubeEmbedSection source={track.youtube_embed ?? ""} />
+        <LabelInfoSection label={track.label} />
+        <RelatedTracksSection tracks={relatedTracks} />
+        <NewsletterCard />
       </article>
     </>
   );

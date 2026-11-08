@@ -25,6 +25,11 @@ export interface MusicData {
   spotify_embed?: string | null;
   youtube_embed?: string | null;
   Content: string;
+  upc?: string | null;
+  isrc?: string | null;
+  isrcs?: string[] | null;
+  recordLabel?: string | null;
+  previewAudio?: string | null;
   Cover?: {
     url?: string;
     formats?: {

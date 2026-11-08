@@ -1,10 +1,10 @@
-'use client';
-
 import Image from "next/image";
 import Link from "next/link";
-import { FiArrowLeft, FiHeadphones, FiDownload } from "react-icons/fi";
 import type { MusicData } from "@/app/hooks/useMusicQuery";
 import { PRIMARY_LABEL } from "@/lib/site";
+import PreviewPlayer from "@/app/music/[slug]/PreviewPlayer";
+import ShareButton from "@/app/music/[slug]/ShareButton";
+import { ACCENT, MONO, formatReleaseDate, getTrackFacts, isExactLink } from "@/app/music/[slug]/track-utils";
 
 interface TrackHeroProps {
   track: MusicData;
@@ -12,116 +12,89 @@ interface TrackHeroProps {
 }
 
 export default function TrackHero({ track, coverUrl }: TrackHeroProps) {
-  const primaryStream =
-    track.Spotify ||
-    track.AppleMusic ||
-    track.YouTubeMusic ||
-    track.Deezer ||
-    track.Tidal ||
-    track.Pandora ||
-    "";
-
-  const primaryDownload = track.Beatport || track.Bandcamp || "";
+  const facts = getTrackFacts(track);
   const labelName = track.label?.name ?? PRIMARY_LABEL.name;
-  const labelShort = track.label?.short ?? PRIMARY_LABEL.short;
-  const publishedDate = track.publishedAt || track.createdAt;
+  const labelShort = track.label?.short ?? PRIMARY_LABEL.short ?? labelName;
+  const labelSlug = track.label?.slug ?? PRIMARY_LABEL.slug;
+  const released = formatReleaseDate(track.publishedAt || track.createdAt);
+
+  const streams: [string, string | null | undefined][] = [
+    ["Spotify", track.Spotify],
+    ["Apple Music", track.AppleMusic],
+    ["YouTube Music", track.YouTubeMusic],
+    ["Deezer", track.Deezer],
+    ["Tidal", track.Tidal],
+  ];
+  const stream = streams.find(([, url]) => isExactLink(url));
+  const downloads: [string, string | null | undefined][] = [
+    ["Bandcamp", track.Bandcamp],
+    ["Beatport", track.Beatport],
+  ];
+  const download = downloads.find(([, url]) => isExactLink(url));
+
+  // "Title: Subtitle" -> big title + subtitle line
+  const [mainTitle, ...rest] = track.Title.split(/:\s+/);
+  const subtitle = rest.join(": ");
 
   return (
-    <header className="mb-16">
-      <nav aria-label="Breadcrumb" className="mb-6">
-        <Link
-          href="/music"
-          className="inline-flex items-center gap-2 text-sm font-medium text-slate-300 transition hover:text-white"
-        >
-          <FiArrowLeft className="h-4 w-4" />
-          Back to music
-        </Link>
-      </nav>
+    <section className="mx-auto max-w-[1280px] px-8 pb-14 pt-16 max-sm:px-5 max-sm:pt-10">
+      <Link href="/music" className="mb-8 inline-flex min-h-[44px] items-center gap-2 text-sm text-[#A39E98] hover:text-white">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7" /></svg>
+        Back to music
+      </Link>
 
-      <div className="grid gap-10 rounded-3xl border border-white/10 bg-white/5 p-8 shadow-soft backdrop-blur lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] lg:p-10">
-        <section className="order-2 flex flex-col gap-6 lg:order-1">
-          <div className="flex flex-wrap items-center gap-3 text-xs font-semibold uppercase tracking-[0.3em] text-slate-300">
-            {labelName && (
-              <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-slate-200 backdrop-blur">
-                {labelShort ?? labelName} Label
-              </span>
-            )}
+      <div className="flex flex-wrap items-end gap-16 max-lg:gap-10">
+        <div className="relative aspect-square max-w-[520px] flex-[1_1_380px] overflow-hidden rounded-md border border-[#2A272D] bg-[#17151A] shadow-[0_40px_80px_-30px_rgba(0,0,0,0.8)]">
+          {coverUrl ? (
+            <Image src={coverUrl} alt={`${track.Title} cover art`} fill priority sizes="(min-width: 1024px) 520px, 100vw" className="object-cover" />
+          ) : (
+            <div className={`flex h-full items-center justify-center text-xs uppercase tracking-[0.08em] text-[#8C8781] ${MONO}`}>No artwork</div>
+          )}
+          <span className={`absolute bottom-4 left-4 rounded bg-black/55 px-2 py-1 text-[11px] tracking-[0.1em] text-[#C9C4BD] ${MONO}`}>
+            {labelShort} · {released?.slice(-4) ?? ""}
+          </span>
+        </div>
+
+        <div className="flex min-w-0 flex-[999_1_520px] flex-col gap-7">
+          <div className={`flex flex-wrap items-center gap-2.5 text-xs uppercase tracking-[0.1em] ${MONO}`}>
+            <Link href={`/labels/${labelSlug}`} className="rounded px-2.5 py-1.5 font-medium text-white" style={{ background: ACCENT }}>
+              {labelShort} Label
+            </Link>
             {track.genre?.Genres && (
-              <span className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-slate-200 backdrop-blur">
-                {track.genre.Genres}
-              </span>
+              <span className="rounded border border-[#2A272D] px-2.5 py-1.5 text-[#C9C4BD]">{track.genre.Genres}</span>
             )}
+            <span className="text-[#8C8781]">{[facts.format, released].filter(Boolean).join(" · ")}</span>
           </div>
 
-          <div className="space-y-4">
-            <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-              {track.Title}
-            </h1>
-            <p className="max-w-2xl text-base text-slate-300 sm:text-lg">
-              {track.Description ||
-                `Listen to ${track.Title} from the ${labelName} label. Download royalty-free music engineered for streamers, creators, and studios.`}
-            </p>
-          </div>
-
-          <div className="flex flex-wrap gap-3">
-            {primaryStream && (
-              <a
-                href={primaryStream}
-                target="_blank"
-                rel="noopener noreferrer nofollow"
-                className="inline-flex items-center gap-2 rounded-md bg-gradient-to-r from-fuchsia-500 to-cyan-400 px-4 py-2 text-sm font-semibold text-slate-950 transition hover:opacity-90"
-              >
-                <FiHeadphones className="h-4 w-4" />
-                Stream
-              </a>
-            )}
-            {primaryDownload && (
-              <a
-                href={primaryDownload}
-                target="_blank"
-                rel="noopener noreferrer nofollow"
-                className="inline-flex items-center gap-2 rounded-md border border-white/15 bg-white/0 px-4 py-2 text-sm font-medium text-slate-200 backdrop-blur transition hover:bg-white/5"
-              >
-                <FiDownload className="h-4 w-4" />
-                Download
-              </a>
-            )}
-          </div>
-
-          {publishedDate && (
-            <p className="text-xs uppercase tracking-[0.3em] text-slate-300">
-              Released{" "}
-              <time dateTime={publishedDate}>
-                {new Date(publishedDate).toLocaleDateString("en-US", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
-              </time>
+          <h1 className="m-0 text-[clamp(44px,6.2vw,92px)] font-extrabold leading-[0.92] tracking-[-0.035em] [text-wrap:balance]" style={{ fontStretch: "112%" }}>
+            {mainTitle}
+          </h1>
+          {subtitle && (
+            <p className="-mt-2 text-[22px] tracking-[-0.01em] text-[#A39E98]">
+              {subtitle} <span aria-hidden>·</span>{" "}
+              <Link href={`/labels/${labelSlug}`} className="font-semibold text-[#F4F1EC]">{labelName}</Link>
             </p>
           )}
 
-        </section>
+          {track.previewAudio ? <PreviewPlayer src={track.previewAudio} label={track.Title} /> : null}
 
-        <aside className="order-1 lg:order-2">
-          <div className="relative mx-auto aspect-square max-w-md overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-soft backdrop-blur">
-            {coverUrl ? (
-              <Image
-                src={coverUrl}
-                alt={`${track.Title} cover art`}
-                fill
-                sizes="(min-width: 1024px) 448px, 100vw"
-                className="object-cover"
-                priority
-              />
-            ) : (
-              <div className="flex h-full min-h-[320px] w-full items-center justify-center bg-white/5 text-sm font-medium uppercase tracking-[0.3em] text-slate-300">
-                No artwork
-              </div>
+          <div className="flex flex-wrap gap-3">
+            {stream && (
+              <a href={stream[1] as string} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[52px] items-center gap-2.5 rounded-full bg-[#F4F1EC] px-[26px] text-[15px] font-bold text-[#0C0B0D] hover:bg-white">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3 18v-6a9 9 0 0 1 18 0v6" /><path d="M21 19a2 2 0 0 1-2 2h-1v-6h3zM3 19a2 2 0 0 0 2 2h1v-6H3z" /></svg>
+                Stream on {stream[0]}
+              </a>
             )}
+            {download && (
+              <a href={download[1] as string} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[52px] items-center gap-2.5 rounded-full border border-[#3A363E] px-[26px] text-[15px] font-semibold text-[#F4F1EC] hover:border-[#8C8781]">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" /></svg>
+                Buy on {download[0]}
+              </a>
+            )}
+            <ShareButton title={track.Title} />
           </div>
-        </aside>
+        </div>
       </div>
-    </header>
+    </section>
   );
 }

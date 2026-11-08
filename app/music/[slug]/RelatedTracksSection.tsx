@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { FiArrowUpRight } from "react-icons/fi";
 
 export interface RelatedTrackItem {
   slug: string;
@@ -11,87 +10,31 @@ export interface RelatedTrackItem {
   coverUrl: string;
 }
 
-interface RelatedTracksSectionProps {
-  tracks: RelatedTrackItem[];
-  heading?: string;
-}
-
-export default function RelatedTracksSection({
-  tracks,
-  heading = "Related tracks",
-}: RelatedTracksSectionProps) {
-  if (!tracks.length) {
-    return null;
-  }
+export default function RelatedTracksSection({ tracks, heading = "More from the catalog" }: { tracks: RelatedTrackItem[]; heading?: string }) {
+  if (!tracks.length) return null;
 
   return (
-    <section
-      aria-labelledby="related-tracks"
-      className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-soft backdrop-blur"
-    >
-      <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-        <div className="space-y-2">
-          <h2
-            id="related-tracks"
-            className="text-base font-semibold uppercase tracking-[0.3em] text-slate-200"
-          >
-            {heading}
-          </h2>
-          <p className="max-w-2xl text-sm text-slate-300">
-            More picks from the catalog—same vibe, same label, or close neighbors.
-          </p>
-        </div>
-
-        <Link
-          href="/music"
-          className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/0 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-200 backdrop-blur transition hover:bg-white/5"
-        >
-          Browse all
-          <FiArrowUpRight aria-hidden className="h-4 w-4 text-cyan-200" />
+    <section aria-labelledby="related-tracks" className="mx-auto flex max-w-[1280px] flex-col gap-8 px-8 py-[104px] max-sm:px-5 max-sm:py-14">
+      <div className="flex flex-wrap items-baseline justify-between gap-3">
+        <h2 id="related-tracks" className="m-0 text-[40px] font-extrabold tracking-[-0.03em] max-sm:text-3xl" style={{ fontStretch: "110%" }}>{heading}</h2>
+        <Link href="/music" className="inline-flex min-h-[44px] items-center gap-2 text-sm text-[#A39E98] hover:text-white">
+          View full catalog
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7" /></svg>
         </Link>
       </div>
-
-      <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {tracks.map((track) => (
-          <Link
-            key={track.slug}
-            href={`/music/${track.slug}`}
-            className="group flex items-center gap-4 rounded-2xl border border-white/10 bg-black/20 p-4 transition hover:bg-black/30"
-          >
-            <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-xl border border-white/10 bg-white/5">
-              <Image
-                src={track.coverUrl}
-                alt={`${track.title} cover`}
-                fill
-                sizes="64px"
-                className="object-cover transition duration-300 group-hover:scale-[1.03]"
-              />
-            </div>
-
-            <div className="min-w-0 flex-1">
-              <div className="truncate text-sm font-semibold text-white">
-                {track.title}
-              </div>
-              <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-slate-300">
-                <span className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-2 py-0.5">
-                  {track.labelName}
-                </span>
-                {track.genre ? (
-                  <span className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-2 py-0.5">
-                    {track.genre}
-                  </span>
-                ) : null}
-              </div>
-            </div>
-
-            <FiArrowUpRight
-              aria-hidden
-              className="h-5 w-5 text-slate-400 transition group-hover:text-cyan-200"
-            />
+      <div className="grid grid-cols-[repeat(auto-fill,minmax(180px,1fr))] gap-6">
+        {tracks.map((t) => (
+          <Link key={t.slug} href={`/music/${t.slug}`} className="group flex flex-col gap-3.5">
+            <span className="relative block aspect-square overflow-hidden rounded-md border border-[#2A272D] bg-[#17151A]">
+              <Image src={t.coverUrl} alt={`${t.title} cover`} fill sizes="(min-width: 1024px) 200px, 45vw" className="object-cover transition duration-300 group-hover:scale-[1.03]" />
+            </span>
+            <span className="flex flex-col gap-0.5">
+              <span className="text-[17px] font-bold tracking-[-0.01em]">{t.title}</span>
+              <span className="text-sm text-[#8C8781]">{t.genre ?? t.labelName}</span>
+            </span>
           </Link>
         ))}
       </div>
     </section>
   );
 }
-

@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import { inter } from "@/lib/fonts";
+import { inter, archivo, jetbrainsMono } from "@/lib/fonts";
 import Header from "@/app/components/Header";
 import QuickLinksBar from "@/app/components/QuickLinksBar";
 import Footer from "@/app/components/footer";
@@ -67,7 +67,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={inter.className}
+        className={`${inter.className} ${archivo.variable} ${jetbrainsMono.variable}`}
       >
         <RouteBackdrop />
         <Header />

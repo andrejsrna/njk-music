@@ -1,65 +1,30 @@
 import Link from "next/link";
-import { FiTag } from "react-icons/fi";
 import type { MusicData } from "@/app/hooks/useMusicQuery";
 import { PRIMARY_LABEL, getLabelDefinition } from "@/lib/site";
+import { ACCENT, EYEBROW } from "@/app/music/[slug]/track-utils";
 
-interface LabelInfoSectionProps {
-  label: MusicData["label"];
-}
-
-export default function LabelInfoSection({ label }: LabelInfoSectionProps) {
-  const fallbackLabel = label ?? PRIMARY_LABEL;
-  const labelSlug = fallbackLabel.slug ?? PRIMARY_LABEL.slug;
-  const definition = getLabelDefinition(labelSlug) ?? PRIMARY_LABEL;
-  const labelName = fallbackLabel.name ?? definition.name;
-  const labelShort = fallbackLabel.short ?? definition.short ?? labelName;
-  const highlights = definition.highlights?.slice(0, 2);
-
-  if (!labelName) {
-    return null;
-  }
+export default function LabelInfoSection({ label }: { label: MusicData["label"] }) {
+  const fallback = label ?? PRIMARY_LABEL;
+  const slug = fallback.slug ?? PRIMARY_LABEL.slug;
+  const definition = getLabelDefinition(slug) ?? PRIMARY_LABEL;
+  const name = fallback.name ?? definition.name;
+  const short = fallback.short ?? definition.short ?? name;
+  if (!name) return null;
 
   return (
-    <section
-      aria-labelledby="label-info"
-      className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-soft backdrop-blur"
-    >
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-        <div className="flex items-start gap-3">
-          <span className="rounded-2xl border border-white/10 bg-white/5 p-3 text-cyan-200 backdrop-blur">
-            <FiTag className="h-5 w-5" aria-hidden />
-          </span>
-          <div>
-            <h2
-              id="label-info"
-              className="text-sm font-semibold uppercase tracking-[0.3em] text-slate-300"
-            >
-              Released under {labelShort}
-            </h2>
-            <p className="mt-2 max-w-2xl text-sm text-slate-300">
-              This drop is part of the {labelName} roster — {definition.tagline}.
-            </p>
-          </div>
+    <section className="border-y border-[#1F1D21] bg-[#110F12]">
+      <div className="mx-auto flex max-w-[1280px] flex-wrap items-center justify-between gap-12 px-8 py-[88px] max-sm:px-5 max-sm:py-14">
+        <div className="flex min-w-0 flex-[999_1_520px] flex-col gap-[18px]">
+          <span className={EYEBROW}>03 - Released under</span>
+          <h2 className="m-0 text-[clamp(40px,5vw,72px)] font-black leading-[0.95] tracking-[-0.04em]" style={{ fontStretch: "118%" }}>{short}</h2>
+          <p className="m-0 text-[22px] font-medium tracking-[-0.01em]">{definition.tagline}</p>
+          <p className="m-0 max-w-[560px] text-base text-[#A39E98]">{definition.description}</p>
         </div>
-
-        <Link
-          href={`/labels/${labelSlug}`}
-          className="inline-flex items-center rounded-full border border-white/15 bg-white/0 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-200 backdrop-blur transition hover:bg-white/5"
-        >
+        <Link href={`/labels/${slug}`} className="inline-flex min-h-[52px] items-center gap-2.5 rounded-full px-[26px] text-[15px] font-bold text-white" style={{ background: ACCENT }}>
           Explore label catalog
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7" /></svg>
         </Link>
       </div>
-
-      {highlights && highlights.length > 0 && (
-        <ul className="mt-6 grid gap-3 text-sm text-slate-300 sm:grid-cols-2">
-          {highlights.map((item) => (
-            <li key={item} className="flex items-start gap-2">
-              <span className="mt-1 h-1.5 w-1.5 rounded-full bg-cyan-300" aria-hidden />
-              <span>{item}</span>
-            </li>
-          ))}
-        </ul>
-      )}
     </section>
   );
 }
