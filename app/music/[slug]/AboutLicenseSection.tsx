@@ -5,6 +5,22 @@ import BuyButton from "@/app/music/[slug]/BuyButton";
 import type { ShopProduct } from "@/lib/shop/catalog";
 import { EYEBROW, getMadeFor, isExactLink, isRightsManaged } from "@/app/music/[slug]/track-utils";
 
+// The page already shows tracklist, release facts, platform links and licensing elsewhere,
+// so "About the track" keeps only the narrative (story) sections of the markdown body.
+const DATA_HEADING = /tracklist|release details|streaming|store links|licens|usage|related|faq|what you.?ll get|highlights/i;
+
+function storyOnly(html: string, hasLead: boolean) {
+  const parts = html.replace(/<h1[\s\S]*?<\/h1>/i, "").split(/(?=<h2[\s>])/i);
+  return parts
+    .filter((part, i) => {
+      if (!/^<h2[\s>]/i.test(part)) return !(i === 0 && hasLead); // intro boilerplate duplicates the lead
+      const heading = part.match(/<h2[^>]*>([\s\S]*?)<\/h2>/i)?.[1].replace(/<[^>]+>/g, "") ?? "";
+      return !DATA_HEADING.test(heading);
+    })
+    .join("")
+    .trim();
+}
+
 const Check = () => (
   <svg className="mt-0.5 flex-none" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#141216" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5" /></svg>
 );
@@ -12,6 +28,7 @@ const Check = () => (
 export default function AboutLicenseSection({ track, contentHtml, product }: { track: MusicData; contentHtml: string; product?: ShopProduct | null }) {
   const labelSlug = track.label?.slug ?? PRIMARY_LABEL.slug;
   const labelName = track.label?.name ?? PRIMARY_LABEL.name;
+  const story = storyOnly(contentHtml, Boolean(track.Description));
   const managed = isRightsManaged(labelSlug);
   const madeFor = getMadeFor(labelSlug);
   const buy = [track.Bandcamp, track.Beatport].find(isExactLink);
@@ -42,10 +59,10 @@ export default function AboutLicenseSection({ track, contentHtml, product }: { t
         {track.Description && (
           <p className="m-0 text-[32px] font-medium leading-[1.25] tracking-[-0.02em] [text-wrap:pretty] max-sm:text-2xl">{track.Description}</p>
         )}
-        {contentHtml && (
+        {story && (
           <div
             className="prose prose-invert max-w-[720px] prose-p:text-[#A39E98] prose-a:text-[#F4F1EC] prose-a:underline prose-headings:tracking-tight prose-li:text-[#A39E98]"
-            dangerouslySetInnerHTML={{ __html: contentHtml }}
+            dangerouslySetInnerHTML={{ __html: story }}
           />
         )}
         <div className="flex flex-col gap-3.5 pt-2">
