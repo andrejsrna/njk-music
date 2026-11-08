@@ -7,7 +7,9 @@
 import fs from "node:fs";
 import path from "node:path";
 import { randomBytes } from "node:crypto";
-import { S3Client } from "@aws-sdk/client-s3";
+import { execFileSync } from "node:child_process";
+import os from "node:os";
+import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
 import { Upload } from "@aws-sdk/lib-storage";
 import { PrismaClient } from "@prisma/client";
 import { PrismaPg } from "@prisma/adapter-pg";
@@ -20,7 +22,18 @@ if (!endpoint || !accessKeyId || !secretAccessKey || !bucket) throw new Error("R
 const s3 = new S3Client({ region: "auto", endpoint, forcePathStyle: true, credentials: { accessKeyId, secretAccessKey } });
 
 const DRY = process.argv.includes("--dry-run");
+const PREVIEW_ONLY = process.argv.includes("--preview-only"); // regenerate teaser from the WAV, keep the stored master
 const PRICE = 150;
+const PREVIEW_SECONDS = 90;
+
+/** 90 s, 128 kbps MP3 teaser from the start of the master with a short fade-out. */
+function makePreview(wav: string): Buffer {
+  const out = path.join(os.tmpdir(), `njk-preview-${randomBytes(6).toString("hex")}.mp3`);
+  execFileSync("ffmpeg", ["-y", "-loglevel", "error", "-i", wav, "-t", String(PREVIEW_SECONDS), "-af", `afade=t=out:st=${PREVIEW_SECONDS - 3}:d=3`, "-ac", "2", "-b:a", "128k", out]);
+  const buf = fs.readFileSync(out);
+  fs.unlinkSync(out);
+  return buf;
+}
 
 function collect(args: string[]) {
   const files: string[] = [];
@@ -43,12 +56,21 @@ async function main() {
     const size = fs.statSync(file).size;
     const key = `njk/downloads/${randomBytes(16).toString("hex")}/${slug}.wav`;
     if (DRY) { console.log(`DRY ${slug} "${title}" ${(size / 1e6).toFixed(1)} MB -> ${key}`); continue; }
+    if (PREVIEW_ONLY) {
+      const previewKey = `njk/previews/${randomBytes(8).toString("hex")}/${slug}.mp3`;
+      await s3.send(new PutObjectCommand({ Bucket: bucket!, Key: previewKey, Body: makePreview(file), ContentType: "audio/mpeg" }));
+      await prisma.product.update({ where: { slug }, data: { previewKey } });
+      console.log(`PREVIEW ${slug} -> ${previewKey}`);
+      continue;
+    }
+    const previewKey = `njk/previews/${randomBytes(8).toString("hex")}/${slug}.mp3`;
+    await s3.send(new PutObjectCommand({ Bucket: bucket!, Key: previewKey, Body: makePreview(file), ContentType: "audio/mpeg" }));
     await new Upload({ client: s3, params: { Bucket: bucket!, Key: key, Body: fs.createReadStream(file), ContentType: "audio/wav" } }).done();
     const existing = await prisma.product.findUnique({ where: { slug } });
     await prisma.product.upsert({
       where: { slug },
-      create: { slug, title, priceCents: PRICE, active: true, fileKey: key, fileName: `${slug}.wav`, fileSize: size },
-      update: { title, active: true, fileKey: key, fileName: `${slug}.wav`, fileSize: size },
+      create: { slug, title, priceCents: PRICE, active: true, fileKey: key, fileName: `${slug}.wav`, fileSize: size, previewKey },
+      update: { title, active: true, fileKey: key, fileName: `${slug}.wav`, fileSize: size, previewKey },
     });
     console.log(`OK ${slug} "${title}" ${(size / 1e6).toFixed(1)} MB${existing?.fileKey ? " (replaced file; old key kept in R2: " + existing.fileKey + ")" : ""}`);
   }

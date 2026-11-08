@@ -30,6 +30,7 @@ model Product {
   fileKey    String?
   fileName   String?
   fileSize   Int?
+  previewKey String?
   orderItems OrderItem[]
   createdAt  DateTime    @default(now())
   updatedAt  DateTime    @updatedAt

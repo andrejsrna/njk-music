@@ -204,7 +204,7 @@ export default async function MusicDetailPage({
       <article className="bg-[#0C0B0D] text-[#F4F1EC] [font-family:var(--font-archivo),system-ui,sans-serif]">
         <TrackHero track={track} coverUrl={coverUrl} product={product} />
         <SpecStrip track={track} />
-        <AboutLicenseSection track={track} contentHtml={contentHtml} />
+        <AboutLicenseSection track={track} contentHtml={contentHtml} product={product} />
         <PlatformsSection track={track} />
         <YouTubeEmbedSection source={track.youtube_embed ?? ""} />
         <LabelInfoSection label={track.label} />

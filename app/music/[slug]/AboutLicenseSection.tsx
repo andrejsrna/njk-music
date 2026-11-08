@@ -1,13 +1,15 @@
 import Link from "next/link";
 import type { MusicData } from "@/app/hooks/useMusicQuery";
 import { PRIMARY_LABEL } from "@/lib/site";
+import BuyButton from "@/app/music/[slug]/BuyButton";
+import type { ShopProduct } from "@/lib/shop/catalog";
 import { EYEBROW, getMadeFor, isExactLink, isRightsManaged } from "@/app/music/[slug]/track-utils";
 
 const Check = () => (
   <svg className="mt-0.5 flex-none" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#141216" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5" /></svg>
 );
 
-export default function AboutLicenseSection({ track, contentHtml }: { track: MusicData; contentHtml: string }) {
+export default function AboutLicenseSection({ track, contentHtml, product }: { track: MusicData; contentHtml: string; product?: ShopProduct | null }) {
   const labelSlug = track.label?.slug ?? PRIMARY_LABEL.slug;
   const labelName = track.label?.name ?? PRIMARY_LABEL.name;
   const managed = isRightsManaged(labelSlug);
@@ -23,7 +25,7 @@ export default function AboutLicenseSection({ track, contentHtml }: { track: Mus
         `Credit ${labelName} / NJK Music where required`,
       ]
     : [
-        "Broadcast-safe WAV + MP3 with every download",
+        product ? "Lossless WAV master, delivered instantly after payment" : "Broadcast-safe WAV + MP3 with every download",
         "Unlimited use across streams, podcasts and commercial projects",
         "Monetisation cleared for Twitch, YouTube, TikTok and client work",
         `Credit ${labelName} where required`,
@@ -68,7 +70,9 @@ export default function AboutLicenseSection({ track, contentHtml }: { track: Mus
             <li key={item} className="flex gap-3"><Check /><span>{item}</span></li>
           ))}
         </ul>
-        {buy && (
+        {product ? (
+          <BuyButton slug={product.slug} priceCents={product.priceCents} currency={product.currency} variant="card" label={managed ? "Get a licence (WAV)" : "Buy WAV"} />
+        ) : buy && (
           <a href={buy} target="_blank" rel="noopener noreferrer" className="flex min-h-[52px] items-center justify-center gap-2.5 rounded-xl bg-[#141216] text-[15px] font-bold text-[#F4F1EC]">
             {managed ? `Get a licence on ${buyName}` : `Get it on ${buyName} - lossless`}
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10" /></svg>

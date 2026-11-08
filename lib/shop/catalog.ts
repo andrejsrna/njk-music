@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/prisma";
 
-export type ShopProduct = { slug: string; priceCents: number; currency: string };
+export type ShopProduct = { slug: string; priceCents: number; currency: string; previewUrl: string | null };
 
 /** Product for sale on a release page, or null when there is no master file yet / the DB is unavailable. */
 export async function getShopProduct(slug: string): Promise<ShopProduct | null> {
@@ -8,7 +8,7 @@ export async function getShopProduct(slug: string): Promise<ShopProduct | null> 
   try {
     const p = await prisma.product.findUnique({ where: { slug } });
     if (!p || !p.active || !p.fileKey) return null;
-    return { slug: p.slug, priceCents: p.priceCents, currency: p.currency };
+    return { slug: p.slug, priceCents: p.priceCents, currency: p.currency, previewUrl: p.previewKey ? `/api/shop/preview/${p.slug}` : null };
   } catch (e) {
     console.error("[shop] catalog lookup failed", slug, e instanceof Error ? e.message : e);
     return null;
