@@ -258,3 +258,7 @@ html {
 .eq-bar:nth-child(6) {
   animation-delay: 0.35s;
 }
+
+@keyframes label-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.label-marquee { animation: label-marquee 28s linear infinite; }
+@media (prefers-reduced-motion: reduce) { .label-marquee { animation: none; } }
