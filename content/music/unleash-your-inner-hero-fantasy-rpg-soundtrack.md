@@ -17,7 +17,7 @@
   "Deezer": "https://www.deezer.com/album/1123835022",
   "Tidal": "https://listen.tidal.com/track/570665177",
   "spotify_embed": "<iframe src=\"https://open.spotify.com/embed/album/3k1m5BaV5G0HvEe3mPRxrE\" width=\"100%\" height=\"352\" frameBorder=\"0\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>",
-  "youtube_embed": "https://www.youtube.com/embed/46EXKAr8PuU",
+  "youtube_embed": "https://www.youtube.com/embed/C62qmK_Hagk",
   "Cover": {
     "url": "/images/music/unleash-your-inner-hero-fantasy-rpg-soundtrack.jpg",
     "formats": {
