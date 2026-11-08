@@ -8,13 +8,17 @@
   "packageManager": "npm@10.8.2",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "build": "prisma generate && next build",
+    "start": "prisma migrate deploy && next start",
     "lint": "eslint .",
-    "export:content": "node scripts/strapi-to-markdown.js"
+    "export:content": "node scripts/strapi-to-markdown.js",
+    "shop:upload": "tsx scripts/upload-wav.ts"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.966.0",
+    "@aws-sdk/lib-storage": "^3.1164.0",
+    "@prisma/adapter-pg": "^7.10.1",
+    "@prisma/client": "^7.10.1",
     "@radix-ui/react-slot": "^1.2.4",
     "@strapi/blocks-react-renderer": "^1.0.2",
     "@tailwindcss/typography": "^0.5.19",
@@ -26,6 +30,8 @@
     "lucide-react": "^0.562.0",
     "marked": "^17.0.1",
     "next": "^16.1.1",
+    "nodemailer": "^10.4.0",
+    "pg": "^8.23.1",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "react-icons": "^5.5.0",
@@ -38,13 +44,17 @@
     "@eslint/eslintrc": "^3.3.3",
     "@tailwindcss/postcss": "^4.1.18",
     "@types/node": "^25",
+    "@types/nodemailer": "^8.0.2",
+    "@types/pg": "^8.23.1",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "@types/remarkable": "^2.0.8",
     "eslint": "^9.39.2",
     "eslint-config-next": "16.1.1",
     "postcss": "^8.5.6",
+    "prisma": "^7.10.1",
     "tailwindcss": "^4.1.18",
+    "tsx": "^4.23.15",
     "typescript": "^5.9.3"
   }
 }

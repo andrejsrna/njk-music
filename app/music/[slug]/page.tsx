@@ -15,6 +15,7 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { marked } from "marked";
 import { PRIMARY_LABEL, SITE_NAME } from "@/lib/site";
+import { getShopProduct } from "@/lib/shop/catalog";
 
 const notFoundMetadata = {
   title: `Track Not Found - ${SITE_NAME}`,
@@ -113,6 +114,7 @@ export default async function MusicDetailPage({
 }) {
   const { slug } = await params;
   const track = (await getMusicBySlug(slug)) as MusicData | undefined;
+  const product = await getShopProduct(slug);
 
   if (!track) {
     notFound();
@@ -200,7 +202,7 @@ export default async function MusicDetailPage({
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbData) }} />
 
       <article className="bg-[#0C0B0D] text-[#F4F1EC] [font-family:var(--font-archivo),system-ui,sans-serif]">
-        <TrackHero track={track} coverUrl={coverUrl} />
+        <TrackHero track={track} coverUrl={coverUrl} product={product} />
         <SpecStrip track={track} />
         <AboutLicenseSection track={track} contentHtml={contentHtml} />
         <PlatformsSection track={track} />

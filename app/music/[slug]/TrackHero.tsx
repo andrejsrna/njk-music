@@ -4,14 +4,17 @@ import type { MusicData } from "@/app/hooks/useMusicQuery";
 import { PRIMARY_LABEL } from "@/lib/site";
 import PreviewPlayer from "@/app/music/[slug]/PreviewPlayer";
 import ShareButton from "@/app/music/[slug]/ShareButton";
+import BuyButton from "@/app/music/[slug]/BuyButton";
+import type { ShopProduct } from "@/lib/shop/catalog";
 import { ACCENT, MONO, formatReleaseDate, getTrackFacts, isExactLink } from "@/app/music/[slug]/track-utils";
 
 interface TrackHeroProps {
   track: MusicData;
   coverUrl?: string | null;
+  product?: ShopProduct | null;
 }
 
-export default function TrackHero({ track, coverUrl }: TrackHeroProps) {
+export default function TrackHero({ track, coverUrl, product }: TrackHeroProps) {
   const facts = getTrackFacts(track);
   const labelName = track.label?.name ?? PRIMARY_LABEL.name;
   const labelShort = track.label?.short ?? PRIMARY_LABEL.short ?? labelName;
@@ -79,6 +82,7 @@ export default function TrackHero({ track, coverUrl }: TrackHeroProps) {
           {track.previewAudio ? <PreviewPlayer src={track.previewAudio} label={track.Title} /> : null}
 
           <div className="flex flex-wrap gap-3">
+            {product && <BuyButton slug={product.slug} priceCents={product.priceCents} currency={product.currency} />}
             {stream && (
               <a href={stream[1] as string} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[52px] items-center gap-2.5 rounded-full bg-[#F4F1EC] px-[26px] text-[15px] font-bold text-[#0C0B0D] hover:bg-white">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3 18v-6a9 9 0 0 1 18 0v6" /><path d="M21 19a2 2 0 0 1-2 2h-1v-6h3zM3 19a2 2 0 0 0 2 2h1v-6H3z" /></svg>
