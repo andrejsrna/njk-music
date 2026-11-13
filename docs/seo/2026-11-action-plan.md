@@ -119,3 +119,18 @@ Pred písaním načítať oficiálnu dokumentáciu a použiť len overené fakty
 - Pôvod RU/IR návštev.
 - Či je 302 redirect v Cloudflare, Traefik alebo Coolify (nepozeral som konfiguráciu).
 - Efekt redizajnu zo 13. 11. a nových titulov Eshopu.
+
+## 7. Možnosť rozšírenia: exporty vyhľadávaných fraz z lokálneho Dockeru (M_SEARCH)
+
+Stav: **dáta zatiaľ nespracované.** Na tomto serveri som kontajner ani súbory s názvom M_SEARCH nenašiel (kontrolované: bežiace kontajnery, ich premenné, volumes a súborový systém), takže ide o lokálny Docker používateľa. Obsah som nevidel a nič z neho v pláne netvrdím.
+
+Čo by priniesli a prečo: GSC ukazuje len ~58 dopytov a 98 % je brand (§2). Zoznam reálne hľadaných fráz by zaplnil práve to, čo chýba, teda nebrandovú stranu.
+
+Postup po dodaní exportov:
+1. Zistiť, čo export je (zdroj, krajina/jazyk, dátum, metrika: objem, trend, alebo len zoznam fráz). Bez toho sa údaje nedajú porovnávať.
+2. Zlúčiť s GSC dopytmi a existujúcimi slugmi v `content/posts` a `content/music`. Frázy s existujúcou stránkou idú do P0/P1 (snippet alebo sekcia), len frázy bez pokrytia sú kandidáti na nový obsah.
+3. Zoskupiť podľa zámeru: čo je liquid DnB, hudba pre gaming/stream, no copyright / Content ID, žáner + použitie (racing, FPS, devlog), brand.
+4. Prioritizovať podľa objemu z exportu, nie podľa konkurencie slov. Ak export neobsahuje objem, označiť priority ako hypotézu.
+5. Zapísať do samostatného `docs/seo/keyword-research-<dátum>.md` (jeden dokument na klaster) a prepojiť odtiaľto. Nasadené položky potom do `gsc-changelog.md`.
+
+Ak ide o frázy z vyhľadávania priamo na webe (`/music?q=`), ich logovanie dnes neexistuje. Dalo by sa pridať, ale zbiera to dáta až odteraz.
