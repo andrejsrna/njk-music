@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import LabelHeroGL from "@/app/labels/[slug]/LabelHeroGL";
 import Link from "next/link";
 import type { IconType } from "react-icons";
 import {
@@ -155,23 +156,24 @@ const storeContacts: StoreContact[] = [
 
 export default function PurchaseIssuesPage() {
   return (
-    <div className="min-h-screen bg-transparent text-white">
-      <section className="py-16">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-10 shadow-soft backdrop-blur">
+    <div className="overflow-x-clip bg-[#050405] text-[#F4F1EC] [font-family:var(--font-archivo),system-ui,sans-serif]">
+      <section className="relative overflow-hidden border-b-2 border-[#F4F1EC] bg-[#0A0506] py-16 sm:py-24">
+        <LabelHeroGL accent="#C62828" intensity={0.55} />
+        <div className="relative z-[2] mx-auto max-w-[1360px] px-5 sm:px-8">
+          <div className="max-w-[900px]">
             <Link
               href="/help"
-              className="inline-flex items-center gap-2 text-sm font-medium text-cyan-200 hover:text-cyan-100"
+              className="inline-flex items-center gap-2 text-sm font-medium text-[#FF6B5E] hover:text-white"
             >
               <FaChevronLeft className="h-4 w-4" aria-hidden />
               Back to Help Centre
             </Link>
 
             <div className="mt-8 max-w-3xl space-y-4">
-              <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
+              <h1 className="text-[clamp(40px,6vw,88px)] font-black uppercase leading-[0.9] tracking-[-0.05em] [font-stretch:125%] [overflow-wrap:anywhere]">
                 Purchase issues
               </h1>
-              <p className="text-base text-slate-300 sm:text-lg">
+              <p className="text-base text-[#A39E98] sm:text-lg">
                 Trouble checking out, downloading, or getting an invoice? Start here. For most issues, the fastest path
                 is: collect your order details → contact the store support → contact NJK Music if you need licensing or
                 Content ID help.
@@ -181,19 +183,19 @@ export default function PurchaseIssuesPage() {
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 href="/help/purchase-guide"
-                className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/0 px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-200 backdrop-blur transition hover:bg-white/5"
+                className="inline-flex items-center justify-center border border-[#F4F1EC] bg-transparent px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-[#F4F1EC] transition hover:bg-[#F4F1EC] hover:text-[#050405]"
               >
                 Purchase guide
               </Link>
               <Link
                 href="/help/content-id"
-                className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/0 px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-200 backdrop-blur transition hover:bg-white/5"
+                className="inline-flex items-center justify-center border border-[#F4F1EC] bg-transparent px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-[#F4F1EC] transition hover:bg-[#F4F1EC] hover:text-[#050405]"
               >
                 Content ID guide
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-cyan-500 to-fuchsia-500 px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-white shadow-soft transition hover:from-cyan-400 hover:to-fuchsia-400"
+                className="inline-flex items-center justify-center bg-[#C62828] px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-white transition hover:bg-[#E03535]"
               >
                 Contact support
               </Link>
@@ -202,27 +204,27 @@ export default function PurchaseIssuesPage() {
         </div>
       </section>
 
-      <div className="mx-auto max-w-6xl space-y-16 px-4 pb-16 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1360px] space-y-16 px-5 py-16 sm:px-8 sm:py-20">
         <section aria-labelledby="before-you-start">
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-8 shadow-soft backdrop-blur">
+          <div className="border border-[#2A272D] bg-[#0B0A0C] p-8">
             <div className="flex items-start gap-4">
-              <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-rose-500/10 text-rose-200">
+              <span className="inline-flex h-12 w-12 items-center justify-center border border-[#2A272D] bg-[#C62828]/20 text-[#FF6B5E]">
                 <FaExclamationTriangle className="h-5 w-5" aria-hidden />
               </span>
               <div className="space-y-2">
                 <h2 id="before-you-start" className="text-xl font-semibold text-white">
                   Before you start
                 </h2>
-                <p className="max-w-3xl text-sm text-slate-300">
+                <p className="max-w-3xl text-sm text-[#A39E98]">
                   Having this info ready saves a lot of back-and-forth with store support and with us.
                 </p>
               </div>
             </div>
 
-            <ul className="mt-6 grid gap-3 text-sm text-slate-300 sm:grid-cols-2">
+            <ul className="mt-6 grid gap-3 text-sm text-[#A39E98] sm:grid-cols-2">
               {beforeYouStart.map((item) => (
                 <li key={item} className="flex items-start gap-3">
-                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-rose-200" aria-hidden />
+                  <span className="mt-2 h-1.5 w-1.5 bg-rose-200" aria-hidden />
                   <span>{item}</span>
                 </li>
               ))}
@@ -232,10 +234,10 @@ export default function PurchaseIssuesPage() {
 
         <section aria-labelledby="issues">
           <div>
-            <h2 id="issues" className="text-2xl font-semibold tracking-tight text-white">
+            <h2 id="issues" className="text-3xl font-black uppercase tracking-[-0.03em] [font-stretch:115%]">
               Common issues
             </h2>
-            <p className="mt-2 text-sm text-slate-300">
+            <p className="mt-2 text-sm text-[#A39E98]">
               Choose the closest problem and follow the steps. If you’re billed multiple times, treat it as high
               priority and contact the store.
             </p>
@@ -247,12 +249,12 @@ export default function PurchaseIssuesPage() {
               return (
                 <section key={group.title}>
                   <div className="flex items-start gap-3">
-                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-cyan-200 backdrop-blur">
+                    <span className="inline-flex h-10 w-10 items-center justify-center border border-[#2A272D] bg-[#0B0A0C] text-[#FF6B5E]">
                       <GroupIcon className="h-5 w-5" aria-hidden />
                     </span>
                     <div>
                       <h3 className="text-xl font-semibold text-white">{group.title}</h3>
-                      <p className="mt-1 text-sm text-slate-300">{group.description}</p>
+                      <p className="mt-1 text-sm text-[#A39E98]">{group.description}</p>
                     </div>
                   </div>
 
@@ -260,23 +262,23 @@ export default function PurchaseIssuesPage() {
                     {group.issues.map((issue) => (
                       <div
                         key={issue.title}
-                        className={`rounded-3xl border bg-white/5 p-6 shadow-soft backdrop-blur ${
-                          issue.urgent ? "border-rose-300/30" : "border-white/10"
+                        className={` border bg-[#0B0A0C] p-6   ${
+                          issue.urgent ? "border-rose-300/30" : "border-[#2A272D]"
                         }`}
                       >
                         <div className="flex items-start justify-between gap-4">
                           <h4 className="text-lg font-semibold text-white">{issue.title}</h4>
                           {issue.urgent ? (
-                            <span className="inline-flex items-center rounded-full border border-rose-300/30 bg-rose-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-rose-200">
+                            <span className="inline-flex items-center border border-rose-300/30 bg-[#C62828]/20 px-3 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-[#FF6B5E]">
                               High priority
                             </span>
                           ) : null}
                         </div>
-                        <p className="mt-2 text-sm text-slate-300">{issue.description}</p>
-                        <ul className="mt-5 space-y-2 text-sm text-slate-300">
+                        <p className="mt-2 text-sm text-[#A39E98]">{issue.description}</p>
+                        <ul className="mt-5 space-y-2 text-sm text-[#A39E98]">
                           {issue.steps.map((step, index) => (
                             <li key={step} className="flex items-start gap-3">
-                              <span className="mt-0.5 text-xs font-semibold uppercase tracking-[0.3em] text-cyan-200">
+                              <span className="mt-0.5 text-xs font-semibold uppercase tracking-[0.3em] text-[#FF6B5E]">
                                 {(index + 1).toString().padStart(2, "0")}
                               </span>
                               <span>{step}</span>
@@ -293,16 +295,16 @@ export default function PurchaseIssuesPage() {
         </section>
 
         <section aria-labelledby="store-support">
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-8 shadow-soft backdrop-blur">
+          <div className="border border-[#2A272D] bg-[#0B0A0C] p-8">
             <div className="flex items-start gap-4">
-              <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-fuchsia-200 backdrop-blur">
+              <span className="inline-flex h-12 w-12 items-center justify-center border border-[#2A272D] bg-[#0B0A0C] text-[#FF6B5E]">
                 <FaReceipt className="h-5 w-5" aria-hidden />
               </span>
               <div className="space-y-2">
                 <h2 id="store-support" className="text-xl font-semibold text-white">
                   Store support links
                 </h2>
-                <p className="max-w-3xl text-sm text-slate-300">
+                <p className="max-w-3xl text-sm text-[#A39E98]">
                   Stores control checkout, refunds, invoices, and download delivery. For payment or download issues,
                   contact the store first.
                 </p>
@@ -318,18 +320,18 @@ export default function PurchaseIssuesPage() {
                     href={contact.url}
                     target="_blank"
                     rel="noreferrer"
-                    className="group rounded-2xl border border-white/10 bg-black/20 p-5 transition hover:bg-black/30"
+                    className="group border border-[#2A272D] bg-black/20 p-5 transition hover:bg-black/30"
                   >
                     <div className="flex items-start gap-3">
-                      <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-cyan-200 backdrop-blur">
+                      <span className="inline-flex h-10 w-10 items-center justify-center border border-[#2A272D] bg-[#0B0A0C] text-[#FF6B5E]">
                         <Icon className="h-5 w-5" aria-hidden />
                       </span>
                       <div className="min-w-0">
                         <div className="text-sm font-semibold text-white">{contact.name}</div>
-                        <div className="mt-1 text-sm text-slate-300">
+                        <div className="mt-1 text-sm text-[#A39E98]">
                           {contact.supportLabel}
                         </div>
-                        <div className="mt-3 inline-flex items-center gap-2 text-sm font-medium text-cyan-200 group-hover:text-cyan-100">
+                        <div className="mt-3 inline-flex items-center gap-2 text-sm font-medium text-[#FF6B5E] group-hover:text-white">
                           Open support
                           <FaExternalLinkAlt className="h-3.5 w-3.5" aria-hidden />
                         </div>
@@ -343,16 +345,16 @@ export default function PurchaseIssuesPage() {
         </section>
 
         <section aria-labelledby="still-need-help">
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-10 shadow-soft backdrop-blur">
+          <div className="border border-[#2A272D] bg-[#0B0A0C] p-10">
             <div className="mx-auto flex max-w-4xl flex-col items-center gap-6 text-center">
-              <span className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/5 text-fuchsia-200 backdrop-blur">
+              <span className="inline-flex h-12 w-12 items-center justify-center border border-[#2A272D] bg-[#0B0A0C] text-[#FF6B5E]">
                 <FaEnvelope className="h-6 w-6" aria-hidden />
               </span>
               <div className="space-y-3">
-                <h2 id="still-need-help" className="text-2xl font-semibold tracking-tight text-white">
+                <h2 id="still-need-help" className="text-3xl font-black uppercase tracking-[-0.03em] [font-stretch:115%]">
                   Still need help?
                 </h2>
-                <p className="text-sm text-slate-300 sm:text-base">
+                <p className="text-sm text-[#A39E98] sm:text-base">
                   If the issue is about licensing, Content ID, or whitelisting, contact us with your release link and
                   proof of purchase/licence. If it’s strictly a store checkout/download issue, store support is usually
                   fastest.
@@ -361,14 +363,14 @@ export default function PurchaseIssuesPage() {
               <div className="flex flex-col gap-3 sm:flex-row">
                 <a
                   href="mailto:support@njkmusic.com"
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-cyan-500 to-fuchsia-500 px-6 py-3 text-sm font-semibold text-white shadow-soft transition hover:from-cyan-400 hover:to-fuchsia-400"
+                  className="inline-flex items-center justify-center gap-2 bg-[#C62828] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#E03535]"
                 >
                   <FaEnvelope className="h-4 w-4" aria-hidden />
                   Email support
                 </a>
                 <Link
                   href="/contact"
-                  className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/0 px-6 py-3 text-sm font-semibold text-slate-200 backdrop-blur transition hover:bg-white/5"
+                  className="inline-flex items-center justify-center gap-2 border border-[#F4F1EC] bg-transparent px-6 py-3 text-sm font-semibold text-[#F4F1EC] transition hover:bg-[#F4F1EC] hover:text-[#050405]"
                 >
                   Contact form
                 </Link>

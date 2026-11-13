@@ -1,5 +1,6 @@
 "use client";
 
+import LabelHeroGL from "@/app/labels/[slug]/LabelHeroGL";
 import Link from "next/link";
 import CopyButton from "@/app/components/CopyButton";
 import type { IconType } from "react-icons";
@@ -116,27 +117,28 @@ Please whitelist my channel (or clear this specific claim) and let me know once 
 
 export default function ContentIdPageClient() {
   return (
-    <div className="min-h-screen bg-transparent text-white">
-      <section className="py-16">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-10 shadow-soft backdrop-blur">
+    <div className="overflow-x-clip bg-[#050405] text-[#F4F1EC] [font-family:var(--font-archivo),system-ui,sans-serif]">
+      <section className="relative overflow-hidden border-b-2 border-[#F4F1EC] bg-[#0A0506] py-16 sm:py-24">
+        <LabelHeroGL accent="#C62828" intensity={0.55} />
+        <div className="relative z-[2] mx-auto max-w-[1360px] px-5 sm:px-8">
+          <div className="max-w-[900px]">
             <Link
               href="/help"
-              className="inline-flex items-center gap-2 text-sm font-medium text-cyan-200 hover:text-cyan-100"
+              className="flex w-fit items-center gap-2 text-sm font-medium text-[#FF6B5E] hover:text-white"
             >
               <FaChevronLeft className="h-4 w-4" aria-hidden />
               Back to Help Centre
             </Link>
 
-            <span className="mt-8 inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-slate-200 backdrop-blur">
+            <span className="mt-4 inline-flex w-fit items-center gap-2 border border-[#2A272D] bg-[#0B0A0C] px-3 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-[#F4F1EC]">
               Content ID
             </span>
 
             <div className="mt-6 max-w-3xl space-y-4">
-              <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
+              <h1 className="text-[clamp(40px,6vw,88px)] font-black uppercase leading-[0.9] tracking-[-0.05em] [font-stretch:125%] [overflow-wrap:anywhere]">
                 Content ID &amp; claims
               </h1>
-              <p className="text-base text-slate-300 sm:text-lg">
+              <p className="text-base text-[#A39E98] sm:text-lg">
                 Content ID is an automated system that matches audio in videos. Depending on the label, some releases
                 are creator-ready (royalty-free) and some are rights-managed and monetized—meaning licensed creators may
                 need a whitelist to avoid claims.
@@ -146,19 +148,19 @@ export default function ContentIdPageClient() {
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-cyan-500 to-fuchsia-500 px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-white shadow-soft transition hover:from-cyan-400 hover:to-fuchsia-400"
+                className="inline-flex items-center justify-center bg-[#C62828] px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-white transition hover:bg-[#E03535]"
               >
                 Request whitelist / support
               </Link>
               <Link
                 href="/help/purchase-guide"
-                className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/0 px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-200 backdrop-blur transition hover:bg-white/5"
+                className="inline-flex items-center justify-center border border-[#F4F1EC] bg-transparent px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-[#F4F1EC] transition hover:bg-[#F4F1EC] hover:text-[#050405]"
               >
                 Purchase guide
               </Link>
               <Link
                 href="/help/attribution"
-                className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/0 px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-200 backdrop-blur transition hover:bg-white/5"
+                className="inline-flex items-center justify-center border border-[#F4F1EC] bg-transparent px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-[#F4F1EC] transition hover:bg-[#F4F1EC] hover:text-[#050405]"
               >
                 Attribution guide
               </Link>
@@ -167,13 +169,13 @@ export default function ContentIdPageClient() {
         </div>
       </section>
 
-      <div className="mx-auto max-w-6xl space-y-16 px-4 pb-16 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1360px] space-y-16 px-5 py-16 sm:px-8 sm:py-20">
         <section aria-labelledby="prevention">
           <div>
-            <h2 id="prevention" className="text-2xl font-semibold tracking-tight text-white">
+            <h2 id="prevention" className="text-3xl font-black uppercase tracking-[-0.03em] [font-stretch:115%]">
               Prevent most claims
             </h2>
-            <p className="mt-2 text-sm text-slate-300">
+            <p className="mt-2 text-sm text-[#A39E98]">
               A bit of prep goes a long way—especially for monetized channels and rights-managed catalogs.
             </p>
           </div>
@@ -184,13 +186,13 @@ export default function ContentIdPageClient() {
               return (
                 <div
                   key={tip.title}
-                  className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-soft backdrop-blur"
+                  className="border border-[#2A272D] bg-[#0B0A0C] p-6"
                 >
-                  <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-cyan-200 backdrop-blur">
+                  <span className="inline-flex h-12 w-12 items-center justify-center border border-[#2A272D] bg-[#0B0A0C] text-[#FF6B5E]">
                     <Icon className="h-5 w-5" aria-hidden />
                   </span>
                   <h3 className="mt-5 text-lg font-semibold text-white">{tip.title}</h3>
-                  <p className="mt-2 text-sm text-slate-300">{tip.description}</p>
+                  <p className="mt-2 text-sm text-[#A39E98]">{tip.description}</p>
                 </div>
               );
             })}
@@ -200,14 +202,14 @@ export default function ContentIdPageClient() {
         <section aria-labelledby="claim-types">
           <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <h2 id="claim-types" className="text-2xl font-semibold tracking-tight text-white">
+              <h2 id="claim-types" className="text-3xl font-black uppercase tracking-[-0.03em] [font-stretch:115%]">
                 If you received a claim
               </h2>
-              <p className="mt-2 text-sm text-slate-300">
+              <p className="mt-2 text-sm text-[#A39E98]">
                 Pick the closest scenario and follow the steps. When in doubt, contact us first.
               </p>
             </div>
-            <span className="text-xs font-medium uppercase tracking-[0.3em] text-slate-300">
+            <span className="text-xs font-medium uppercase tracking-[0.3em] text-[#A39E98]">
               Fast paths
             </span>
           </div>
@@ -218,17 +220,17 @@ export default function ContentIdPageClient() {
               return (
                 <div
                   key={claim.title}
-                  className="flex h-full flex-col rounded-3xl border border-white/10 bg-white/5 p-6 shadow-soft backdrop-blur"
+                  className="flex h-full flex-col border border-[#2A272D] bg-[#0B0A0C] p-6"
                 >
                   <div className="flex items-start justify-between gap-4">
-                    <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-fuchsia-200 backdrop-blur">
+                    <span className="inline-flex h-12 w-12 items-center justify-center border border-[#2A272D] bg-[#0B0A0C] text-[#FF6B5E]">
                       <Icon className="h-5 w-5" aria-hidden />
                     </span>
                     <span
-                      className={`inline-flex items-center rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-[0.3em] ${
+                      className={`inline-flex items-center  border px-3 py-1 text-xs font-semibold uppercase tracking-[0.3em] ${
                         claim.urgency === "high"
-                          ? "border-rose-300/30 bg-rose-500/10 text-rose-200"
-                          : "border-white/10 bg-white/5 text-slate-200"
+                          ? "border-rose-300/30 bg-[#C62828]/20 text-[#FF6B5E]"
+                          : "border-[#2A272D] bg-[#0B0A0C] text-[#F4F1EC]"
                       }`}
                     >
                       {claim.urgency === "high" ? "High priority" : "Medium priority"}
@@ -236,12 +238,12 @@ export default function ContentIdPageClient() {
                   </div>
 
                   <h3 className="mt-5 text-lg font-semibold text-white">{claim.title}</h3>
-                  <p className="mt-2 text-sm text-slate-300">{claim.description}</p>
+                  <p className="mt-2 text-sm text-[#A39E98]">{claim.description}</p>
 
-                  <ul className="mt-5 space-y-2 text-sm text-slate-300">
+                  <ul className="mt-5 space-y-2 text-sm text-[#A39E98]">
                     {claim.steps.map((step, index) => (
                       <li key={step} className="flex items-start gap-3">
-                        <span className="mt-0.5 text-xs font-semibold uppercase tracking-[0.3em] text-cyan-200">
+                        <span className="mt-0.5 text-xs font-semibold uppercase tracking-[0.3em] text-[#FF6B5E]">
                           {(index + 1).toString().padStart(2, "0")}
                         </span>
                         <span>{step}</span>
@@ -252,7 +254,7 @@ export default function ContentIdPageClient() {
                   <div className="mt-auto pt-6">
                     <Link
                       href="/contact"
-                      className="inline-flex w-full items-center justify-center rounded-full border border-white/15 bg-white/0 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-200 backdrop-blur transition hover:bg-white/5"
+                      className="inline-flex w-full items-center justify-center border border-[#F4F1EC] bg-transparent px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-[#F4F1EC] transition hover:bg-[#F4F1EC] hover:text-[#050405]"
                     >
                       Contact support
                     </Link>
@@ -264,23 +266,23 @@ export default function ContentIdPageClient() {
         </section>
 
         <section aria-labelledby="template">
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-8 shadow-soft backdrop-blur">
+          <div className="border border-[#2A272D] bg-[#0B0A0C] p-8">
             <div className="flex items-center gap-3">
-              <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-cyan-200 backdrop-blur">
+              <span className="inline-flex h-12 w-12 items-center justify-center border border-[#2A272D] bg-[#0B0A0C] text-[#FF6B5E]">
                 <FaClipboard className="h-5 w-5" aria-hidden />
               </span>
               <div>
                 <h2 id="template" className="text-xl font-semibold text-white">
                   Claim email template
                 </h2>
-                <p className="mt-1 text-sm text-slate-300">
+                <p className="mt-1 text-sm text-[#A39E98]">
                   Paste this into your email to us (or use it as your support message).
                 </p>
               </div>
             </div>
 
-            <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-black/40">
-              <pre className="whitespace-pre-wrap p-6 text-sm text-slate-200">{disputeTemplate}</pre>
+            <div className="mt-6 overflow-hidden border border-[#2A272D] bg-black/40">
+              <pre className="whitespace-pre-wrap p-6 text-sm text-[#F4F1EC]">{disputeTemplate}</pre>
             </div>
 
             <CopyButton template={disputeTemplate} />
@@ -288,16 +290,16 @@ export default function ContentIdPageClient() {
         </section>
 
         <section aria-labelledby="important">
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-8 shadow-soft backdrop-blur">
+          <div className="border border-[#2A272D] bg-[#0B0A0C] p-8">
             <div className="flex items-start gap-4">
-              <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-rose-500/10 text-rose-200">
+              <span className="inline-flex h-12 w-12 items-center justify-center border border-[#2A272D] bg-[#C62828]/20 text-[#FF6B5E]">
                 <FaExclamationTriangle className="h-5 w-5" aria-hidden />
               </span>
               <div className="space-y-2">
                 <h2 id="important" className="text-xl font-semibold text-white">
                   Important
                 </h2>
-                <p className="max-w-3xl text-sm text-slate-300">
+                <p className="max-w-3xl text-sm text-[#A39E98]">
                   Don’t dispute blindly. If you’re unsure whether the release is royalty-free or rights-managed, contact
                   us first and include the claim details. We’ll tell you the fastest safe path.
                 </p>
@@ -307,16 +309,16 @@ export default function ContentIdPageClient() {
         </section>
 
         <section aria-labelledby="help">
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-10 shadow-soft backdrop-blur">
+          <div className="border border-[#2A272D] bg-[#0B0A0C] p-10">
             <div className="mx-auto flex max-w-4xl flex-col items-center gap-6 text-center">
-              <span className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/5 text-fuchsia-200 backdrop-blur">
+              <span className="inline-flex h-12 w-12 items-center justify-center border border-[#2A272D] bg-[#0B0A0C] text-[#FF6B5E]">
                 <FaEnvelope className="h-6 w-6" aria-hidden />
               </span>
               <div className="space-y-3">
-                <h2 id="help" className="text-2xl font-semibold tracking-tight text-white">
+                <h2 id="help" className="text-3xl font-black uppercase tracking-[-0.03em] [font-stretch:115%]">
                   Need help resolving a claim?
                 </h2>
-                <p className="text-sm text-slate-300 sm:text-base">
+                <p className="text-sm text-[#A39E98] sm:text-base">
                   Send us your channel URL, the claimed video URL, and the claim details. If the release is licensed,
                   include your receipt/order ID so we can whitelist you quickly.
                 </p>
@@ -324,13 +326,13 @@ export default function ContentIdPageClient() {
               <div className="flex flex-col gap-3 sm:flex-row">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-cyan-500 to-fuchsia-500 px-6 py-3 text-sm font-semibold text-white shadow-soft transition hover:from-cyan-400 hover:to-fuchsia-400"
+                  className="inline-flex items-center justify-center bg-[#C62828] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#E03535]"
                 >
                   Open contact page
                 </Link>
                 <a
                   href="mailto:support@njkmusic.com"
-                  className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/0 px-6 py-3 text-sm font-semibold text-slate-200 backdrop-blur transition hover:bg-white/5"
+                  className="inline-flex items-center justify-center gap-2 border border-[#F4F1EC] bg-transparent px-6 py-3 text-sm font-semibold text-[#F4F1EC] transition hover:bg-[#F4F1EC] hover:text-[#050405]"
                 >
                   <FaEnvelope className="h-4 w-4" aria-hidden />
                   Email support@njkmusic.com
