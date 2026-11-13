@@ -1,10 +1,20 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { getMusicData } from "@/app/hooks/useMusicQuery";
 import { getCanonicalUrl } from "@/lib/env";
 import { LABEL_LIST, SITE_NAME } from "@/lib/site";
 import { slugify } from "@/lib/utils";
+import LabelHeroGL from "@/app/labels/[slug]/LabelHeroGL";
+import NewsletterCta from "@/app/components/home/NewsletterCta";
+
+const ACCENTS: Record<string, [string, string]> = {
+  "no-copyright-gaming-music": ["#C62828", "#FF6B5E"],
+  "chill-music-motif": ["#0E7490", "#5EE0F5"],
+  "calm-spirit-music": ["#7C3AED", "#B794F6"],
+  "jazz-and-bass": ["#C2410C", "#FF9A62"],
+  koldman: ["#C62828", "#FF6B5E"],
+  "ludovky-od-andreja": ["#C2410C", "#FF9A62"],
+};
 
 const pageTitle = "Explore NJK Music Labels";
 const pageDescription =
@@ -65,85 +75,64 @@ export default async function LabelsIndexPage() {
     })),
   };
 
+  const MONO = "font-[family-name:var(--font-jetbrains)]";
+  const h2 = { fontStretch: "125%" } as const;
+  const total = Object.values(releaseCounts).reduce((n, c) => n + c, 0);
+  const byCount = [...labels].sort((a, b) => (releaseCounts[b.slug] ?? 0) - (releaseCounts[a.slug] ?? 0));
+
   return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }}
-      />
-      <div className="min-h-screen bg-transparent py-16 text-white">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <header className="mb-12 space-y-5 text-center">
-            <span className="mx-auto inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.35em] text-slate-200 backdrop-blur">
-              Labels
-            </span>
-            <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-              NJK Music label roster
-            </h1>
-            <p className="mx-auto max-w-3xl text-base text-slate-300 sm:text-lg">
-              Explore each label mood in the NJK Music ecosystem and jump into its latest releases.
-            </p>
-          </header>
+    <div className="bg-[#050405] text-[#F4F1EC] [font-family:var(--font-archivo),system-ui,sans-serif]">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }} />
 
-          <section className="grid gap-8 lg:grid-cols-2">
-            {labels.map((label) => {
-              const count = releaseCounts[label.slug] ?? 0;
-
-              return (
-                <article
-                  key={label.slug}
-                  className="flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-soft backdrop-blur transition hover:border-cyan-300/40 hover:bg-white/10"
-                >
-                  <div className="flex flex-1 flex-col gap-6 p-8">
-                    <div className="space-y-3">
-                      <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.35em] text-slate-200 backdrop-blur">
-                        {label.short ?? label.name}
-                      </span>
-                      <div className="space-y-2">
-                        <div className="flex items-center gap-3">
-                          {label.heroImage && (
-                            <Image
-                              src={label.heroImage}
-                              alt={`${label.name} icon`}
-                              width={40}
-                              height={40}
-                              className="h-10 w-10 rounded-xl border border-white/10 object-cover"
-                            />
-                          )}
-                          <h2 className="text-2xl font-semibold tracking-tight text-white">
-                            {label.name}
-                          </h2>
-                        </div>
-                        <p className="text-sm uppercase tracking-[0.3em] text-slate-300">
-                          {label.tagline}
-                        </p>
-                      </div>
-                      <p className="text-sm leading-relaxed text-slate-300 sm:text-base">
-                        {label.description}
-                      </p>
-                    </div>
-
-                    <div className="mt-auto">
-                      <Link
-                        href={`/labels/${label.slug}`}
-                        className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-fuchsia-500 to-cyan-400 px-4 py-2 text-sm font-semibold uppercase tracking-[0.3em] text-slate-950 transition hover:opacity-90"
-                      >
-                        View label ({count}) →
-                      </Link>
-                    </div>
-                  </div>
-                </article>
-              );
-            })}
-
-            {labels.length === 0 && (
-              <p className="rounded-3xl border border-dashed border-white/15 bg-white/5 p-8 text-center text-sm text-slate-300 shadow-soft backdrop-blur sm:text-base">
-                Label roster updates are coming soon. Check back shortly to explore the NJK Music ecosystem.
-              </p>
-            )}
-          </section>
+      <section className="relative flex min-h-[560px] flex-col overflow-hidden border-b-2 border-[#F4F1EC] bg-[#0A0506] sm:min-h-[640px]">
+        <LabelHeroGL accent="#C62828" />
+        <div className="pointer-events-none relative z-[2] mx-auto flex w-full max-w-[1360px] flex-1 flex-col justify-end gap-7 px-5 pb-12 pt-16 sm:px-8">
+          <div className={`flex flex-wrap gap-2 text-xs font-bold uppercase tracking-[0.12em] ${MONO}`}>
+            <span className="bg-[#F4F1EC] px-3 py-[7px] text-[#050405]">Labels</span>
+            <span className="border border-[#F4F1EC] bg-[#050405]/60 px-3 py-[7px]">{labels.length} labels</span>
+            <span className="border border-[#F4F1EC] bg-[#050405]/60 px-3 py-[7px]">{total} releases</span>
+          </div>
+          <h1 className="m-0 text-[clamp(56px,12vw,192px)] font-black uppercase leading-[0.78] tracking-[-0.06em] [text-shadow:0_0_50px_rgba(0,0,0,0.7)]" style={h2}>
+            Pick<br /><span style={{ color: "#FF6B5E" }}>your sound</span>
+          </h1>
+          <p className="m-0 max-w-[560px] self-start bg-[#050405]/80 px-3.5 py-2.5 text-xl font-semibold">Six labels, each with its own mood. Every release is cleared for creators.</p>
         </div>
-      </div>
-    </>
+      </section>
+
+      <section className="mx-auto w-full max-w-[1360px] px-5 py-20 sm:px-8 sm:py-28">
+        <div className="flex flex-col border-t-2 border-[#F4F1EC]">
+          {byCount.map((label, i) => {
+            const count = releaseCounts[label.slug] ?? 0;
+            const [accent, accentText] = ACCENTS[label.slug] ?? ACCENTS["no-copyright-gaming-music"];
+            return (
+              <Link key={label.slug} href={`/labels/${label.slug}`} className="group relative flex flex-wrap items-center gap-x-8 gap-y-4 border-b border-[#2A272D] px-3 py-8 transition-colors hover:bg-[#110F12]">
+                <span aria-hidden="true" className="absolute inset-y-0 left-0 w-1.5 transition-all group-hover:w-3" style={{ background: accent }} />
+                <span className={`${MONO} w-10 flex-none pl-3 text-[13px] font-bold`} style={{ color: accentText }}>{String(i + 1).padStart(2, "0")}</span>
+                <span className="flex min-w-0 flex-[1_1_380px] flex-col gap-2.5">
+                  <span className="text-[clamp(34px,4.6vw,68px)] font-black uppercase leading-[0.95] tracking-[-0.045em] transition-transform duration-[250ms] ease-[cubic-bezier(.2,.8,.2,1)] group-hover:translate-x-2.5" style={h2}>{label.name}</span>
+                  <span className={`${MONO} text-xs font-bold uppercase tracking-[0.1em]`} style={{ color: accentText }}>{label.tagline}</span>
+                </span>
+                <span className="flex-[1_1_340px] text-base text-[#A39E98] [text-wrap:pretty]">{label.description.split(". ")[0]}.</span>
+                <span className="flex items-center gap-4">
+                  <span className={`${MONO} text-xs font-bold uppercase tracking-[0.1em]`}>{count} release{count === 1 ? "" : "s"}</span>
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F4F1EC" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10" /></svg>
+                </span>
+              </Link>
+            );
+          })}
+          {labels.length === 0 && <p className="py-10 text-[#A39E98]">Label roster updates are coming soon.</p>}
+        </div>
+      </section>
+
+      <section className="border-t-2 border-[#050405] text-white" style={{ background: "#C62828" }}>
+        <div className="mx-auto flex w-full max-w-[1360px] flex-wrap items-end justify-between gap-12 px-5 py-20 sm:px-8 sm:py-[88px]">
+          <div className="flex min-w-0 flex-[999_1_520px] flex-col gap-4">
+            <h2 className="m-0 text-[clamp(48px,7vw,112px)] font-black uppercase leading-[0.8] tracking-[-0.055em]" style={h2}>Never miss<br />a drop</h2>
+            <p className="m-0 max-w-[480px] text-lg">One email when new releases land. No spam, unsubscribe anytime.</p>
+          </div>
+          <NewsletterCta variant="square" idPrefix="labels" cta="Subscribe" />
+        </div>
+      </section>
+    </div>
   );
 }
