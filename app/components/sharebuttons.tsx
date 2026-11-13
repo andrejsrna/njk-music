@@ -66,11 +66,11 @@ export default function ShareButtons({
   };
 
   return (
-    <div className="rounded-2xl border border-white/10 bg-black/20 p-6">
+    <div className="border border-[#2A272D] bg-black/20 p-6">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <h2 className="text-base font-semibold text-white">Share</h2>
-          <p className="mt-1 text-sm text-slate-300">
+          <p className="mt-1 text-sm text-[#A39E98]">
             Send this article to your audience or save the link.
           </p>
         </div>
@@ -79,7 +79,7 @@ export default function ShareButtons({
           <button
             type="button"
             onClick={nativeShare}
-            className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-cyan-500 to-fuchsia-500 px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-white shadow-soft transition hover:from-cyan-400 hover:to-fuchsia-400"
+            className="inline-flex items-center justify-center bg-[#C62828] px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-white transition hover:bg-[#E03535]"
           >
             Share…
           </button>
@@ -91,7 +91,7 @@ export default function ShareButtons({
           type="button"
           onClick={() => (urls ? handleShare(urls.twitter) : null)}
           disabled={!urls}
-          className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/0 px-4 py-2 text-sm font-medium text-slate-200 backdrop-blur transition hover:bg-white/5 disabled:cursor-not-allowed disabled:opacity-50"
+          className="inline-flex items-center gap-2 border border-[#F4F1EC] bg-transparent px-4 py-2 text-sm font-medium text-[#F4F1EC] transition hover:bg-[#F4F1EC] hover:text-[#050405] disabled:cursor-not-allowed disabled:opacity-50"
         >
           <FaTwitter className="h-4 w-4 text-[#1DA1F2]" />
           X / Twitter
@@ -100,7 +100,7 @@ export default function ShareButtons({
           type="button"
           onClick={() => (urls ? handleShare(urls.facebook) : null)}
           disabled={!urls}
-          className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/0 px-4 py-2 text-sm font-medium text-slate-200 backdrop-blur transition hover:bg-white/5 disabled:cursor-not-allowed disabled:opacity-50"
+          className="inline-flex items-center gap-2 border border-[#F4F1EC] bg-transparent px-4 py-2 text-sm font-medium text-[#F4F1EC] transition hover:bg-[#F4F1EC] hover:text-[#050405] disabled:cursor-not-allowed disabled:opacity-50"
         >
           <FaFacebookF className="h-4 w-4 text-[#4267B2]" />
           Facebook
@@ -109,7 +109,7 @@ export default function ShareButtons({
           type="button"
           onClick={() => (urls ? handleShare(urls.linkedin) : null)}
           disabled={!urls}
-          className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/0 px-4 py-2 text-sm font-medium text-slate-200 backdrop-blur transition hover:bg-white/5 disabled:cursor-not-allowed disabled:opacity-50"
+          className="inline-flex items-center gap-2 border border-[#F4F1EC] bg-transparent px-4 py-2 text-sm font-medium text-[#F4F1EC] transition hover:bg-[#F4F1EC] hover:text-[#050405] disabled:cursor-not-allowed disabled:opacity-50"
         >
           <FaLinkedinIn className="h-4 w-4 text-[#0A66C2]" />
           LinkedIn
@@ -118,7 +118,7 @@ export default function ShareButtons({
           type="button"
           onClick={copyToClipboard}
           disabled={!resolvedUrl}
-          className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/0 px-4 py-2 text-sm font-medium text-slate-200 backdrop-blur transition hover:bg-white/5 disabled:cursor-not-allowed disabled:opacity-50"
+          className="inline-flex items-center gap-2 border border-[#F4F1EC] bg-transparent px-4 py-2 text-sm font-medium text-[#F4F1EC] transition hover:bg-[#F4F1EC] hover:text-[#050405] disabled:cursor-not-allowed disabled:opacity-50"
         >
           <FaLink className="h-4 w-4" />
           {copied ? "Copied" : "Copy link"}

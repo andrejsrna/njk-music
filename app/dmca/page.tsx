@@ -1,4 +1,5 @@
 import Link from "next/link";
+import LabelHeroGL from "@/app/labels/[slug]/LabelHeroGL";
 import {
   FaChevronLeft,
   FaEnvelope,
@@ -42,23 +43,24 @@ const counterNoticeRequirements: ChecklistSection = {
 
 export default function DmcaPage() {
   return (
-    <div className="min-h-screen bg-transparent text-white">
-      <section className="py-16">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-10 shadow-soft backdrop-blur">
+    <div className="overflow-x-clip bg-[#050405] text-[#F4F1EC] [font-family:var(--font-archivo),system-ui,sans-serif]">
+      <section className="relative overflow-hidden border-b-2 border-[#F4F1EC] bg-[#0A0506] py-16 sm:py-24">
+        <LabelHeroGL accent="#C62828" intensity={0.55} />
+        <div className="relative z-[2] mx-auto max-w-[1360px] px-5 sm:px-8">
+          <div className="max-w-[900px]">
             <Link
               href="/"
-              className="inline-flex items-center gap-2 text-sm font-medium text-cyan-200 hover:text-cyan-100"
+              className="inline-flex items-center gap-2 text-sm font-medium text-[#FF6B5E] hover:text-white"
             >
               <FaChevronLeft className="h-4 w-4" aria-hidden />
               Back to home
             </Link>
 
             <div className="mt-8 max-w-3xl space-y-4">
-              <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
+              <h1 className="text-[clamp(40px,6vw,88px)] font-black uppercase leading-[0.9] tracking-[-0.05em] [font-stretch:125%] [overflow-wrap:anywhere]">
                 DMCA
               </h1>
-              <p className="text-base text-slate-300 sm:text-lg">
+              <p className="text-base text-[#A39E98] sm:text-lg">
                 This page explains how to send a DMCA notice or counter-notice related to content hosted on
                 njkmusic.com.
               </p>
@@ -67,14 +69,14 @@ export default function DmcaPage() {
             <div className="mt-8 flex flex-wrap gap-3">
               <a
                 href="mailto:dmca@njkmusic.com"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-cyan-500 to-fuchsia-500 px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-white shadow-soft transition hover:from-cyan-400 hover:to-fuchsia-400"
+                className="inline-flex items-center justify-center gap-2 bg-[#C62828] px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-white transition hover:bg-[#E03535]"
               >
                 <FaEnvelope className="h-4 w-4" aria-hidden />
                 Email dmca@njkmusic.com
               </a>
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/0 px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-200 backdrop-blur transition hover:bg-white/5"
+                className="inline-flex items-center justify-center border border-[#F4F1EC] bg-transparent px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-[#F4F1EC] transition hover:bg-[#F4F1EC] hover:text-[#050405]"
               >
                 Contact
               </Link>
@@ -83,27 +85,27 @@ export default function DmcaPage() {
         </div>
       </section>
 
-      <div className="mx-auto max-w-6xl space-y-16 px-4 pb-16 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1360px] space-y-16 px-5 py-16 sm:px-8 sm:py-20">
         <section aria-labelledby="notice">
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-8 shadow-soft backdrop-blur">
+          <div className="border border-[#2A272D] bg-[#0B0A0C] p-8">
             <div className="flex items-start gap-4">
-              <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-cyan-200 backdrop-blur">
+              <span className="inline-flex h-12 w-12 items-center justify-center border border-[#2A272D] bg-[#0B0A0C] text-[#FF6B5E]">
                 <FaFileAlt className="h-5 w-5" aria-hidden />
               </span>
               <div className="space-y-2">
                 <h2 id="notice" className="text-xl font-semibold text-white">
                   {noticeRequirements.title}
                 </h2>
-                <p className="max-w-3xl text-sm text-slate-300">
+                <p className="max-w-3xl text-sm text-[#A39E98]">
                   {noticeRequirements.description}
                 </p>
               </div>
             </div>
 
-            <ul className="mt-6 grid gap-3 text-sm text-slate-300 sm:grid-cols-2">
+            <ul className="mt-6 grid gap-3 text-sm text-[#A39E98] sm:grid-cols-2">
               {noticeRequirements.items.map((item) => (
                 <li key={item} className="flex items-start gap-3">
-                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-cyan-200" aria-hidden />
+                  <span className="mt-2 h-1.5 w-1.5 bg-[#FF6B5E]" aria-hidden />
                   <span>{item}</span>
                 </li>
               ))}
@@ -112,25 +114,25 @@ export default function DmcaPage() {
         </section>
 
         <section aria-labelledby="counter-notice">
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-8 shadow-soft backdrop-blur">
+          <div className="border border-[#2A272D] bg-[#0B0A0C] p-8">
             <div className="flex items-start gap-4">
-              <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-fuchsia-200 backdrop-blur">
+              <span className="inline-flex h-12 w-12 items-center justify-center border border-[#2A272D] bg-[#0B0A0C] text-[#FF6B5E]">
                 <FaInfoCircle className="h-5 w-5" aria-hidden />
               </span>
               <div className="space-y-2">
                 <h2 id="counter-notice" className="text-xl font-semibold text-white">
                   {counterNoticeRequirements.title}
                 </h2>
-                <p className="max-w-3xl text-sm text-slate-300">
+                <p className="max-w-3xl text-sm text-[#A39E98]">
                   {counterNoticeRequirements.description}
                 </p>
               </div>
             </div>
 
-            <ul className="mt-6 grid gap-3 text-sm text-slate-300 sm:grid-cols-2">
+            <ul className="mt-6 grid gap-3 text-sm text-[#A39E98] sm:grid-cols-2">
               {counterNoticeRequirements.items.map((item) => (
                 <li key={item} className="flex items-start gap-3">
-                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-fuchsia-200" aria-hidden />
+                  <span className="mt-2 h-1.5 w-1.5 bg-[#FF6B5E]" aria-hidden />
                   <span>{item}</span>
                 </li>
               ))}
@@ -139,39 +141,39 @@ export default function DmcaPage() {
         </section>
 
         <section aria-labelledby="address">
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-8 shadow-soft backdrop-blur">
+          <div className="border border-[#2A272D] bg-[#0B0A0C] p-8">
             <div className="flex items-start gap-4">
-              <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-rose-500/10 text-rose-200">
+              <span className="inline-flex h-12 w-12 items-center justify-center border border-[#2A272D] bg-rose-500/10 text-rose-200">
                 <FaLock className="h-5 w-5" aria-hidden />
               </span>
               <div className="space-y-2">
                 <h2 id="address" className="text-xl font-semibold text-white">
                   DMCA contact
                 </h2>
-                <p className="max-w-3xl text-sm text-slate-300">
+                <p className="max-w-3xl text-sm text-[#A39E98]">
                   Send notices to our designated email. Include URLs and complete information so we can respond quickly.
                 </p>
               </div>
             </div>
 
             <div className="mt-6 grid gap-4 md:grid-cols-2">
-              <div className="rounded-2xl border border-white/10 bg-black/20 p-6">
-                <div className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-300">
+              <div className="border border-[#2A272D] bg-black/20 p-6">
+                <div className="text-xs font-semibold uppercase tracking-[0.3em] text-[#A39E98]">
                   Email
                 </div>
                 <a
                   href="mailto:dmca@njkmusic.com"
-                  className="mt-3 inline-block text-sm font-medium text-cyan-200 hover:text-cyan-100"
+                  className="mt-3 inline-block text-sm font-medium text-[#FF6B5E] hover:text-white"
                 >
                   dmca@njkmusic.com
                 </a>
               </div>
 
-              <div className="rounded-2xl border border-white/10 bg-black/20 p-6">
-                <div className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-300">
+              <div className="border border-[#2A272D] bg-black/20 p-6">
+                <div className="text-xs font-semibold uppercase tracking-[0.3em] text-[#A39E98]">
                   Postal address
                 </div>
-                <div className="mt-3 space-y-1 text-sm text-slate-300">
+                <div className="mt-3 space-y-1 text-sm text-[#A39E98]">
                   <div>No Copyright Gaming Music</div>
                   <div>Enhold s.r.o.</div>
                   <div>Drobného 1900/2</div>
@@ -181,7 +183,7 @@ export default function DmcaPage() {
               </div>
             </div>
 
-            <p className="mt-6 text-xs text-slate-400">
+            <p className="mt-6 text-xs text-[#8C8781]">
               This page is provided for informational purposes and does not constitute legal advice.
             </p>
           </div>
