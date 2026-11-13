@@ -176,7 +176,7 @@ export default async function Home() {
               <span className="max-w-[620px] text-base text-[#3A363E]">Usage depends on the label, track and platform. Every release page says exactly what&apos;s cleared, and the Content ID guide covers what to do if a claim ever appears.</span>
             </div>
             <div className="flex flex-[1_1_320px] flex-wrap">
-              <Link href="/license" className="inline-flex min-h-[56px] flex-1 items-center justify-center bg-[#050405] px-[22px] text-sm font-black uppercase text-[#F4F1EC] hover:text-white">How licensing works</Link>
+              <Link href="/license" className="inline-flex min-h-[56px] flex-1 items-center justify-center bg-[#050405] px-[22px] text-sm font-black uppercase text-[#F4F1EC] hover:text-white">How it works</Link>
               <Link href="/help/attribution" className="inline-flex min-h-[56px] flex-1 items-center justify-center border-2 border-[#050405] px-[22px] text-sm font-extrabold uppercase text-[#050405] hover:bg-[#050405] hover:text-[#F4F1EC]">Attribution guide</Link>
             </div>
           </div>
