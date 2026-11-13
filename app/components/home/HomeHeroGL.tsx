@@ -22,8 +22,10 @@ const FS = [
   "vec2 mm=m;",
   "vec3 col=vec3(.012,.01,.012);",
   "float lw=1.6/r.y;",
-  "for(int j=0;j<44;j++){float i=float(j);",
+  "for(int j=0;j<28;j++){float i=float(j)*44./28.;",
   "float base=.93-i*.0185;",
+  "if(uv.y<base-lw*3.){col=vec3(.012,.01,.012);continue;}",
+  "if(uv.y>base+.5*k+lw*3.)continue;",
   "float s=.0025*k+g*.006*k;",
   "float yR=base+disp(x+s,i,mm,asp),yG=base+disp(x,i,mm,asp),yB=base+disp(x-s,i,mm,asp);",
   "if(uv.y<yG){col=vec3(.012,.01,.012);}",
@@ -73,8 +75,10 @@ export default function HomeHeroGL({ accent, intensity = 1 }: { accent: string; 
     gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
     const U = Object.fromEntries(["r", "t", "m", "acc", "k"].map((n) => [n, gl.getUniformLocation(pr, n)]));
 
+    // Render below native resolution: the fragment shader is heavy and the look is soft-glitch anyway.
+    let scale = window.innerWidth < 768 ? 0.6 : 0.5;
     const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+      const dpr = Math.min(window.devicePixelRatio || 1, 1) * scale;
       const w = Math.max(1, Math.floor(cv.clientWidth * dpr));
       const h = Math.max(1, Math.floor(cv.clientHeight * dpr));
       if (cv.width !== w || cv.height !== h) { cv.width = w; cv.height = h; }
@@ -104,8 +108,20 @@ export default function HomeHeroGL({ accent, intensity = 1 }: { accent: string; 
     });
     io.observe(cv);
     const t0 = performance.now();
+    let last = 0;
+    let slow = 0;
     function frame(now: number) {
       raf = 0;
+      // Cap at ~30 fps and step the resolution down if frames keep taking too long.
+      const dt = now - last;
+      if (dt < 30) {
+        if (!reduce && visible) raf = requestAnimationFrame(frame);
+        return;
+      }
+      last = now;
+      if (dt > 55 && dt < 500 && scale > 0.3) {
+        if (++slow >= 8) { slow = 0; scale = Math.max(0.3, scale * 0.8); resize(); }
+      } else slow = Math.max(0, slow - 1);
       mouse[0] += (target[0] - mouse[0]) * 0.07;
       mouse[1] += (target[1] - mouse[1]) * 0.07;
       gl!.uniform2f(U.r, cv!.width, cv!.height);
