@@ -2,7 +2,7 @@
 {
   "id": 19,
   "slug": "gaming-genres-music",
-  "title": "Top 10 Gaming Genres and the Music That Matches Them",
+  "title": "Video Game Music Genres: Top 10 and the Tracks That Match",
   "pubDate": "2025-07-17",
   "publishedAt": "2025-07-17T11:14:25.060Z",
   "updatedAt": "2025-07-17T11:14:25.018Z",

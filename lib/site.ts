@@ -35,7 +35,7 @@ export const LABEL_DEFINITIONS: Record<string, LabelDefinition> = {
     description:
       "Chill Music Motif curates downtempo lo-fi, chillhop, and mellow electronica designed for focus, journaling, and ambient streaming. The label keeps melodies soft, textures warm, and mixes clean so creators can loop tracks for hours without listener fatigue.",
     seo: {
-      title: "Chill Music Motif Label | LoFi & Study Beats",
+      title: "Focus & Study Music | Chill Music Motif",
       description:
         "Discover Chill Music Motif—creator-safe lo-fi study beats and chillhop instrumentals built for late-night focus, cozy streams, and ambient storytelling.",
       keywords: [
@@ -66,7 +66,7 @@ export const LABEL_DEFINITIONS: Record<string, LabelDefinition> = {
       "No Copyright Gaming Music delivers adrenaline-fueled soundtracks engineered for streamers, esports orgs, and content studios. Every release is cleared for monetisation, giving creators a reliable source of high-octane, copyright-free music.",
     heroImage: "/logo.png",
     seo: {
-      title: "No Copyright Gaming Music Label | NJK Music",
+      title: "Gaming Music (No Copyright) | NJK Music Label",
       description:
         "Browse the complete No Copyright Gaming Music catalog – stream-safe, royalty-free releases designed for gamers, streamers, and digital storytellers.",
       keywords: [
@@ -95,7 +95,7 @@ export const LABEL_DEFINITIONS: Record<string, LabelDefinition> = {
     description:
       "Calm Spirit Music delivers serene ambient compositions for creators, studios, and listeners who need soothing background scores. Each release balances soft textures with gentle rhythms for quiet playlists, reflective visuals, and low-pressure listening.",
     seo: {
-      title: "Calm Spirit Music Label | NJK Music",
+      title: "Calm Music & Relaxing Ambient | Calm Spirit Music",
       description:
         "Explore Calm Spirit Music releases—soothing, stream-safe ambient tracks for creators, calm playlists, lifestyle edits, and quiet listening.",
       keywords: [
@@ -154,7 +154,7 @@ export const LABEL_DEFINITIONS: Record<string, LabelDefinition> = {
     description:
       "Koldman pushes bass-heavy electronic rap, dubstep pressure, and rough-edged club energy into the NJK Music catalog. The label is built for listeners and creators who want louder hooks, distorted low-end movement, and attitude-driven tracks.",
     seo: {
-      title: "Koldman Label | Bass Rap and Dubstep Energy",
+      title: "Koldman | Bass Rap & Dubstep Music | NJK Music",
       description:
         "Discover Koldman releases—bass-heavy rap hybrids, dubstep pressure, and high-energy electronic tracks for bold creator edits.",
       keywords: [
@@ -207,7 +207,7 @@ export const LABEL_DEFINITIONS: Record<string, LabelDefinition> = {
       },
     ],
     seo: {
-      title: "Jazz & Bass Label | Liquid Drum and Bass for Creators",
+      title: "Jazz & Bass | Jazzy Liquid Drum and Bass Music",
       description:
         "Discover Jazz & Bass releases—funky liquid drum & bass infused with jazz instrumentation. Rights-managed catalogue for sync, ads, and premium storytelling.",
       keywords: [

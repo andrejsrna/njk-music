@@ -2,7 +2,7 @@
 {
   "id": 21,
   "slug": "liquid-drum-and-bass",
-  "title": "Liquid Drum and Bass: What It Is, Why It Works, and Where to Start",
+  "title": "Liquid Drum and Bass: What Is Liquid DnB? Beginner’s Guide",
   "description": "Discover what liquid drum and bass is, how it differs from darker DnB styles, why it works so well for focus and late-night listening, and where to start with smooth liquid releases from NJK Music.",
   "category": "Guides",
   "pubDate": "2026-03-22",

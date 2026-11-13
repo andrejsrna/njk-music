@@ -9,9 +9,9 @@ import { getShopProducts } from "@/lib/shop/catalog";
 import FaqList from "@/app/components/home/FaqList";
 import NewsletterCta from "@/app/components/home/NewsletterCta";
 
-const pageTitle = `${SITE_NAME} Label Library`;
+const pageTitle = `Music Library: Gaming, Liquid DnB & Lofi | ${SITE_NAME}`;
 const pageDescription =
-  "Browse NJK Music releases across our labels and genres. Explore the roster, filter by mood, and find your next track.";
+  "Browse 60+ NJK Music releases: no copyright gaming music, liquid drum and bass, dnb music and lofi. Filter by genre or label, preview tracks, buy WAV for €1.50.";
 
 export const metadata: Metadata = {
   title: pageTitle,

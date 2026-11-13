@@ -9,8 +9,30 @@ import HomeHeroGL from "@/app/components/home/HomeHeroGL";
 import FeaturedList, { type FeaturedItem } from "@/app/components/home/FeaturedList";
 import FaqList from "@/app/components/home/FaqList";
 import NewsletterCta from "@/app/components/home/NewsletterCta";
+import type { Metadata } from "next";
+import { getCanonicalUrl, SITE_URL } from "@/lib/env";
 
 export const revalidate = 60;
+
+const homeTitle = "NJK Music | No Copyright Gaming Music & Liquid Drum and Bass";
+const homeDescription =
+  "NJK Music is a label collective: no copyright gaming music, liquid drum and bass and chill beats for streamers and YouTube creators. Preview tracks, buy WAV for €1.50, license for monetized videos.";
+
+export const metadata: Metadata = {
+  title: { absolute: homeTitle },
+  description: homeDescription,
+  alternates: { canonical: getCanonicalUrl("/") },
+  openGraph: {
+    title: homeTitle,
+    description: homeDescription,
+    url: getCanonicalUrl("/"),
+    siteName: "NJK Music",
+    type: "website",
+    locale: "en_US",
+    images: [{ url: `${SITE_URL}/og-image.jpg`, width: 1200, height: 630, alt: "NJK Music – Creator-Ready Music" }],
+  },
+  twitter: { card: "summary_large_image", title: homeTitle, description: homeDescription, images: [`${SITE_URL}/og-image.jpg`] },
+};
 
 const RED = "#C62828";
 const RED_TEXT = "#FF6B5E";
