@@ -15,6 +15,7 @@ import {
 } from "react-icons/fa";
 import type { IconType } from "react-icons";
 import { SITE_NAME } from "@/lib/site";
+import LabelHeroGL from "@/app/labels/[slug]/LabelHeroGL";
 
 export const metadata: Metadata = {
   title: `Help Centre | ${SITE_NAME}`,
@@ -144,128 +145,87 @@ const helpCategories: HelpCategory[] = [
   },
 ];
 
+const MONO = "font-[family-name:var(--font-jetbrains)]";
+const h2 = { fontStretch: "125%" } as const;
+const H2 = "m-0 text-[clamp(44px,6vw,88px)] font-black uppercase leading-[0.85] tracking-[-0.05em]";
+const ARROW = (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10" /></svg>
+);
+
 export default function HelpPage() {
+  const total = helpCategories.reduce((n, c) => n + c.articles.length, 0);
   return (
-    <div className="min-h-screen bg-transparent text-white">
-      <section className="py-16">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-10 shadow-soft backdrop-blur">
-            <span className="inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-slate-200 backdrop-blur">
-              Help centre
-            </span>
-            <div className="mt-6 max-w-2xl space-y-4">
-              <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
-                How can we help?
-              </h1>
-              <p className="text-base text-slate-300 sm:text-lg">
-                Browse licensing guidance, troubleshooting tips, and platform playbooks for NJK Music. Find answers fast
-                or contact the team for hands-on support.
-              </p>
-            </div>
+    <div className="overflow-x-clip bg-[#050405] text-[#F4F1EC] [font-family:var(--font-archivo),system-ui,sans-serif]">
+      <section className="relative flex min-h-[520px] flex-col overflow-hidden border-b-2 border-[#F4F1EC] bg-[#0A0506] sm:min-h-[600px]">
+        <LabelHeroGL accent="#C62828" intensity={0.8} />
+        <div className="pointer-events-none relative z-[2] mx-auto flex w-full max-w-[1360px] flex-1 flex-col justify-end gap-7 px-5 pb-12 pt-16 sm:px-8">
+          <div className={`flex flex-wrap gap-2 text-xs font-bold uppercase tracking-[0.12em] ${MONO}`}>
+            <span className="bg-[#F4F1EC] px-3 py-[7px] text-[#050405]">Help centre</span>
+            <span className="border border-[#F4F1EC] bg-[#050405]/60 px-3 py-[7px]">{total + quickLinks.length} guides</span>
+          </div>
+          <h1 className="m-0 text-[clamp(56px,12vw,192px)] font-black uppercase leading-[0.78] tracking-[-0.06em] [text-shadow:0_0_50px_rgba(0,0,0,0.7)]" style={h2}>
+            How can<br /><span style={{ color: "#FF6B5E" }}>we help?</span>
+          </h1>
+          <p className="m-0 max-w-[620px] self-start bg-[#050405]/80 px-3.5 py-2.5 text-lg font-semibold sm:text-xl">Licensing guidance, troubleshooting and platform playbooks. Find answers fast or contact the team.</p>
+        </div>
+      </section>
+
+      <section className="bg-[#F4F1EC] text-[#050405]">
+        <div className="mx-auto flex w-full max-w-[1360px] flex-col gap-10 px-5 py-20 sm:px-8 sm:py-24">
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <h2 className={H2} style={h2}>Start<br />here</h2>
+            <span className={`${MONO} text-xs font-bold uppercase tracking-[0.12em] text-[#3A363E]`}>Most requested resources</span>
+          </div>
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] border-l-2 border-t-2 border-[#050405]">
+            {quickLinks.map((link, i) => (
+              <Link key={link.title} href={link.href} className="group flex min-h-[240px] flex-col justify-between gap-6 border-b-2 border-r-2 border-[#050405] p-7 text-[#050405] transition-colors hover:bg-[#050405] hover:text-[#F4F1EC]" style={i === 0 ? { background: "#C62828", color: "#fff" } : undefined}>
+                <span className={`${MONO} flex justify-between text-xs font-bold`}><span>{String(i + 1).padStart(2, "0")}</span>{ARROW}</span>
+                <span className="flex flex-col gap-2">
+                  <strong className="text-[30px] font-black uppercase leading-[0.95] tracking-[-0.03em]" style={{ fontStretch: "118%" }}>{link.title}</strong>
+                  <span className="text-base">{link.description}</span>
+                </span>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
 
-      <div className="mx-auto max-w-6xl px-4 pb-16 sm:px-6 lg:px-8">
-        <section>
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <h2 className="text-2xl font-semibold tracking-tight text-white">
-              Start here
-            </h2>
-            <span className="text-xs font-medium uppercase tracking-[0.3em] text-slate-300">
-              Most requested resources
-            </span>
+      {helpCategories.map((category, ci) => (
+        <section key={category.title} className="mx-auto flex w-full max-w-[1360px] flex-wrap items-start gap-12 px-5 py-20 sm:px-8 sm:py-24">
+          <div className="flex min-w-0 flex-[1_1_320px] flex-col gap-4 lg:sticky lg:top-24">
+            <span className={`${MONO} text-xs font-bold uppercase tracking-[0.14em] text-[#FF6B5E]`}>{String(ci + 1).padStart(2, "0")}</span>
+            <h2 className="m-0 text-[clamp(36px,4.4vw,64px)] font-black uppercase leading-[0.9] tracking-[-0.05em]" style={h2}>{category.title}</h2>
+            <p className="m-0 max-w-[360px] text-base text-[#A39E98]">{category.description}</p>
           </div>
-          <div className="mt-8 grid gap-6 md:grid-cols-3">
-            {quickLinks.map((link) => {
-              const Icon = link.icon;
-              return (
-                <Link
-                  key={link.title}
-                  href={link.href}
-                  className="group flex h-full flex-col gap-4 rounded-3xl border border-white/10 bg-white/5 p-6 shadow-soft backdrop-blur transition hover:border-cyan-300/40 hover:bg-white/10"
-                >
-                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-cyan-200 backdrop-blur">
-                    <Icon className="h-5 w-5" />
+          <div className="flex min-w-0 flex-[2_1_560px] flex-col border-t-2 border-[#F4F1EC]">
+            {category.articles.map((article, i) => (
+              <Link key={article.title} href={article.href} className="group flex min-h-[96px] items-center justify-between gap-5 border-b border-[#2A272D] px-3 py-5 transition-colors hover:bg-[#110F12]">
+                <span className="flex min-w-0 items-baseline gap-5">
+                  <span className={`${MONO} text-[13px] font-bold text-[#8C8781]`}>{String(i + 1).padStart(2, "0")}</span>
+                  <span className="flex min-w-0 flex-col gap-1">
+                    <strong className="text-[clamp(22px,2.4vw,32px)] font-extrabold tracking-[-0.025em] transition-transform duration-200 group-hover:translate-x-2" style={{ fontStretch: "112%" }}>{article.title}</strong>
+                    <span className="text-base text-[#A39E98]">{article.description}</span>
                   </span>
-                  <div className="space-y-2">
-                    <h3 className="text-lg font-semibold text-white">{link.title}</h3>
-                    <p className="text-sm text-slate-300">{link.description}</p>
-                  </div>
-                  <span className="mt-auto text-sm font-medium text-cyan-200 transition group-hover:text-cyan-100">
-                    Open guide
-                  </span>
-                </Link>
-              );
-            })}
-          </div>
-        </section>
-
-        <section className="mt-20 space-y-16">
-          {helpCategories.map((category) => (
-            <div key={category.title} className="space-y-8">
-              <div>
-                <h2 className="text-2xl font-semibold tracking-tight text-white">{category.title}</h2>
-                <p className="mt-2 text-sm text-slate-300">{category.description}</p>
-              </div>
-              <div className="grid gap-6 md:grid-cols-3">
-                {category.articles.map((article) => {
-                  const Icon = article.icon;
-                  return (
-                    <Link
-                      key={article.title}
-                      href={article.href}
-                      className="group flex h-full flex-col gap-4 rounded-3xl border border-white/10 bg-white/5 p-6 shadow-soft backdrop-blur transition hover:border-fuchsia-300/40 hover:bg-white/10"
-                    >
-                      <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-fuchsia-200 backdrop-blur">
-                        <Icon className="h-5 w-5" />
-                      </span>
-                      <div className="space-y-2">
-                        <h3 className="text-lg font-semibold text-white">{article.title}</h3>
-                        <p className="text-sm text-slate-300">{article.description}</p>
-                      </div>
-                      <span className="mt-auto text-sm font-medium text-cyan-200 transition group-hover:text-cyan-100">
-                        View article
-                      </span>
-                    </Link>
-                  );
-                })}
-              </div>
-            </div>
-          ))}
-        </section>
-
-        <section className="mt-20 rounded-3xl border border-white/10 bg-white/5 p-8 shadow-soft backdrop-blur sm:p-12">
-          <div className="mx-auto flex max-w-4xl flex-col items-center gap-6 text-center">
-            <span className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/5 text-cyan-200 backdrop-blur">
-              <FaHeadset className="h-6 w-6" />
-            </span>
-            <div className="space-y-3">
-              <h2 className="text-2xl font-semibold tracking-tight text-white">
-                Prefer to talk to someone?
-              </h2>
-              <p className="text-sm text-slate-300 sm:text-base">
-                Share links, timestamps, and any claim IDs in your message so we can respond quickly. Most requests are
-                answered within 24 to 48 hours on business days.
-              </p>
-            </div>
-            <div className="flex flex-col gap-3 sm:flex-row">
-              <a
-                href="mailto:support@njkmusic.com"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-fuchsia-500 to-cyan-400 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:opacity-90"
-              >
-                Email support
-              </a>
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/0 px-6 py-3 text-sm font-semibold tracking-[0.2em] text-slate-200 backdrop-blur transition hover:bg-white/5"
-              >
-                View contact page
+                </span>
+                <span className="flex-none text-[#F4F1EC]">{ARROW}</span>
               </Link>
-            </div>
+            ))}
           </div>
         </section>
-      </div>
+      ))}
+
+      <section className="border-t-2 border-[#050405] text-white" style={{ background: "#C62828" }}>
+        <div className="mx-auto flex w-full max-w-[1360px] flex-wrap items-end justify-between gap-12 px-5 py-20 sm:px-8 sm:py-[88px]">
+          <div className="flex min-w-0 flex-[999_1_520px] flex-col gap-4">
+            <h2 className="m-0 text-[clamp(48px,7vw,112px)] font-black uppercase leading-[0.8] tracking-[-0.055em]" style={h2}>Talk to<br />a human</h2>
+            <p className="m-0 max-w-[520px] text-lg">Share links, timestamps and any claim IDs in your message so we can respond quickly. Most requests are answered within 24 to 48 hours on business days.</p>
+          </div>
+          <div className="flex flex-wrap">
+            <a href="mailto:support@njkmusic.com" className="inline-flex min-h-[64px] items-center bg-[#050405] px-[30px] text-base font-black uppercase text-white hover:text-white">Email support</a>
+            <Link href="/contact" className="inline-flex min-h-[64px] items-center border-2 border-[#050405] px-[30px] text-base font-black uppercase text-white hover:bg-[#050405] hover:text-white">Contact page</Link>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
