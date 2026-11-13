@@ -8,6 +8,11 @@
   "genre": {
     "Genres": "Hip Hop"
   },
+  "label": {
+    "name": "No Copyright Gaming Music",
+    "slug": "no-copyright-gaming-music",
+    "short": "NCGM"
+  },
   "Spotify": "https://open.spotify.com/album/59au8byrYClkSRfZTnUwGf?si=5VyBsw7nQZCzDT8cpiNcDg",
   "AppleMusic": "https://music.apple.com/sk/album/no-copyright-gaming-music-presents-east-coast-hip-hop/1796076835?l=sk",
   "iTunes": "https://music.apple.com/sk/album/no-copyright-gaming-music-presents-east-coast-hip-hop/1796076835?l=sk",

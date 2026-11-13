@@ -8,6 +8,11 @@
   "genre": {
     "Genres": "All Genres"
   },
+  "label": {
+    "name": "No Copyright Gaming Music",
+    "slug": "no-copyright-gaming-music",
+    "short": "NCGM"
+  },
   "Spotify": "https://open.spotify.com/album/2ej7QviXE77p2IwG8Xd8xb?si=FH7oSbgvRS-klIExJmDiPw",
   "AppleMusic": "https://music.apple.com/sk/album/gaming-music-tape-vol-3/1787301499?l=sk",
   "iTunes": "https://music.apple.com/sk/album/gaming-music-tape-vol-3/1787301499?l=sk",

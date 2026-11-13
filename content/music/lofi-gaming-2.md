@@ -8,6 +8,11 @@
   "genre": {
     "Genres": "Chill"
   },
+  "label": {
+    "name": "No Copyright Gaming Music",
+    "slug": "no-copyright-gaming-music",
+    "short": "NCGM"
+  },
   "Spotify": "https://open.spotify.com/album/2LOS0uTVsDChNbJAddKyCQ",
   "AppleMusic": "https://music.apple.com/us/album/lofi-gaming-tape-vol-2-ep/1724002342?uo=4&app=music&at=1001lry3&ct=dashboard",
   "iTunes": "https://music.apple.com/us/album/lofi-gaming-tape-vol-2-ep/1724002342?uo=4&app=music&at=1001lry3&ct=dashboard",

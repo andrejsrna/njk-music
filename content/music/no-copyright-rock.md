@@ -8,6 +8,11 @@
   "genre": {
     "Genres": "Rock"
   },
+  "label": {
+    "name": "No Copyright Gaming Music",
+    "slug": "no-copyright-gaming-music",
+    "short": "NCGM"
+  },
   "Spotify": "https://open.spotify.com/album/0htJDSoNqRXhTrFpesz28r?si=a5e033190e08424b",
   "AppleMusic": "https://music.apple.com/sk/album/no-copyright-gaming-music-presents-hard-rock/1798504516?l=sk",
   "iTunes": "https://music.apple.com/sk/album/no-copyright-gaming-music-presents-hard-rock/1798504516?l=sk",

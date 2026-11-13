@@ -8,6 +8,11 @@
   "genre": {
     "Genres": "Drum & Bass"
   },
+  "label": {
+    "name": "No Copyright Gaming Music",
+    "slug": "no-copyright-gaming-music",
+    "short": "NCGM"
+  },
   "Spotify": "https://open.spotify.com/album/0omZx6DM2NEJKMuMwyCYQ8?si=b1akjFjFQACCaKO7xia-FA",
   "AppleMusic": "https://music.apple.com/sk/album/no-copyright-gaming-music-presents-liquid-dnb/1806375104?l=sk",
   "iTunes": "https://music.apple.com/sk/album/no-copyright-gaming-music-presents-liquid-dnb/1806375104?l=sk",

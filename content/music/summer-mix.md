@@ -8,6 +8,11 @@
   "genre": {
     "Genres": "All Genres"
   },
+  "label": {
+    "name": "No Copyright Gaming Music",
+    "slug": "no-copyright-gaming-music",
+    "short": "NCGM"
+  },
   "Spotify": "https://open.spotify.com/album/0P0tqB8lkGdyLzezQugEwc?si=XSV1VxqFSXq5u1jGpQ_CSw",
   "AppleMusic": "https://music.apple.com/sk/album/summer-mix/1812106894?l=sk",
   "iTunes": "https://music.apple.com/sk/album/summer-mix/1812106894?l=sk",

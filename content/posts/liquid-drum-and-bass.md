@@ -139,15 +139,20 @@ It can work well under:
 
 If you need a broader catalog, you can always [browse all music](/music). If you specifically want the jazzier and more sophisticated side of liquid, the strongest starting point inside NJK is [Jazz & Bass](/labels/jazz-and-bass).
 
-## 7. Where to Start with Liquid Drum and Bass at NJK Music
+## 7. Liquid Drum and Bass Songs to Start With at NJK Music
 
-If you want immediate examples instead of theory, start with these:
+If you want immediate examples instead of theory, these releases from [Jazz & Bass](/labels/jazz-and-bass) show the range of the sound, from smooth and airy to smoky and jazz-heavy:
 
-- [Jazz & Bass](/labels/jazz-and-bass) for the label profile and overall sound direction
-- [Liquid Flow](/music/liquid-flow) for a clean, smooth entry point
-- [Liquid DnB Is Not Dead](/music/liquid-dnb-is-not-dead) for a title that says exactly what many listeners still feel
+- [Liquid Flow](/music/liquid-flow): a clean, smooth entry point with rolling drums and airy pads.
+- [Twilight Groove](/music/twilight-groove): Rhodes runs, vibraphone and hand-played bass over a patient breakbeat.
+- [Neon Rivers](/music/neon-rivers): saxophone swells and shimmering pads for late-night drives.
+- [Liquid Smooth](/music/liquid-smooth): a velvet clarinet lead with a lounge feel and a low end that keeps moving.
+- [Serene Solitude](/music/serene-solitude): sparse piano and soft trumpet, the calmest pick on this list and good for focus.
+- [Absinthe](/music/absinthe): darker and more mysterious, with noir clarinet lines and brushed drums.
+- [Saxy Expectations](/music/saxy-expectations): a six-track EP if you want a longer jazzy liquid DnB session.
+- [Liquid DnB Is Not Dead](/music/liquid-dnb-is-not-dead): five forward-looking cuts with a title many listeners will agree with.
 
-These releases sit in a sweet spot between groove, polish, and mood. They are useful if you want to understand how liquid can stay musical and accessible without becoming bland.
+These releases sit in a sweet spot between groove, polish, and mood. If you like where this is going, the [full Jazz & Bass tracklist](/labels/jazz-and-bass#tracklist) has every release in one list, and the [music library](/music) covers the rest of the dnb music in the catalog.
 
 ![Liquid drum and bass night drive mood](https://cdn.najsilnejsiaklbovavyziva.sk/uploads/2026/03/njk-music/liquid-drum-and-bass-night-drive.png)
 
@@ -164,6 +169,14 @@ For many listeners, yes. Instrumental or lightly vocal liquid can provide moveme
 ### Is liquid DnB still popular?
 
 Yes. It remains one of the most approachable and replayable branches of drum and bass because it works in clubs, playlists, creator content, and everyday listening.
+
+### What is the difference between liquid DnB and regular drum and bass?
+
+Both share the same fast tempo and breakbeat foundation. Liquid swaps the heavier, more aggressive sound design for chords, melody and space, so it feels smoother and more emotional while keeping the drive of drum and bass.
+
+### What is jazzy liquid drum and bass?
+
+It is liquid DnB that leans on jazz instruments and harmony: saxophone, clarinet, Rhodes, upright bass and brushed drums. That is the core sound of the [Jazz & Bass](/labels/jazz-and-bass) label.
 
 ### What should I listen to first?
 

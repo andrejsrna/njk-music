@@ -8,6 +8,11 @@
   "genre": {
     "Genres": "Hip Hop"
   },
+  "label": {
+    "name": "No Copyright Gaming Music",
+    "slug": "no-copyright-gaming-music",
+    "short": "NCGM"
+  },
   "Spotify": "https://open.spotify.com/album/0bSKREb212xFjPflLrgFtf?si=KZDF27yXQomZzJ4hw20R7w",
   "AppleMusic": "https://music.apple.com/sk/album/lofi-gamer-tape/1822196154",
   "iTunes": "https://music.apple.com/sk/album/lofi-gamer-tape/1822196154",

@@ -8,6 +8,11 @@
   "genre": {
     "Genres": "EDM"
   },
+  "label": {
+    "name": "No Copyright Gaming Music",
+    "slug": "no-copyright-gaming-music",
+    "short": "NCGM"
+  },
   "Spotify": "https://open.spotify.com/album/1YzKFX78mnLcJPlD8kRceE?si=edfae83128104f07",
   "AppleMusic": "https://music.apple.com/sk/album/phonk-songs-ultimate/1829370428",
   "iTunes": "https://music.apple.com/sk/album/phonk-songs-ultimate/1829370428",

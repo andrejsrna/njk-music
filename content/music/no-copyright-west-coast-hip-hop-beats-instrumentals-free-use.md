@@ -8,6 +8,11 @@
   "genre": {
     "Genres": "Hip Hop"
   },
+  "label": {
+    "name": "No Copyright Gaming Music",
+    "slug": "no-copyright-gaming-music",
+    "short": "NCGM"
+  },
   "Spotify": "https://open.spotify.com/album/3iKNTIcpptfyYXOnFYyAEe",
   "AppleMusic": "https://music.apple.com/sk/album/no-copyright-west-coast-hip-hop-beats-instrumentals/1840829242",
   "iTunes": "https://music.apple.com/sk/album/no-copyright-west-coast-hip-hop-beats-instrumentals/1840829242",

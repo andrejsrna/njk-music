@@ -8,6 +8,11 @@
   "genre": {
     "Genres": "Trap / Drill"
   },
+  "label": {
+    "name": "No Copyright Gaming Music",
+    "slug": "no-copyright-gaming-music",
+    "short": "NCGM"
+  },
   "Spotify": "https://open.spotify.com/album/3Ab4TcwYTR6IsKLnTSo3Vv",
   "AppleMusic": "https://music.apple.com/sk/album/emo-drill-tape-vol-1-ep/1778892969?l=sk",
   "iTunes": "https://music.apple.com/sk/album/emo-drill-tape-vol-1-ep/1778892969?l=sk",

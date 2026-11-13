@@ -8,6 +8,11 @@
   "genre": {
     "Genres": "All Genres"
   },
+  "label": {
+    "name": "No Copyright Gaming Music",
+    "slug": "no-copyright-gaming-music",
+    "short": "NCGM"
+  },
   "Spotify": "https://open.spotify.com/album/0mxIBi1xD8YMRF5s026rat",
   "AppleMusic": "https://open.spotify.com/album/0mxIBi1xD8YMRF5s026rat?si=fa49f0fb15bd4186",
   "iTunes": "https://open.spotify.com/album/0mxIBi1xD8YMRF5s026rat?si=fa49f0fb15bd4186",

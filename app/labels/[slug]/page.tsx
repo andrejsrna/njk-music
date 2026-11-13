@@ -38,6 +38,28 @@ const arrowRight = (
 );
 const outBtn = "inline-flex min-h-[60px] items-center gap-2.5 border-2 border-[#F4F1EC] px-[30px] text-base font-extrabold uppercase tracking-[0.02em]";
 
+const CATALOG_INTRO: Record<string, string> = {
+  "no-copyright-gaming-music":
+    "Every No Copyright Gaming Music release in one place. You will find high-energy gaming music for FPS highlights, racing edits and boss fights, plus lofi gaming tapes, phonk and hip hop beats for calmer streams. Each title opens its release page with a preview, platform links and licensing notes.",
+  "jazz-and-bass":
+    "The full Jazz & Bass discography: jazzy liquid drum and bass built on saxophone, clarinet, Rhodes keys and upright bass. If you are looking for drum and bass songs with a warmer, more musical feel, any title on this list is a good place to start.",
+  "calm-spirit-music":
+    "Calm music for slow mornings, meditation and quiet visuals. This is every Calm Spirit Music release, from long ambient journeys to soft downtempo EPs.",
+  "chill-music-motif":
+    "Focus and study music from Chill Music Motif. Lofi, downtempo and glitch-hop releases that keep a steady groove without pulling your attention away from work.",
+  koldman: "Bass rap and dubstep from Koldman: wobble-heavy, rough-edged releases with plenty of low end.",
+  "ludovky-od-andreja":
+    "Slovak bedtime stories (rozprávky na dobrú noc) from Ľudovky od Andreja, narrated slowly for calm evenings and children's bedtime routines.",
+};
+
+const firstSentence = (text?: string | null, max = 170) => {
+  const clean = (text ?? "").replace(/\s+/g, " ").trim();
+  if (!clean) return "";
+  const m = clean.match(/^.{20,}?[.!?](?=\s|$)/);
+  const out = m ? m[0] : clean;
+  return out.length > max ? `${out.slice(0, max).replace(/\s+\S*$/, "")}…` : out;
+};
+
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
@@ -217,6 +239,39 @@ export default async function LabelPage({ params }: PageProps) {
           )}
           <Link href="/music" className={`${outBtn} self-center hover:bg-[#F4F1EC] hover:text-[#050405]`}>See the full catalog {arrowRight}</Link>
         </section>
+
+        {/* FULL TRACKLIST (server-rendered, crawlable) */}
+        {releaseCount > 0 && (
+          <section id="tracklist" aria-labelledby="tracklist-title" className="mx-auto flex max-w-[1360px] scroll-mt-4 flex-col gap-8 px-5 pb-24 sm:px-8 sm:pb-[120px]">
+            <div className="flex flex-wrap items-end justify-between gap-6 border-b-2 border-[#F4F1EC] pb-5">
+              <h2 id="tracklist-title" className={`${H2} text-[clamp(36px,4.5vw,64px)] leading-[0.9]`} style={{ fontStretch: "125%" }}>
+                {label.name}<br />tracklist
+              </h2>
+              <span className={`${MONO} text-xs font-bold uppercase tracking-[0.14em]`} style={{ color: accentText }}>{releaseCount} releases</span>
+            </div>
+            {CATALOG_INTRO[label.slug] && <p className="m-0 max-w-[820px] text-lg leading-relaxed text-[#C9C4BD]">{CATALOG_INTRO[label.slug]}</p>}
+            <ol className="m-0 list-none p-0">
+              {releases.map((t, i) => {
+                const it = items[i];
+                const year = (t.publishedAt ?? t.pubDate ?? "").slice(0, 4);
+                const meta = [it.genre, it.type, year].filter(Boolean).join(" · ");
+                const blurb = firstSentence(t.Description);
+                return (
+                  <li key={t.slug} className="border-b border-[#2A272D]">
+                    <Link href={`/music/${t.slug}`} className="group flex flex-col gap-1.5 px-1 py-5 transition-colors hover:bg-[#141216] sm:flex-row sm:items-baseline sm:gap-7 sm:px-3">
+                      <span className={`${MONO} shrink-0 text-[13px] font-bold`} style={{ color: accentText }}>{String(i + 1).padStart(2, "0")}</span>
+                      <span className="flex min-w-0 flex-col gap-1.5">
+                        <span className="text-xl font-extrabold tracking-[-0.02em] group-hover:underline sm:text-2xl">{t.Title}</span>
+                        {meta && <span className={`${MONO} text-xs uppercase tracking-[0.08em] text-[#8C8781]`}>{meta}</span>}
+                        {blurb && <span className="text-base leading-snug text-[#A39E98]">{blurb}</span>}
+                      </span>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ol>
+          </section>
+        )}
 
         {/* LOADOUT (NCGM playlists) */}
         {isNcgm && (
