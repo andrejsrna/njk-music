@@ -120,17 +120,56 @@ Pred písaním načítať oficiálnu dokumentáciu a použiť len overené fakty
 - Či je 302 redirect v Cloudflare, Traefik alebo Coolify (nepozeral som konfiguráciu).
 - Efekt redizajnu zo 13. 11. a nových titulov Eshopu.
 
-## 7. Možnosť rozšírenia: exporty vyhľadávaných fraz z lokálneho Dockeru (M_SEARCH)
+## 7. Rozšírenie: Ahrefs exporty z M_SEARCH (spracované)
 
-Stav: **dáta zatiaľ nespracované.** Na tomto serveri som kontajner ani súbory s názvom M_SEARCH nenašiel (kontrolované: bežiace kontajnery, ich premenné, volumes a súborový systém), takže ide o lokálny Docker používateľa. Obsah som nevidel a nič z neho v pláne netvrdím.
+**Zdroj:** Coolify app `M_SEARCH` (id 37, `search.andrejsrna.sk`, repo `andrejsrna/search`, lokálna kópia `/root/search-repo`). Služba je za autentifikáciou (401), dáta som čítal z repa a kontajnera.
 
-Čo by priniesli a prečo: GSC ukazuje len ~58 dopytov a 98 % je brand (§2). Zoznam reálne hľadaných fráz by zaplnil práve to, čo chýba, teda nebrandovú stranu.
+**Čo to je:** Ahrefs „Matching terms“ exporty (Keyword, Country, Difficulty, Volume, Traffic potential, Intents). Pre NJK sú relevantné súbory v `music/` z **13. 2. 2026**: seedy `dnb`, `drum-and-bass`, `liquid-dnb`, `neurofunk`, `gaming`, `no-copyright`, `lofi`, `chill`, `calm`, `focus`, `study`, `jazz`, `music` (trh **GB**, každý max. 2 500 riadkov) + `cz liquid-dnb`. Slovenské `google_sk_rozpravky` a `us rap/drill/trap` sú z iných projektov (zdieľaný repozitár).
 
-Postup po dodaní exportov:
-1. Zistiť, čo export je (zdroj, krajina/jazyk, dátum, metrika: objem, trend, alebo len zoznam fráz). Bez toho sa údaje nedajú porovnávať.
-2. Zlúčiť s GSC dopytmi a existujúcimi slugmi v `content/posts` a `content/music`. Frázy s existujúcou stránkou idú do P0/P1 (snippet alebo sekcia), len frázy bez pokrytia sú kandidáti na nový obsah.
-3. Zoskupiť podľa zámeru: čo je liquid DnB, hudba pre gaming/stream, no copyright / Content ID, žáner + použitie (racing, FPS, devlog), brand.
-4. Prioritizovať podľa objemu z exportu, nie podľa konkurencie slov. Ak export neobsahuje objem, označiť priority ako hypotézu.
-5. Zapísať do samostatného `docs/seo/keyword-research-<dátum>.md` (jeden dokument na klaster) a prepojiť odtiaľto. Nasadené položky potom do `gsc-changelog.md`.
+**Limity:**
+- Objem je mesačný z Ahrefs pre **GB** (ostatné trhy v týchto súboroch nie sú). Snapshot je z februára 2026, nie z novembra.
+- Export obsahuje len frázy obsahujúce seed. Fráza, ktorá v exporte chýba, **neznamená nulový dopyt**, len že nebola v prvých 2 500 riadkoch seedu.
+- Seed `no-copyright` a `jazz` vrátil hlavne šum (obrázky, basgitary Fender/Squier). Pre „jazz drum and bass“, „jazzy drum and bass“, „liquid jazz“ **nemám žiadne dáta o objeme**.
+- Číslo Ahrefs nie je zobrazenie v GSC. Porovnávať ich ako rády, nie ako rovnaké jednotky.
 
-Ak ide o frázy z vyhľadávania priamo na webe (`/music?q=`), ich logovanie dnes neexistuje. Dalo by sa pridať, ale zbiera to dáta až odteraz.
+### Čo dáta potvrdzujú a menia
+
+| Fráza (GB, Ahrefs) | Objem/mes. | KD | Dôsledok pre plán |
+|---|---|---|---|
+| `drum and bass` | 4 100 | 12 | široký termín, KD nízka, patrí na `/music` a liquid článok |
+| `liquid drum and bass` | 500 | 0 | **hlavná fráza** pre liquid článok, silnejšia ako „what is liquid dnb“ |
+| `liquid dnb` | 150 | 6 | do title/H1 |
+| `dnb music` | 500 | 6 | doplniť do popisu `/music` a liquid článku |
+| `drum and bass songs` | 500 | 1 | kandidát na sekciu/zoznam „Best liquid DnB songs“ z vlastných releasov |
+| `best drum and bass songs` | 200 | 2 | rovnaký obsah |
+| `what is dnb` / `whats dnb` / `what is drum and bass` | 200 / 70 / 80 | 47 / 0 / 6 | zámer „čo je“ je skôr o **DnB všeobecne**, nie o liquide |
+| `what is liquid dnb` | **10** | 9 | **P1 návrh upraviť: nepostaviť titulok na tejto fráze, má zanedbateľný objem** |
+| `neurofunk` | 90 | 0 | malé, nerobiť |
+| `gaming music` | 450 | 7 | KD nízka, **patrí do `/labels/no-copyright-gaming-music`** |
+| `epic music` | 350 | 2 | vhodné pre Frostbolt / epic gaming tracky |
+| `video game music` | 700 | 54 | stredne ťažké, `gaming-genres-music` článok |
+| `no copyright music` | 600 | 76 | veľmi konkurenčné, bez backlinkov nereálne |
+| `copyright free music` / `royalty free music` | 5 700 / 13 000 | 84 / 78 | **necieliť**, KD 78 – 84 |
+| `vlog music no copyright free download` | 90 | 0 | malé |
+| `calm music` / `calming music` / `relaxing music` | 7 200 / 11 000 / 14 000 | 23 / 32 / 24 | **najväčšia príležitosť pre label Calm Spirit Music** |
+| `calm background music` | 100 | 0 | rovnaký label |
+| `focus music` / `concentration music` / `study music` | 1 300 / 350 / 1 000 | 17 / 17 / 31 | label Chill Music Motif (lofi/study) |
+| `lofi music` / `lofi beats` | 300 / 250 | 61 / 51 | ťažké, len ako podpora |
+
+### Úpravy plánu z týchto dát
+
+1. **P0, `/news/liquid-drum-and-bass`:** title zmeniť na `Liquid Drum and Bass: What Is Liquid DnB? Guide & Where to Start`. Hlavná fráza je „liquid drum and bass“ (500, KD 0), „what is liquid dnb“ je len doplnok.
+2. **P0, `/labels/no-copyright-gaming-music`:** pridať `Gaming Music`: `Gaming Music (No Copyright) | NJK Music Label`. Dopyt „gaming music“ 450, KD 7. Stránka má v GSC 34 zobr., poz. 13,9.
+3. **P0, `/labels/calm-spirit-music`:** `Calm Music & Relaxing Ambient | Calm Spirit Music`. „calm music“ 7 200, KD 23, stránka má v GSC 29 zobr. na poz. 12,8. Pred nasadením skontrolovať, že obsah label stránky túto tému skutočne pokrýva (popis hovorí o soothing ambient).
+4. **P0, `/labels/chill-music-motif`:** `Focus & Study Music | Chill Music Motif`. „focus music“ 1 300, KD 17. GSC: 10 zobr., poz. 12.
+5. **P1, nová sekcia na `/music` alebo článok „Best liquid DnB songs“:** frázy `drum and bass songs` (500, KD 1), `dnb music` (500, KD 6). Zoznam z reálnych releasov (28 liquid DnB), nie vymyslený. Jeden URL, nie dva.
+6. **P1, kanibalizácia:** `/music` je v GSC na poz. 7,5. Ak sa naň pridá „drum and bass“, nesmie bojovať s liquid článkom. Pravidlo: `/music` = katalóg a žánre, `/news/liquid-drum-and-bass` = vysvetlenie.
+7. **Zámerne vynechať:** `royalty free music`, `copyright free music`, `no copyright music` (KD 76 – 84). Platí aj pre „jazz drum and bass“: pre ňu nemáme čísla, nechať ako vedľajšiu frázu v title Jazz & Bass a po 28 dňoch pozrieť GSC.
+
+### Nepatrí do NJK (iný projekt)
+
+- `google_sk_rozpravky`: `rozpravky na dobru noc` 7 200 (KD 24), `audio rozpravky` 3 700 (KD 0). Týka sa label **Ľudovky od Andreja** (slovenské bedtime stories). Je to samostatný SK-trh a iný zámer ako zvyšok webu. Nezapísal som to do P0. Ak to chceš rozvíjať, treba ho posúdiť zvlášť (a v GSC má `/labels/ludovky-od-andreja` len 6 zobrazení).
+
+### Ďalší krok
+
+Na overenie týchto fráz po nasadení P0: po 28 dňoch exportovať GSC a porovnať riadky `gaming music`, `calm music`, `focus music`, `liquid drum and bass`, `dnb music`. Ak by si chcel novšie čísla, treba nový export z Ahrefs (snapshot je z februára).
