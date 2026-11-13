@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Remarkable } from "remarkable";
-import { FaArrowLeft, FaClock } from "react-icons/fa";
+import LabelHeroGL from "@/app/labels/[slug]/LabelHeroGL";
 import ShareButtons from "@/app/components/sharebuttons";
 import { getPostBySlug, type Post } from "@/app/lib/posts";
 import { SITE_URL, getCanonicalUrl } from "@/lib/env";
@@ -144,82 +144,54 @@ export default async function NewsDetailPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
 
-      <div className="min-h-screen bg-transparent text-white">
-        <section className="bg-transparent">
-          <div className="mx-auto flex min-h-[30vh] max-w-4xl flex-col justify-center gap-6 px-4 py-16 sm:px-6 lg:px-8">
-            <Link
-              href="/news"
-              className="inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-200 backdrop-blur transition hover:bg-white/10"
-              aria-label="Back to news index"
-            >
-              <FaArrowLeft className="h-4 w-4 text-cyan-200" aria-hidden />
-              Back to News
+      <div className="overflow-x-clip bg-[#050405] text-[#F4F1EC] [font-family:var(--font-archivo),system-ui,sans-serif]">
+        <section className="relative flex min-h-[460px] flex-col overflow-hidden border-b-2 border-[#F4F1EC] bg-[#0A0506]">
+          <LabelHeroGL accent="#C62828" intensity={0.6} />
+          <div className="relative z-[2] mx-auto flex w-full max-w-[1100px] flex-1 flex-col justify-end gap-6 px-5 pb-12 pt-14 sm:px-8">
+            <Link href="/news" aria-label="Back to news index" className="inline-flex min-h-[40px] w-fit items-center gap-2 border border-[#F4F1EC] bg-[#050405]/70 px-3.5 text-xs font-extrabold uppercase hover:bg-[#F4F1EC] hover:text-[#050405]">
+              <span aria-hidden>←</span> Back to News
             </Link>
-
-            <div className="space-y-6">
-              <div className="flex flex-wrap gap-3 text-xs font-medium uppercase tracking-[0.3em] text-slate-300">
-                {post.category && (
-                  <span className="inline-flex items-center rounded-full border border-white/15 bg-white/5 px-3 py-1 backdrop-blur">
-                    {post.category}
-                  </span>
-                )}
-                {formattedDate && (
-                  <time
-                    dateTime={publishedIso}
-                    className="inline-flex items-center rounded-full border border-white/15 bg-white/5 px-3 py-1 backdrop-blur"
-                  >
-                    {formattedDate}
-                  </time>
-                )}
-                <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-slate-200 backdrop-blur">
-                  <FaClock aria-hidden className="h-3.5 w-3.5 text-cyan-200" />
-                  {readingTime} min read
-                </span>
-              </div>
-
-              <div className="space-y-4">
-                <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
-                  {post.title}
-                </h1>
-                <p className="max-w-2xl text-base text-slate-300 sm:text-lg">{description}</p>
-              </div>
+            <div className="flex flex-wrap gap-2 font-[family-name:var(--font-jetbrains)] text-xs font-bold uppercase tracking-[0.12em]">
+              {post.category && <span className="bg-[#C62828] px-3 py-[7px] text-white">{post.category}</span>}
+              {formattedDate && <time dateTime={publishedIso} className="border border-[#F4F1EC] bg-[#050405]/60 px-3 py-[7px]">{formattedDate}</time>}
+              <span className="border border-[#F4F1EC] bg-[#050405]/60 px-3 py-[7px]">{readingTime} min read</span>
             </div>
+            <h1 className="m-0 text-[clamp(36px,6vw,92px)] font-black uppercase leading-[0.88] tracking-[-0.05em] [overflow-wrap:anywhere] [text-shadow:0_0_40px_rgba(0,0,0,0.7)]" style={{ fontStretch: "125%" }}>{post.title}</h1>
+            <p className="m-0 max-w-[720px] self-start bg-[#050405]/80 px-3.5 py-2.5 text-lg font-semibold">{description}</p>
           </div>
         </section>
 
-        <article className="mx-auto max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
+        <article className="mx-auto max-w-[900px] px-5 py-16 sm:px-8 sm:py-20">
           {imageUrl && (
-            <figure className="relative mt-8 aspect-[16/9] overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-soft backdrop-blur sm:mt-10">
-              <Image
-                src={imageUrl}
-                alt={post.title}
-                fill
-                sizes="(min-width: 1024px) 896px, 100vw"
-                className="object-cover"
-                priority
-              />
+            <figure className="relative m-0 mb-14 aspect-[16/9] overflow-hidden border-2 border-[#F4F1EC] bg-[#110F12]">
+              <Image src={imageUrl} alt={post.title} fill sizes="(min-width: 1024px) 836px, 100vw" className="object-cover" priority />
               <figcaption className="sr-only">{post.title}</figcaption>
             </figure>
           )}
-
-          <div className="mt-16 space-y-12 rounded-3xl border border-white/10 bg-white/5 p-6 shadow-soft backdrop-blur sm:p-10">
-            <div
-              className="prose prose-invert max-w-none text-base leading-relaxed
-                prose-headings:font-semibold prose-headings:tracking-tight
-                prose-a:text-cyan-200 prose-a:no-underline hover:prose-a:text-cyan-100
-                prose-code:text-cyan-200 prose-code:bg-white/10 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded
-                prose-blockquote:border-l-4 prose-blockquote:border-cyan-300/40 prose-blockquote:bg-white/5 prose-blockquote:py-4 prose-blockquote:px-6
-                prose-li:marker:text-cyan-200
-                prose-hr:border-white/10"
-            >
-              <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
-            </div>
-
-            <aside className="rounded-2xl border border-dashed border-white/15 bg-white/5 px-6 py-8 backdrop-blur">
-              <ShareButtons post={post} shareUrl={canonical} />
-            </aside>
+          <div
+            className="prose prose-invert max-w-none text-[18px] leading-[1.7]
+              prose-headings:font-black prose-headings:uppercase prose-headings:tracking-tight
+              prose-a:text-[#FF6B5E] prose-a:underline prose-a:underline-offset-4 hover:prose-a:text-white
+              prose-code:rounded-none prose-code:bg-white/10 prose-code:px-1.5 prose-code:py-0.5 prose-code:text-[#FF6B5E]
+              prose-blockquote:rounded-none prose-blockquote:border-l-4 prose-blockquote:border-[#C62828] prose-blockquote:bg-[#110F12] prose-blockquote:px-6 prose-blockquote:py-4
+              prose-img:rounded-none prose-li:marker:text-[#FF6B5E] prose-hr:border-[#2A272D]"
+          >
+            <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
           </div>
+          <aside className="mt-16 border-2 border-[#F4F1EC] px-6 py-8">
+            <ShareButtons post={post} shareUrl={canonical} />
+          </aside>
         </article>
+
+        <section className="border-t-2 border-[#050405] text-white" style={{ background: "#C62828" }}>
+          <div className="mx-auto flex w-full max-w-[1100px] flex-wrap items-end justify-between gap-10 px-5 py-16 sm:px-8">
+            <h2 className="m-0 text-[clamp(40px,6vw,88px)] font-black uppercase leading-[0.82] tracking-[-0.055em]" style={{ fontStretch: "125%" }}>More from<br />NJK Music</h2>
+            <div className="flex flex-wrap">
+              <Link href="/news" className="inline-flex min-h-[60px] items-center bg-[#050405] px-8 text-base font-black uppercase text-white hover:text-white">All news</Link>
+              <Link href="/music" className="inline-flex min-h-[60px] items-center border-2 border-[#050405] px-8 text-base font-black uppercase text-white hover:bg-[#050405] hover:text-white">Explore releases</Link>
+            </div>
+          </div>
+        </section>
       </div>
     </>
   );
