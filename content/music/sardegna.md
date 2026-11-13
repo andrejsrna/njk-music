@@ -2,7 +2,7 @@
 {
   "slug": "sardegna",
   "Title": "Sardegna",
-  "Description": "Sardegna is a liquid drum and bass single from Jazz & Bass, pairing jazzy melodic detail with rolling DnB movement for focus sessions, late-night listening, and polished creator edits.",
+  "Description": "Mediterranean warmth over rolling liquid drum and bass: an instrumental Jazz & Bass single that works for focus sessions, late-night listening and summery travel edits.",
   "genre": {
     "Genres": "Liquid DnB"
   },

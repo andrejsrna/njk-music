@@ -2,7 +2,7 @@
 {
   "slug": "tequila-sunrise",
   "Title": "Tequila Sunrise",
-  "Description": "Tequila Sunrise is a two-track drum and bass EP by Jazz & Bass, featuring the title track and Sicilian Midnight Cocktail. Stream the release or download the Original Mixes from Beatport and Traxsource.",
+  "Description": "Two drum and bass cuts from Jazz & Bass: Tequila Sunrise and Sicilian Midnight Cocktail. Stream the EP or grab the Original Mixes for DJ sets on Beatport and Traxsource.",
   "genre": {
     "Genres": "Drum & Bass"
   },

@@ -2,7 +2,7 @@
 {
   "slug": "unleash-your-inner-hero-fantasy-rpg-soundtrack",
   "Title": "Unleash Your Inner Hero: Fantasy RPG Soundtrack",
-  "Description": "Unleash Your Inner Hero: Fantasy RPG Soundtrack is an orchestral fantasy RPG soundtrack single by No Copyright Gaming Music. Explore official streaming links, track details, and licensing information for adventure videos, streams, and gameplay edits.",
+  "Description": "An orchestral fantasy RPG soundtrack from No Copyright Gaming Music for adventure videos, quest montages and story-driven gameplay edits. Preview the 3:07 track or buy the WAV for €1.50.",
   "genre": {
     "Genres": "Fantasy / Cinematic"
   },

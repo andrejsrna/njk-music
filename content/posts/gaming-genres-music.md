@@ -184,5 +184,4 @@ Whether you're grinding ranked matches, building dream cities, or just chilling 
 By matching your music to the genre — or even better, the *mood* — of your game, you can enhance focus, boost immersion, and create unforgettable gaming sessions.
 
 **Ready to upgrade your in-game soundtrack?**  
-Find your perfect match in our music library →  
-[/music](/music)
+Find your perfect match in our [music library](/music), or browse the [No Copyright Gaming Music tracklist](/labels/no-copyright-gaming-music#tracklist) by genre: drum and bass, EDM, dubstep, hip hop, lofi and fantasy soundtrack releases in one list.

@@ -2,7 +2,7 @@
 {
   "slug": "scardilli",
   "Title": "Scardilli",
-  "Description": "Scardilli is a liquid drum and bass single from Jazz & Bass, pairing jazz-lit melodic detail with rolling DnB movement for focus sessions, late-night listening, and polished creator edits.",
+  "Description": "Warm jazz harmony on top of smooth, rolling liquid DnB drums. An instrumental Jazz & Bass single for study, reading playlists and city-night edits.",
   "genre": {
     "Genres": "Liquid DnB"
   },

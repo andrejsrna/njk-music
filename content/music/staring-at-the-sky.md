@@ -2,9 +2,15 @@
 {
   "slug": "staring-at-the-sky",
   "Title": "Staring At The Sky",
-  "Description": "Staring At The Sky is a drum and bass single by Jazz & Bass, released on September 25, 2026. Stream the track or download the Original Mix from Beatport, Traxsource, and Volumo.",
-  "genre": {"Genres": "Drum & Bass"},
-  "label": {"name": "Jazz & Bass", "slug": "jazz-and-bass", "short": "J&B"},
+  "Description": "A drum and bass single from Jazz & Bass, out September 25, 2026. Stream it on Spotify and Apple Music, or pick up the Original Mix for your DJ sets on Beatport, Traxsource and Volumo.",
+  "genre": {
+    "Genres": "Drum & Bass"
+  },
+  "label": {
+    "name": "Jazz & Bass",
+    "slug": "jazz-and-bass",
+    "short": "J&B"
+  },
   "Spotify": "https://open.spotify.com/album/5hu9jsihX5sn9P8YKn6i2F",
   "AppleMusic": "https://music.apple.com/us/album/staring-at-the-sky-single/6812785752?uo=4",
   "iTunes": "https://music.apple.com/us/album/staring-at-the-sky-single/6812785752?uo=4&app=itunes",
@@ -19,7 +25,14 @@
   "Bandcamp": "https://bandcamp.com/search?q=Staring%20At%20The%20Sky%20Jazz%20%26%20Bass",
   "spotify_embed": "<iframe style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/album/5hu9jsihX5sn9P8YKn6i2F?utm_source=generator\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>",
   "youtube_embed": "https://www.youtube.com/embed/b-vJfVaAHps",
-  "Cover": {"url": "/images/music/staring-at-the-sky.jpg", "formats": {"large": {"url": "/images/music/staring-at-the-sky.jpg"}}},
+  "Cover": {
+    "url": "/images/music/staring-at-the-sky.jpg",
+    "formats": {
+      "large": {
+        "url": "/images/music/staring-at-the-sky.jpg"
+      }
+    }
+  },
   "upc": "5054290252866",
   "isrc": "GBLV62603501",
   "recordLabel": "Jazz & Bass",

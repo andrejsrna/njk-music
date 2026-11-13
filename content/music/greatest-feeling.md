@@ -2,7 +2,7 @@
 {
   "slug": "greatest-feeling",
   "Title": "Greatest Feeling",
-  "Description": "Greatest Feeling is a hip hop single by No Copyright Gaming Music. Explore official listening links, release details, and creator licensing information on NJK Music.",
+  "Description": "A hip hop single from No Copyright Gaming Music for victory clips, stream intros and laid-back gameplay edits. Preview the 4:19 track, buy the WAV for €1.50 or stream it on your favourite platform.",
   "genre": {
     "Genres": "Hip Hop"
   },

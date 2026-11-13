@@ -2,7 +2,7 @@
 {
   "slug": "frostbolt",
   "Title": "Frostbolt",
-  "Description": "Frostbolt is a drum and bass single by No Copyright Gaming Music. Explore official streaming links, track details, and licensing information for your next gaming video or stream.",
+  "Description": "A 4:18 drum and bass single from No Copyright Gaming Music, quick enough for FPS highlights, speedruns and ranked-match montages. Preview it here, buy the WAV for €1.50 or stream it on Spotify, Apple Music and more.",
   "genre": {
     "Genres": "Drum & Bass"
   },

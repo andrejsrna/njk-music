@@ -52,6 +52,16 @@ const CATALOG_INTRO: Record<string, string> = {
     "Slovak bedtime stories (rozprávky na dobrú noc) from Ľudovky od Andreja, narrated slowly for calm evenings and children's bedtime routines.",
 };
 
+const GUIDES: Record<string, [string, string][]> = {
+  "no-copyright-gaming-music": [
+    ["Best background music for gaming videos", "/news/best-background-music-for-gaming-videos"],
+    ["Video game music genres", "/news/gaming-genres-music"],
+  ],
+  "jazz-and-bass": [["What is liquid drum and bass?", "/news/liquid-drum-and-bass"]],
+  "calm-spirit-music": [["Calm music for meditation, sleep and focus", "/news/calm-music-for-meditation-sleep-and-focus"]],
+  "chill-music-motif": [["Focus music for studying and work", "/news/focus-music-for-studying-and-work"]],
+};
+
 const firstSentence = (text?: string | null, max = 170) => {
   const clean = (text ?? "").replace(/\s+/g, " ").trim();
   if (!clean) return "";
@@ -250,6 +260,14 @@ export default async function LabelPage({ params }: PageProps) {
               <span className={`${MONO} text-xs font-bold uppercase tracking-[0.14em]`} style={{ color: accentText }}>{releaseCount} releases</span>
             </div>
             {CATALOG_INTRO[label.slug] && <p className="m-0 max-w-[820px] text-lg leading-relaxed text-[#C9C4BD]">{CATALOG_INTRO[label.slug]}</p>}
+            {GUIDES[label.slug] && (
+              <p className={`${MONO} m-0 flex flex-wrap gap-x-6 gap-y-2 text-xs font-bold uppercase tracking-[0.08em]`}>
+                <span className="text-[#8C8781]">Read the guide:</span>
+                {GUIDES[label.slug].map(([t, href]) => (
+                  <Link key={href} href={href} className="underline underline-offset-4 hover:no-underline" style={{ color: accentText }}>{t}</Link>
+                ))}
+              </p>
+            )}
             <ol className="m-0 list-none p-0">
               {releases.map((t, i) => {
                 const it = items[i];

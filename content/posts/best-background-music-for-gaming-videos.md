@@ -160,4 +160,4 @@ There is no universal number, but the voice and important gameplay sounds should
 
 The best background music for gaming videos is music that fits the gameplay, supports the edit, and keeps your channel safe. Choose the mood first, match the genre to the video format, check the license, and keep the mix clean.
 
-If you need stream-safe tracks made for gaming creators, start with the [NJK Music catalog](/music) or explore the [No Copyright Gaming Music label](/labels/no-copyright-gaming-music).
+If you need stream-safe tracks made for gaming creators, start with the [NJK Music catalog](/music) or explore the [No Copyright Gaming Music label](/labels/no-copyright-gaming-music). The [full NCGM tracklist](/labels/no-copyright-gaming-music#tracklist) lists every release with its genre, from drum and bass singles like [Frostbolt](/music/frostbolt) to lofi gaming tapes and the orchestral [Unleash Your Inner Hero](/music/unleash-your-inner-hero-fantasy-rpg-soundtrack).
