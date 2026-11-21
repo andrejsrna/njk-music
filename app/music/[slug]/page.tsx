@@ -16,7 +16,8 @@ import { notFound } from "next/navigation";
 import { marked } from "marked";
 import { PRIMARY_LABEL, SITE_NAME } from "@/lib/site";
 import { accentFor, isRightsManaged } from "@/app/music/[slug]/track-utils";
-import { getShopProduct } from "@/lib/shop/catalog";
+import { getShopProduct, getTrackProducts } from "@/lib/shop/catalog";
+import EpTracksSection from "@/app/music/[slug]/EpTracksSection";
 
 const notFoundMetadata = {
   title: `Track Not Found - ${SITE_NAME}`,
@@ -115,7 +116,7 @@ export default async function MusicDetailPage({
 }) {
   const { slug } = await params;
   const track = (await getMusicBySlug(slug)) as MusicData | undefined;
-  const product = await getShopProduct(slug);
+  const [product, trackProducts] = await Promise.all([getShopProduct(slug), getTrackProducts(slug)]);
 
   if (!track) {
     notFound();
@@ -223,6 +224,7 @@ export default async function MusicDetailPage({
         </div>
         <SpecStrip track={track} />
         <AboutLicenseSection track={track} contentHtml={contentHtml} product={product} />
+        <EpTracksSection tracks={trackProducts} ep={product} accent={accent} accentText={accentText} />
         <PlatformsSection track={track} />
         <YouTubeEmbedSection source={track.youtube_embed ?? ""} />
         <LabelInfoSection label={track.label} />

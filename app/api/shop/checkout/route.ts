@@ -34,7 +34,10 @@ export async function POST(request: NextRequest) {
     },
   });
 
-  const cover = `${SITE}/images/music/${product.slug}.jpg`;
+  // Single tracks of an EP use `<release>--<track>` slugs; cover and cancel page belong to the release.
+  const releaseSlug = product.slug.split("--")[0];
+  const bundle = /\.zip$/i.test(product.fileName ?? "");
+  const cover = `${SITE}/images/music/${releaseSlug}.jpg`;
   try {
     const session = await createCheckoutSession(
       {
@@ -45,7 +48,7 @@ export async function POST(request: NextRequest) {
             price_data: {
               currency: product.currency,
               unit_amount: product.priceCents,
-              product_data: { name: `${product.title} (WAV)`, description: "Digital download", images: [cover] },
+              product_data: { name: bundle ? `${product.title} (EP, WAV files in ZIP)` : `${product.title} (WAV)`, description: "Digital download", images: [cover] },
             },
           },
         ],
@@ -57,7 +60,7 @@ export async function POST(request: NextRequest) {
           submit: { message: "Digital download, delivered immediately by email. You agreed to immediate delivery and lose the right of withdrawal once delivery begins." },
         },
         success_url: `${SITE}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `${SITE}/music/${product.slug}`,
+        cancel_url: `${SITE}/music/${releaseSlug}`,
         expires_at: Math.floor(Date.now() / 1000) + 60 * 60,
       },
       `checkout-${order.id}`,

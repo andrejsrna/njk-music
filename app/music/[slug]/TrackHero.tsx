@@ -80,7 +80,7 @@ export default function TrackHero({ track, coverUrl, product }: TrackHeroProps) 
           </a>
         )}
         {product ? (
-          <BuyButton slug={product.slug} priceCents={product.priceCents} currency={product.currency} variant="hero" />
+          <BuyButton slug={product.slug} priceCents={product.priceCents} currency={product.currency} variant="hero" bundle={product.bundle} />
         ) : download ? (
           <a href={download[1] as string} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[64px] items-center gap-2.5 border-2 border-[#F4F1EC] bg-[#050405]/60 px-[30px] text-base font-black uppercase text-[#F4F1EC] hover:bg-[#F4F1EC] hover:text-[#050405]">
             Buy on {download[0]}

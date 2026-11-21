@@ -43,7 +43,7 @@ export default function AboutLicenseSection({ track, contentHtml, product }: { t
         `Credit ${labelName} / NJK Music where required`,
       ]
     : [
-        product ? "Lossless WAV master, delivered instantly after payment" : "Broadcast-safe WAV + MP3 with every download",
+        product?.bundle ? "All tracks as lossless WAV masters in one ZIP, delivered instantly" : product ? "Lossless WAV master, delivered instantly after payment" : "Broadcast-safe WAV + MP3 with every download",
         "Unlimited use across streams, podcasts and commercial projects",
         "Monetisation cleared for Twitch, YouTube, TikTok and client work",
         `Credit ${labelName} where required`,
@@ -89,7 +89,7 @@ export default function AboutLicenseSection({ track, contentHtml, product }: { t
           ))}
         </ul>
         {product ? (
-          <BuyButton slug={product.slug} priceCents={product.priceCents} currency={product.currency} variant="card" label={managed ? "Get a licence (WAV)" : "Buy WAV"} />
+          <BuyButton slug={product.slug} priceCents={product.priceCents} currency={product.currency} variant="card" bundle={product.bundle} label={managed ? "Get a licence (WAV)" : product.bundle ? "Buy the full EP (WAV)" : "Buy WAV"} />
         ) : buy && (
           <a href={buy} target="_blank" rel="noopener noreferrer" className="flex min-h-[60px] items-center justify-center gap-2.5 bg-[#050405] text-[15px] font-black uppercase text-[#F4F1EC] hover:text-white">
             {managed ? `Get a licence on ${buyName}` : `Get it on ${buyName} - lossless`}

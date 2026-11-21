@@ -3,14 +3,16 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
-type Props = { slug: string; priceCents: number; currency: string; variant?: "hero" | "card"; label?: string };
+type Props = { slug: string; priceCents: number; currency: string; variant?: "hero" | "card" | "row"; label?: string; bundle?: boolean; itemTitle?: string };
 
 const Icon = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" /></svg>
 );
 
-export default function BuyButton({ slug, priceCents, currency, variant = "hero", label }: Props) {
+export default function BuyButton({ slug, priceCents, currency, variant = "hero", label, bundle = false, itemTitle }: Props) {
   const card = variant === "card";
+  const row = variant === "row";
+  const what = bundle ? "EP (ZIP)" : "WAV";
   const [open, setOpen] = useState(false);
   const [consent, setConsent] = useState(false);
   const [busy, setBusy] = useState(false);
@@ -48,19 +50,21 @@ export default function BuyButton({ slug, priceCents, currency, variant = "hero"
   }
 
   return (
-    <div className={card ? "w-full" : "w-full sm:w-auto"}>
+    <div className={card ? "w-full" : row ? "shrink-0" : "w-full sm:w-auto"}>
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
         aria-haspopup="dialog"
         className={
-          card
+          row
+            ? "inline-flex min-h-[44px] cursor-pointer items-center gap-2 whitespace-nowrap border-2 border-[#F4F1EC] bg-transparent px-4 text-sm font-black uppercase text-[#F4F1EC] hover:bg-[#F4F1EC] hover:text-[#050405]"
+            : card
             ? "flex min-h-[60px] w-full cursor-pointer items-center justify-center gap-2.5 border-none bg-[#050405] text-[15px] font-black uppercase text-[#F4F1EC] hover:bg-black"
             : "inline-flex min-h-[64px] cursor-pointer items-center gap-2.5 border-2 border-[#F4F1EC] bg-[#050405]/60 px-[30px] text-base font-black uppercase text-[#F4F1EC] hover:bg-[#F4F1EC] hover:text-[#050405]"
         }
       >
         <Icon />
-        {label ?? "Buy WAV"} · {price}
+        {row ? <><span className="hidden sm:inline">{label ?? "Buy WAV"} · </span>{price}</> : <>{label ?? (bundle ? "Buy EP" : "Buy WAV")} · {price}</>}
       </button>
       {open &&
         createPortal(
@@ -75,8 +79,8 @@ export default function BuyButton({ slug, priceCents, currency, variant = "hero"
               <button type="button" onClick={() => setOpen(false)} disabled={busy} aria-label="Close" className="absolute right-3 top-3 flex h-10 w-10 items-center justify-center text-[#A39E98] hover:bg-white/5 hover:text-white">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12" /></svg>
               </button>
-              <h2 id={`buy-${slug}`} className="m-0 pr-10 text-xl font-extrabold tracking-[-0.02em] text-[#F4F1EC]">Buy WAV · {price}</h2>
-              <p className="mt-2 text-[#A39E98]">Lossless WAV master, download link sent by email right after payment. Invoice follows in a separate email.</p>
+              <h2 id={`buy-${slug}`} className="m-0 pr-10 text-xl font-extrabold tracking-[-0.02em] text-[#F4F1EC]">{itemTitle ? `${itemTitle} · ` : ""}Buy {what} · {price}</h2>
+              <p className="mt-2 text-[#A39E98]">{bundle ? "All tracks as lossless WAV masters in one ZIP" : "Lossless WAV master"}, download link sent by email right after payment. Invoice follows in a separate email.</p>
               <label className="mt-5 flex cursor-pointer items-start gap-3">
                 <input type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} className="mt-1 h-4 w-4 accent-[#B71C1C]" />
                 <span>I agree to immediate delivery of the digital file and acknowledge that I lose my right of withdrawal once delivery begins.</span>

@@ -27,7 +27,7 @@ export async function sendOrderEmail(to: string, order: { id: string; currency: 
   const items = lines
     .map(
       (l) =>
-        `<tr><td style="padding:14px 0;border-bottom:1px solid #2A262E"><strong style="color:#fff">${esc(l.title)}</strong><br><span style="color:#8C8781">WAV &middot; ${money(l.priceCents, order.currency)}</span><div style="padding-top:12px">${button(l.downloadUrl, "Download WAV")}</div></td></tr>`,
+        `<tr><td style="padding:14px 0;border-bottom:1px solid #2A262E"><strong style="color:#fff">${esc(l.title)}</strong><br><span style="color:#8C8781">${/full EP/i.test(l.title) ? "EP, WAV files in ZIP" : "WAV"} &middot; ${money(l.priceCents, order.currency)}</span><div style="padding-top:12px">${button(l.downloadUrl, /full EP/i.test(l.title) ? "Download ZIP" : "Download WAV")}</div></td></tr>`,
     )
     .join("");
   const html = shell(
