@@ -78,3 +78,20 @@ model OrderItem {
   @@index([orderId])
   @@index([productId])
 }
+
+/// Cookieless first-party analytics. `visitor` is a daily-rotating salted hash of IP + user agent (no IP stored).
+model AnalyticsEvent {
+  id        BigInt   @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  type      String
+  path      String
+  slug      String?
+  target    String?
+  referrer  String?
+  country   String?
+  device    String?
+  visitor   String
+
+  @@index([createdAt])
+  @@index([type, createdAt])
+}

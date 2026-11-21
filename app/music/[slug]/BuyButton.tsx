@@ -54,6 +54,8 @@ export default function BuyButton({ slug, priceCents, currency, variant = "hero"
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
+        data-track="buy"
+        data-slug={slug}
         aria-haspopup="dialog"
         className={
           row

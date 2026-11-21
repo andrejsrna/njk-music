@@ -4,6 +4,7 @@ import { inter, archivo, jetbrainsMono } from "@/lib/fonts";
 import Header from "@/app/components/Header";
 import Footer from "@/app/components/footer";
 import RouteBackdrop from "@/app/components/RouteBackdrop";
+import Analytics from "@/app/components/Analytics";
 import { SITE_URL } from "@/lib/env";
 import { SITE_AUTHOR, SITE_DESCRIPTION, SITE_NAME } from "@/lib/site";
 
@@ -72,6 +73,7 @@ export default function RootLayout({
         <Header />
           {children}
         <Footer />
+        <Analytics />
       </body>
     </html>
   );

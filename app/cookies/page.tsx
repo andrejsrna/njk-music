@@ -24,7 +24,7 @@ const categories: CookieCategory[] = [
   {
     title: "Analytics cookies",
     description:
-      "These help us understand how the site is used so we can improve pages and navigation.",
+      "These help us understand how the site is used so we can improve pages and navigation. Today we use no analytics cookies: we count anonymous page views, preview plays and store clicks on our own server with a daily-rotating hash, without storing your IP address. Do Not Track and Global Privacy Control are respected.",
     required: false,
     examples: [
       "Anonymous page view counts",
