@@ -2,7 +2,7 @@
 {
   "slug": "the-long-march",
   "Title": "The Long March",
-  "Description": "A 4:19 orchestral single from No Copyright Gaming Music for strategy games, campaign trailers, slow-building cinematic edits and story-driven gameplay. Stream it on Spotify, Deezer, Tidal, YouTube Music and Amazon Music.",
+  "Description": "A 4:19 orchestral single from No Copyright Gaming Music for strategy games, campaign trailers, slow-building cinematic edits and story-driven gameplay. Preview it here, buy the WAV for €1.50 or stream it on Spotify, Deezer, Tidal and more.",
   "genre": {
     "Genres": "Fantasy / Cinematic"
   },
